@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item
+        android:icon="@drawable/ic_person"
+        android:id="@+id/personal"
+        android:title="個人資料修改"/>
+
+    <item
+        android:icon="@drawable/ic_pets"
+        android:id="@+id/pet"
+        android:title="我的寵物"/>
+
+    <item
+        android:icon="@drawable/ic_favorite"
+        android:id="@+id/favorite"
+        android:title="我的最愛"/>
+
+    <item
+        android:icon="@drawable/ic_settings"
+        android:id="@+id/settings"
+        android:title="設定"/>
+</menu>
