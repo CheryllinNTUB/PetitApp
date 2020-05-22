@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    android:fitsSystemWindows="true">
 
 <RelativeLayout
     android:layout_width="match_parent"
@@ -20,8 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#77FFCC"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:navigationIcon="@drawable/ic_menu">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
         <TextView
@@ -29,29 +27,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginRight="60dp"
             android:text="相簿"
             android:textColor="#4f4f4f"
             android:textSize="24sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragmentContainer"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="580dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="30dp"
+        android:inputType="textPersonName"
+        app:cardCornerRadius="20dp"
+        android:text="新增相簿" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/navigation_view"
-        android:layout_gravity="start"
-        app:menu="@menu/navidrawer"/>
 
-</androidx.drawerlayout.widget.DrawerLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,10 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toolbar;
-
 
 public class login extends AppCompatActivity {
     private Button login,gotoregister;
@@ -29,5 +25,7 @@ public class login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 }

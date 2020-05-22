@@ -77,7 +77,7 @@
                     android:id="@+id/input_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="請輸入帳號"
+                    android:hint="請輸入電子郵件"
                     android:singleLine="true" />
 
 
@@ -124,6 +124,13 @@
 
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_marginTop="30dp"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <Button
                 android:id="@+id/finish"

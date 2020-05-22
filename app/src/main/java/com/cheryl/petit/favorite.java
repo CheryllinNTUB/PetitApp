@@ -1,7 +1,10 @@
 package com.cheryl.petit;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -15,6 +18,7 @@ public class favorite extends AppCompatActivity {
     private TabLayout tab_layout;
     private TabItem tabplace,tabalbum;
     public PagerAdapter pagerAdapter;
+    private ImageButton back;
 
 
     @Override
@@ -27,6 +31,16 @@ public class favorite extends AppCompatActivity {
         tabplace =(TabItem)findViewById(R.id.tabplace);
         tabalbum=(TabItem)findViewById(R.id.tabalbum);
         pager = findViewById(R.id.pager);
+        back = findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(favorite.this, homepage.class);
+                startActivity(intent);
+            }
+        });
 
         pagerAdapter  = new PageAdapter(getSupportFragmentManager(),tab_layout.getTabCount());
         pager.setAdapter(pagerAdapter);

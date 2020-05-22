@@ -5,7 +5,7 @@
     <item
         android:icon="@drawable/ic_person"
         android:id="@+id/personal"
-        android:title="個人資料修改"/>
+        android:title="個人資料"/>
 
     <item
         android:icon="@drawable/ic_pets"

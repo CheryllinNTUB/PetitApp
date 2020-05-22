@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
@@ -33,8 +34,10 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnavi);
 
 
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle.getDrawerArrowDrawable().setColor(Color.GRAY);
         bottomNavigationView.setOnNavigationItemSelectedListener(bottomnaviMethod);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -42,11 +45,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
 
     @Override
     public void onBackPressed(){
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }else {
-            super.onBackPressed();
-        }
+
     }
 
     @Override
@@ -89,8 +88,9 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                      switch (menuItem.getItemId())
                      {
                          case R.id.home:
-                         fragment = new home();
-                         break;
+                             Intent intent = new Intent(homepage.this, homepage.class);
+                             startActivity(intent);
+                        return true;
 
                          case R.id.search:
                          fragment =new search();

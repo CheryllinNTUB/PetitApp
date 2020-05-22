@@ -10,14 +10,23 @@
     android:background="#E8FFF5"
     tools:context=".favorite">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="#77FFCC"
+        android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        android:elevation="4dp">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            app:srcCompat="@drawable/ic_arrow"
+            tools:ignore="VectorDrawableCompat" />
 
 
         <TextView
@@ -25,9 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginRight="60dp"
             android:text="我的最愛"
             android:textColor="#4f4f4f"
             android:textSize="24sp" />
+
 
     </androidx.appcompat.widget.Toolbar>
 

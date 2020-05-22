@@ -16,8 +16,6 @@
         app:popupTheme="@style/AppTheme">
 
 
-
-
     <TextView
         android:id="@+id/toolbar_login"
         android:layout_width="match_parent"
@@ -54,7 +52,7 @@
             android:id="@+id/input_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="請輸入帳號(注意字母大小寫)"
+            android:hint="請輸入電子郵件"
             android:singleLine="true" />
 
         <com.google.android.material.textfield.TextInputLayout

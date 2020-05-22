@@ -16,12 +16,21 @@
         android:background="#77FFCC"
         android:elevation="4dp">
 
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            app:srcCompat="@drawable/ic_arrow"
+            tools:ignore="VectorDrawableCompat" />
+
 
         <TextView
             android:id="@+id/toolbar_help"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginRight="60dp"
             android:text="設定"
             android:textColor="#4f4f4f"
             android:textSize="24sp" />
