@@ -28,6 +28,7 @@ public class help extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_help, container, false);
 
+
         models = new ArrayList<>();
         models.add(new Model(R.drawable.eatfood,"關於毛孩的餵食小知識","餵對好食物，讓牠吃的開心又健康"));
         models.add(new Model(R.drawable.health,"關於毛小孩的保健小知識","人和毛孩都要養生!來看看毛孩們的健康小秘密"));
@@ -64,6 +65,8 @@ public class help extends Fragment {
 
             }
 
+
+
             @Override
             public void onPageSelected(int position) {
 
@@ -78,6 +81,9 @@ public class help extends Fragment {
         return v;
 
     }
+
+
+
     @Override
     public  void onViewCreated(View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);

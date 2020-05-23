@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 public class record extends Fragment implements View.OnClickListener{
     private CardView cal,doc,supp;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -26,6 +27,8 @@ public class record extends Fragment implements View.OnClickListener{
         cal.setOnClickListener(this);
         doc.setOnClickListener(this);
         supp.setOnClickListener(this);
+
+
 
         return v;
     }
@@ -41,5 +44,8 @@ public class record extends Fragment implements View.OnClickListener{
             default:break;
         }
 
+
     }
+
+
 }

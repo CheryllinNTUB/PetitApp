@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -14,6 +17,7 @@ public class cal extends AppCompatActivity {
     private TabLayout tab_layout;
     private TabItem daily,per_meal;
     public PagerAdapter pagerAdapter;
+    private ImageButton back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,20 @@ public class cal extends AppCompatActivity {
         daily =(TabItem)findViewById(R.id.daily);
         per_meal=(TabItem)findViewById(R.id.per_meal);
         pager = findViewById(R.id.pager);
+        back = findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(cal.this,homepage.class);
+                intent.putExtra("cal",1);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
 
         pagerAdapter  = new PageAdapter(getSupportFragmentManager(),tab_layout.getTabCount());
         pager.setAdapter(pagerAdapter);

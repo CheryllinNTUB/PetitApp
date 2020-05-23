@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,10 +20,12 @@ public class Adapter extends PagerAdapter {
     private List<Model> models;
     private LayoutInflater layoutInflater;
     private Context context;
+    private Button button;
 
     public Adapter(List<Model> models, Context context) {
         this.models = models;
         this.context = context;
+        this.button = button;
     }
 
     @Override
