@@ -1,6 +1,5 @@
 package com.cheryl.petit;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,30 +7,32 @@ import android.widget.ImageButton;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 
-
-public class favorite extends AppCompatActivity {
+public class favorite extends AppCompatActivity implements ViewPager.OnPageChangeListener,
+        TabLayout.OnTabSelectedListener {
     private  ViewPager pager;
     private TabLayout tab_layout;
-    private TabItem tabplace,tabalbum;
-    public PagerAdapter pagerAdapter;
     private ImageButton back;
+
+
+    private Fragment favorite_place = new favorite_place();
+    private Fragment favorite_album = new favorite_album();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
-
-
-        tab_layout =(TabLayout) findViewById(R.id.tab_layout);
-        tabplace =(TabItem)findViewById(R.id.tabplace);
-        tabalbum=(TabItem)findViewById(R.id.tabalbum);
-        pager = findViewById(R.id.pager);
-        back = findViewById(R.id.back);
+        pager = (ViewPager) findViewById(R.id.pager);
+        tab_layout = (TabLayout) findViewById(R.id.tab_layout);
+        back = (ImageButton) findViewById(R.id.back);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,33 +43,60 @@ public class favorite extends AppCompatActivity {
             }
         });
 
-        pagerAdapter  = new PageAdapter(getSupportFragmentManager(),tab_layout.getTabCount());
-        pager.setAdapter(pagerAdapter);
 
+        pager.addOnPageChangeListener(this);
+        tab_layout.addOnTabSelectedListener(this);
 
-        tab_layout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @NonNull
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                pager.setCurrentItem(tab.getPosition());
-                if(tab.getPosition() == 0) {
-                    pagerAdapter.notifyDataSetChanged();
+            public Fragment getItem(int position) {
+                switch (position) {
+                    case 0:
+                        return favorite_place;
+                    case 1:
+                        return favorite_album;
                 }
-                    if(tab.getPosition() == 1){
-                    pagerAdapter.notifyDataSetChanged();
-                }
-                    }
-
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
+                return null;
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
+            public int getCount() {
+                return 2;
             }
         });
-        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab_layout));
+
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        pager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+        tab_layout.getTabAt(position).select();
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }
+

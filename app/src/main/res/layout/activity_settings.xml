@@ -54,7 +54,7 @@
                 android:layout_width="359dp"
                 android:layout_height="75dp"
                 android:gravity="center_vertical"
-                android:text="用品到期開啟提醒"
+                android:text="提醒推播開關"
                 android:textColor="#000000"
                 android:textSize="20dp" />
 
@@ -81,7 +81,7 @@
                 android:elevation="10dp"
                 android:gravity="center_vertical"
                 android:textColor="#000000"
-                android:text="看診時間到期提醒"
+                android:text="提醒聲音開關"
                 android:textSize="20dp" />
 
             <Switch
