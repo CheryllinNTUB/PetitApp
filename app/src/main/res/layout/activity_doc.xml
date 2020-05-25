@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="40dp"
             android:gravity="center"
-            android:text="醫療紀錄"
+            android:text="看診紀錄"
             android:textColor="#4f4f4f"
             android:textSize="24sp" />
 
