@@ -46,7 +46,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="75dp"
-            android:layout_marginTop="55dp"
             android:background="#ffffff"
             android:orientation="horizontal">
 
@@ -68,6 +67,31 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="#ffffff"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/doc_remind"
+                android:layout_width="359dp"
+                android:layout_height="75dp"
+
+                android:elevation="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:text="看診時間到期提醒"
+                android:textSize="20dp" />
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="center_vertical" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/opinion"

@@ -128,7 +128,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="醫療紀錄"
+                    android:text="看診紀錄"
                     android:textAlignment="center"
                     android:textColor="#4f4f4f"
                     android:textSize="18sp"
