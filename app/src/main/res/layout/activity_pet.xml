@@ -29,24 +29,39 @@
 
         <TextView
             android:id="@+id/toolbar_help"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="135dp"
             android:gravity="center"
             android:text="我的寵物"
             android:textColor="#4f4f4f"
-            android:textSize="24sp" />
+            android:textSize="24sp"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110dp"
+            android:background="@null"
+            app:srcCompat="@drawable/ic_add"
+            tools:ignore="VectorDrawableCompat" />
 
 
     </androidx.appcompat.widget.Toolbar>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_addpet"
-        app:backgroundTint="#77FFCC"
-        android:src="@drawable/ic_adddata"
-        android:layout_marginTop="450dp"
-        android:layout_marginLeft="300dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:gravity="center"
+            android:text="尚無寵物資料"
+            android:textSize="30dp"/>
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -53,7 +53,7 @@
                 android:text="餵對好食物，讓牠吃的開心又健康" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/help_button"
                 android:layout_width="66dp"
                 android:layout_height="35dp"
                 android:layout_marginLeft="120dp"

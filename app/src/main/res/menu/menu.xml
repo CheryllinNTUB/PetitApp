@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/search"
-        android:title="友善場所"
+        android:title="搜尋場所"
         android:icon="@drawable/ic_search" />
 
     <item

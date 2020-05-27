@@ -39,11 +39,20 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <ImageButton
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@null"
+        app:srcCompat="@drawable/personhead"
+        tools:ignore="VectorDrawableCompat"/>
+
     <LinearLayout
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_below="@+id/btn_photo"
-        android:weightSum="2"
+        android:layout_marginTop="40dp"
         android:id="@+id/layout_text_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,7 +75,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_below="@+id/btn_photo"
-        android:weightSum="2"
+        android:layout_marginTop="30dp"
         android:id="@+id/layout_text_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -89,7 +98,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_below="@+id/btn_photo"
-        android:weightSum="2"
+        android:layout_marginTop="30dp"
         android:id="@+id/layout_text_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -114,6 +123,7 @@
         android:id="@+id/OK"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:text="修改完成"
         android:background="#77FFCC"/>
