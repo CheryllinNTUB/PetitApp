@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class psychologically_tips extends AppCompatActivity {
+public class workdog_tips extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

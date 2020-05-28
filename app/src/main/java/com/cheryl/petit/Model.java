@@ -1,5 +1,6 @@
 package com.cheryl.petit;
 
+
 import android.widget.Button;
 
 public class Model {
@@ -7,13 +8,14 @@ public class Model {
     private int image;
     private String title;
     private String content;
-    private Button button;
+
 
     public Model(int image, String title, String content) {
         this.image = image;
         this.title = title;
         this.content = content;
-        this.button = button;
+
+
     }
 
     public int getImage() {
@@ -40,11 +42,5 @@ public class Model {
         this.content = content;
     }
 
-    public Button getButton() {
-        return button;
-    }
 
-    public void setButton(Button button) {
-        this.button = button;
-    }
 }

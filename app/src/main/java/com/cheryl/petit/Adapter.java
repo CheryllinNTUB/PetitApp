@@ -1,13 +1,14 @@
 package com.cheryl.petit;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,12 +21,10 @@ public class Adapter extends PagerAdapter {
     private List<Model> models;
     private LayoutInflater layoutInflater;
     private Context context;
-    private Button button;
 
     public Adapter(List<Model> models, Context context) {
         this.models = models;
         this.context = context;
-        this.button = button;
     }
 
     @Override
@@ -40,12 +39,12 @@ public class Adapter extends PagerAdapter {
 
     @Nullable
     @Override
-    public Object instantiateItem(@Nullable ViewGroup container, final int position){
+    public Object instantiateItem(@Nullable final ViewGroup container, final int position){
         layoutInflater = LayoutInflater.from(context);
         View view =layoutInflater.inflate(R.layout.item,container,false);
 
         ImageView imageView;
-        TextView title, content;
+        final TextView title, content;
 
         imageView = view.findViewById(R.id.image);
         title = view.findViewById(R.id.title);
@@ -54,6 +53,7 @@ public class Adapter extends PagerAdapter {
         imageView.setImageResource(models.get(position).getImage());
         title.setText(models.get(position).getTitle());
         content.setText(models.get(position).getContent());
+
 
         container.addView(view,0);
         return view;
