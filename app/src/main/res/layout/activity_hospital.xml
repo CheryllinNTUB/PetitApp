@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8FFF5"
-    tools:context=".hospital">
+    tools:context=".hospital"
+    android:background="#E8FFF5">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -38,4 +37,42 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-</LinearLayout>
+    <Spinner
+        android:id="@+id/spinner7"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="25dp"
+        tools:spinnerMode="dropdown" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginRight="25dp"
+        android:text="縣市"
+        android:textSize="30sp" />
+
+    <Spinner
+        android:id="@+id/spinner8"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="25dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginRight="25dp"
+        android:text="地區"
+        tools:textSize="30sp" />
+
+
+</RelativeLayout>
