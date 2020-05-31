@@ -23,7 +23,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //從卡路里計算返回紀錄頁
+        //從卡路里計算返回搜尋頁
         int cal = getIntent().getIntExtra("cal",0);
         if(cal == 1){
             getSupportFragmentManager()
@@ -32,7 +32,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                     .addToBackStack(null)
                     .commit(); }
 
-        //從醫療紀錄返回紀錄頁
+        //從醫療紀錄返回搜尋頁
         int doc = getIntent().getIntExtra("doc",0);
         if(doc == 2){
             getSupportFragmentManager()
@@ -41,7 +41,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                     .addToBackStack(null)
                     .commit(); }
 
-        //從寵物用品返回紀錄頁
+        //從寵物用品返回搜尋頁
         int supp = getIntent().getIntExtra("supp",0);
         if(supp == 3){
             getSupportFragmentManager()
@@ -50,7 +50,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                     .addToBackStack(null)
                     .commit(); }
 
-        //從友善住宿返回紀錄頁
+        //從友善住宿返回搜尋頁
         int hotel = getIntent().getIntExtra("hotel",0);
         if(hotel == 4){
             getSupportFragmentManager()
@@ -59,7 +59,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                     .addToBackStack(null)
                     .commit(); }
 
-        //從友善餐廳返回紀錄頁
+        //從友善餐廳返回搜尋頁
         int restaurant = getIntent().getIntExtra("restaurant",0);
         if(restaurant == 5){
             getSupportFragmentManager()
@@ -69,7 +69,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                     .commit(); }
 
 
-        //從友善景點返回紀錄頁
+        //從友善景點返回搜尋頁
         int place = getIntent().getIntExtra("place",0);
         if(place == 6){
             getSupportFragmentManager()
@@ -79,7 +79,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                     .commit(); }
 
 
-        //從寵物醫院返回紀錄頁
+        //從寵物醫院返回搜尋頁
         int hospital = getIntent().getIntExtra("hospital",0);
         if(hospital == 7){
             getSupportFragmentManager()
@@ -88,7 +88,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                     .addToBackStack(null)
                     .commit(); }
 
-        //從寵物美容院返回紀錄頁
+        //從寵物美容院返回搜尋頁
         int salon = getIntent().getIntExtra("salon",0);
         if(salon == 8){
             getSupportFragmentManager()
@@ -98,12 +98,39 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                     .commit(); }
 
 
-        //從寵物公園返回紀錄頁
+        //從寵物公園返回搜尋頁
         int park = getIntent().getIntExtra("park",0);
         if(park == 9){
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragmentContainer,new search())
+                    .addToBackStack(null)
+                    .commit(); }
+
+        //從卡路里資料記錄區返回紀錄頁
+        int addcal = getIntent().getIntExtra("addcal",0);
+        if(addcal == 10){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer,new record())
+                    .addToBackStack(null)
+                    .commit(); }
+
+        //從看診資料記錄區返回紀錄頁
+        int adddoc = getIntent().getIntExtra("adddoc",0);
+        if(adddoc == 11){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer,new record())
+                    .addToBackStack(null)
+                    .commit(); }
+
+        //從用品資料記錄區返回紀錄頁
+        int addsupp = getIntent().getIntExtra("addsupp",0);
+        if(addsupp == 12){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer,new record())
                     .addToBackStack(null)
                     .commit(); }
 

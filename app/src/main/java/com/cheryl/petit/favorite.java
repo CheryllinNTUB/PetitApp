@@ -13,18 +13,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.PagerAdapter;
 
-public class favorite extends AppCompatActivity implements ViewPager.OnPageChangeListener,
-        TabLayout.OnTabSelectedListener {
-    private  ViewPager pager;
+public class favorite extends AppCompatActivity {
+    private ViewPager pager;
     private TabLayout tab_layout;
+    private TabItem favorite_album, favorite_place;
     private ImageButton back;
-
-
-    private Fragment favorite_place = new favorite_place();
-    private Fragment favorite_album = new favorite_album();
-
+    public PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,70 +28,47 @@ public class favorite extends AppCompatActivity implements ViewPager.OnPageChang
         pager = (ViewPager) findViewById(R.id.pager);
         tab_layout = (TabLayout) findViewById(R.id.tab_layout);
         back = (ImageButton) findViewById(R.id.back);
+        favorite_place = (TabItem) findViewById(R.id.tabplace);
+        favorite_album = (TabItem) findViewById(R.id.tabalbum);
+
+
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), tab_layout.getTabCount());
+        pager.setAdapter(pagerAdapter);
+
+        tab_layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                pager.setCurrentItem(tab.getPosition());
+                if (tab.getPosition() == 2) {
+                    pagerAdapter.notifyDataSetChanged();
+                } else if (tab.getPosition() == 3) {
+                    pagerAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab_layout));
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(favorite.this, homepage.class);
+                Intent intent = new Intent(favorite.this, homepage.class);
+                intent.putExtra("cal", 1);
                 startActivity(intent);
-            }
-        });
-
-
-        pager.addOnPageChangeListener(this);
-        tab_layout.addOnTabSelectedListener(this);
-
-        pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
-            @NonNull
-            @Override
-            public Fragment getItem(int position) {
-                switch (position) {
-                    case 0:
-                        return favorite_place;
-                    case 1:
-                        return favorite_album;
-                }
-                return null;
-            }
-
-            @Override
-            public int getCount() {
-                return 2;
+                finish();
             }
         });
 
     }
 
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        pager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-
-        tab_layout.getTabAt(position).select();
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }
 }
-

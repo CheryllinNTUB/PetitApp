@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            app:srcCompat="@drawable/ic_arrow"
+            app:srcCompat="@drawable/ic_close"
             tools:ignore="VectorDrawableCompat" />
 
 
@@ -92,21 +92,32 @@
             android:text=" "
             android:layout_marginLeft="30dp" />
 
-        <TextView
-            android:id="@+id/supptype"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="用品種類"
-            android:textSize="22dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:textColor="#000000"/>
+            android:orientation="horizontal">
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp" />
+            <TextView
+                android:id="@+id/text_supptype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:text="用品種類:"
+                android:textColor="#000000"
+                android:textSize="22dp" />
+
+            <Spinner
+                android:id="@+id/supptype"
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="30dp"
+                android:background="#ffffff"
+                android:entries="@array/list6"
+                android:spinnerMode="dialog"
+                tools:spinnerMode="dropdown"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -141,21 +152,33 @@
             android:layout_marginLeft="30dp"
             android:text="選擇日期" />
 
-        <TextView
-            android:id="@+id/supptime"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="提醒時間"
-            android:textSize="22dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="50dp"
-            android:textColor="#000000"/>
+            android:orientation="horizontal">
 
-        <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp" />
+            <TextView
+                android:id="@+id/text_supptime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="50dp"
+                android:text="提醒時間:"
+                android:textColor="#000000"
+                android:textSize="22dp" />
+
+            <Spinner
+                android:id="@+id/supptime"
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="30dp"
+                android:background="#ffffff"
+                android:entries="@array/list5"
+                android:spinnerMode="dialog"
+                tools:spinnerMode="dropdown"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

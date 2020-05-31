@@ -38,9 +38,9 @@ public class record extends Fragment implements View.OnClickListener{
         Intent i;
 
         switch (view.getId()){
-            case R.id.cal:i = new Intent(view.getContext(), cal.class);startActivity(i);break;
-            case R.id.doc:i = new Intent(view.getContext(), doc.class);startActivity(i);break;
-            case R.id.supp:i = new Intent(view.getContext(), supp.class);startActivity(i);break;
+            case R.id.cal:i = new Intent(view.getContext(), addcal.class);startActivity(i);break;
+            case R.id.doc:i = new Intent(view.getContext(), adddoc.class);startActivity(i);break;
+            case R.id.supp:i = new Intent(view.getContext(), addsupp.class);startActivity(i);break;
             default:break;
         }
 

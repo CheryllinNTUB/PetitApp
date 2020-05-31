@@ -7,10 +7,12 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -20,6 +22,7 @@ public class supp extends AppCompatActivity {
     private ImageButton back;
     private Button choosedate;
     private EditText date;
+    private Spinner supptype,supptime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,14 @@ public class supp extends AppCompatActivity {
         back = findViewById(R.id.back);
         date = findViewById(R.id.date);
         choosedate = findViewById(R.id.choosedate);
+        supptime = findViewById(R.id.supptime);
+        supptype = findViewById(R.id.supptype);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                R.layout.custom_spinner,
+                getResources().getStringArray(R.array.list)
+        );
 
         choosedate.setOnClickListener(new View.OnClickListener() {
             @Override

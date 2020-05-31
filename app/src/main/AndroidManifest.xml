@@ -9,7 +9,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".petadd"></activity>
+        <activity android:name=".addsupp"></activity>
+        <activity android:name=".adddoc" />
+        <activity android:name=".addcal" />
+        <activity android:name=".petadd" />
         <activity android:name=".restaurant" />
         <activity android:name=".salon" />
         <activity android:name=".hospital" />
