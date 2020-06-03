@@ -15,8 +15,8 @@
     </string-array>
 
     <string-array name="list3">
-    <item>類型</item>
-</string-array>
+        <item>類型</item>
+    </string-array>
 
     <string-array name="list4">
         <item>寵物名稱</item>

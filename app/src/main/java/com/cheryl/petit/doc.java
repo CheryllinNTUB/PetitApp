@@ -85,7 +85,7 @@ public class doc extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(doc.this,homepage.class);
+                Intent intent = new Intent(doc.this,adddoc.class);
                 intent.putExtra("doc",2);
                 startActivity(intent);
                 finish();

@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 //用在卡路里和我的最愛
 public class PagerAdapter extends FragmentPagerAdapter {
-
     private  int numOfTabs;
 
     public  PagerAdapter(FragmentManager fm, int numOfTabs){
@@ -20,15 +19,15 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
-                return  new daily();
+                return new daily();
             case 1:
-                return  new per_meal();
+                return new permeal();
             case 2:
                 return new favorite_album();
             case 3:
                 return new favorite_place();
-                default:
-                    return null;
+            default:
+                return null;
         }
 
     }

@@ -15,25 +15,21 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class cal extends AppCompatActivity {
-    private ViewPager pager;
-    private TabLayout tab_layout;
-    private TabItem daily, per_meal;
-    private ImageButton back;
     public PagerAdapter pagerAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cal);
-        pager = (ViewPager) findViewById(R.id.pager);
-        tab_layout = (TabLayout) findViewById(R.id.tab_layout);
-        daily = (TabItem) findViewById(R.id.daily);
-        per_meal = (TabItem) findViewById(R.id.per_meal);
-        back = (ImageButton) findViewById(R.id.back);
 
-         pagerAdapter = new PagerAdapter(getSupportFragmentManager(),tab_layout.getTabCount());
-         pager.setAdapter(pagerAdapter);
+       final ViewPager pager = findViewById(R.id.pager);
+       TabLayout tab_layout = findViewById(R.id.tab_layout);
+       TabItem daily = findViewById(R.id.daily);
+       TabItem permeal = findViewById(R.id.per_meal);
+       ImageButton back = findViewById(R.id.back);
+
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),tab_layout.getTabCount());
+        pager.setAdapter(pagerAdapter);
 
         tab_layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -58,11 +54,10 @@ public class cal extends AppCompatActivity {
         });
 
         pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab_layout));
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(cal.this, homepage.class);
+                Intent intent = new Intent(cal.this, addcal.class);
                 intent.putExtra("cal", 1);
                 startActivity(intent);
                 finish();
