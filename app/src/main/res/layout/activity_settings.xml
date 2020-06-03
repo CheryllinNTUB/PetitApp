@@ -51,7 +51,7 @@
 
             <TextView
                 android:id="@+id/remind"
-                android:layout_width="359dp"
+                android:layout_width="300dp"
                 android:layout_height="75dp"
                 android:gravity="center_vertical"
                 android:text="提醒推播開關"
@@ -75,7 +75,7 @@
 
             <TextView
                 android:id="@+id/doc_remind"
-                android:layout_width="359dp"
+                android:layout_width="300dp"
                 android:layout_height="75dp"
 
                 android:elevation="10dp"

@@ -32,7 +32,7 @@
             android:id="@+id/toolbar_help"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="135dp"
+            android:layout_marginLeft="90dp"
             android:gravity="center"
             android:text="寵物用品"
             android:textColor="#4f4f4f"

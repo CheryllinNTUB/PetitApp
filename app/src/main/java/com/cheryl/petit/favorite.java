@@ -23,8 +23,6 @@ public class favorite extends AppCompatActivity {
         final ViewPager pager = findViewById(R.id.pager);
         TabLayout tab_layout = findViewById(R.id.tab_layout);
         ImageButton back = findViewById(R.id.back);
-        tab_layout.addTab(tab_layout.newTab().setText("場所"));
-        tab_layout.addTab(tab_layout.newTab().setText("相簿"));
 
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(),tab_layout.getTabCount());
         pager.setAdapter(pagerAdapter);
@@ -52,10 +50,9 @@ public class favorite extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(favorite.this, homepage.class);
-                intent.putExtra("cal", 1);
+                Intent intent = new Intent();
+                intent.setClass(favorite.this, homepage.class);
                 startActivity(intent);
-                finish();
             }
         });
 
