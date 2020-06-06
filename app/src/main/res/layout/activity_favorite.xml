@@ -34,10 +34,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginRight="60dp"
+            android:layout_marginRight="30dp"
             android:text="我的最愛"
             android:textColor="#4f4f4f"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
 
     </androidx.appcompat.widget.Toolbar>

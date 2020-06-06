@@ -38,7 +38,7 @@
                 android:gravity="center"
                 android:text="想帶毛孩去的地方是..."
                 android:textColor="#4f4f4f"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
         </androidx.appcompat.widget.Toolbar>
 

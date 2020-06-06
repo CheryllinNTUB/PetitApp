@@ -32,16 +32,15 @@
             android:id="@+id/toolbar_help"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="90dp"
-            android:gravity="center"
+            android:layout_marginLeft="110dp"
             android:text="寵物用品"
             android:textColor="#4f4f4f"
-            android:textSize="24sp"/>
+            android:textSize="20sp"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
+            android:layout_marginLeft="100dp"
             android:background="@null"
             app:srcCompat="@drawable/ic_action_name"
             tools:ignore="VectorDrawableCompat" />
@@ -59,29 +58,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="用品品牌"
-            android:textSize="22dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:textColor="#000000"/>
+            android:textSize="18dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp" />
 
         <EditText
             android:id="@+id/editText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text=" "
-            android:layout_marginLeft="30dp"/>
+            android:layout_marginLeft="20dp"/>
 
         <TextView
             android:id="@+id/suppname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="用品名稱"
-            android:textSize="22dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:textColor="#000000"/>
+            android:textSize="18dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp" />
 
         <EditText
             android:id="@+id/editText2"
@@ -90,29 +85,29 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text=" "
-            android:layout_marginLeft="30dp" />
+            android:layout_marginLeft="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/text_supptype"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
                 android:text="用品種類:"
-                android:textColor="#000000"
-                android:textSize="22dp" />
+                android:textSize="18dp" />
 
             <Spinner
                 android:id="@+id/supptype"
                 android:layout_width="110dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="25dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="15dp"
                 android:background="#ffffff"
                 android:entries="@array/list6"
                 android:spinnerMode="dialog"
@@ -122,57 +117,58 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/suppdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
                 android:text="用品到期日："
-                android:textColor="#000000"
-                android:textSize="22dp" />
+                android:textSize="18dp" />
 
             <EditText
                 android:id="@+id/date"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:text="" />
+                android:layout_marginTop="25dp" />
 
-        </LinearLayout>
+
 
         <Button
             android:id="@+id/choosedate"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:text="選擇日期" />
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="選擇日期"
+            android:background="#77FFCC"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/text_supptime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
                 android:text="提醒時間:"
-                android:textColor="#000000"
-                android:textSize="22dp" />
+                android:textSize="18dp" />
 
             <Spinner
                 android:id="@+id/supptime"
                 android:layout_width="110dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="15dp"
                 android:background="#ffffff"
                 android:entries="@array/list5"
                 android:spinnerMode="dialog"

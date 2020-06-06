@@ -27,8 +27,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="#77FFCC"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-            android:elevation="4dp">
+            app:popupTheme="@style/AppTheme">
 
             <TextView
                 android:id="@+id/toolbar_record"
@@ -37,7 +36,7 @@
                 android:gravity="center"
                 android:text="需要記錄的是..."
                 android:textColor="#4f4f4f"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
         </androidx.appcompat.widget.Toolbar>
 

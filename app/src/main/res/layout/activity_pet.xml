@@ -31,17 +31,17 @@
             android:id="@+id/toolbar_help"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="110dp"
             android:gravity="center"
             android:text="我的寵物"
             android:textColor="#4f4f4f"
-            android:textSize="24sp"/>
+            android:textSize="20sp"/>
 
         <ImageButton
             android:id="@+id/add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
+            android:layout_marginLeft="90dp"
             android:background="@null"
             app:srcCompat="@drawable/ic_add"
             tools:ignore="VectorDrawableCompat" />

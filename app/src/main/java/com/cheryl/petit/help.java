@@ -37,10 +37,10 @@ public class  help extends Fragment {
 
         models = new ArrayList<>();
         models.add(new Model(R.drawable.eatfood,"關於寵物的餵食...","餵對好食物，讓牠吃的開心又健康"));
-        models.add(new Model(R.drawable.health,"關於寵物的保健...","寵物也要養生!來看看寵物的保健小秘密"));
-        models.add(new Model(R.drawable.psychologically,"關於工作犬的種類...","各行各業的汪星人們平常都在做什麼呢?"));
-        models.add(new Model(R.drawable.petsupplies,"關於購買寵物用品...","在為毛孩血拚同時，也要記得別當冤大頭!"));
-        models.add(new Model(R.drawable.usequestion,"關於系統使用問題","在使用上遇到問題時，不妨來這裡找答案"));
+        models.add(new Model(R.drawable.health,"關於寵物的保健...","寵物也要養生!寵物的保健小秘密"));
+        models.add(new Model(R.drawable.psychologically,"關於工作犬的種類...","各行各業的汪星人們平常的工作是?"));
+        models.add(new Model(R.drawable.petsupplies,"關於購買寵物用品...","為毛孩血拚同時，記得別當冤大頭!"));
+        models.add(new Model(R.drawable.usequestion,"關於系統使用問題","遇到問題時，不妨來這裡找答案"));
 
         adapter = new Adapter(models,getActivity());
 
