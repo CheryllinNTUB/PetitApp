@@ -131,20 +131,10 @@
 
             <EditText
                 android:id="@+id/date"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:hint="請選擇日期"
                 android:layout_marginTop="25dp" />
-
-
-
-        <Button
-            android:id="@+id/choosedate"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="10dp"
-            android:text="選擇日期"
-            android:background="#77FFCC"/>
 
         </LinearLayout>
 

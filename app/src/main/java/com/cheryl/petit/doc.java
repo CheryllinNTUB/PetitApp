@@ -3,10 +3,11 @@ package com.cheryl.petit;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -17,9 +18,10 @@ import java.util.Calendar;
 
 public class doc extends AppCompatActivity {
     private ImageButton back;
-    private Button docday,backdocbtn;
-    private EditText date;
-    private RadioButton yes,no;
+    private EditText docdatepick, backdocday;
+    private DatePickerDialog.OnDateSetListener dateSetListener;
+    private DatePickerDialog.OnDateSetListener dateSetListener2;
+    private RadioButton yes, no;
     private Spinner petname;
 
 
@@ -27,11 +29,9 @@ public class doc extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doc);
-        docday = findViewById(R.id.docday);
         back = findViewById(R.id.back);
-        date = findViewById(R.id.date);
-        docday = findViewById(R.id.docday);
-        backdocbtn = findViewById(R.id.backdocbtn);
+        docdatepick = findViewById(R.id.docdatepick);
+        backdocday = findViewById(R.id.backdocday);
         yes = findViewById(R.id.yes);
         no = findViewById(R.id.no);
         petname = findViewById(R.id.petname);
@@ -43,55 +43,82 @@ public class doc extends AppCompatActivity {
         );
 
 
-        docday.setOnClickListener(new View.OnClickListener() {
+        docdatepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-                new DatePickerDialog(doc.this, new DatePickerDialog.OnDateSetListener() {
+
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog dialog = new DatePickerDialog(
+                        doc.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        dateSetListener, year, month, day
+                );
+
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+
+            }
+        });
+
+        backdocday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog dialog = new DatePickerDialog(
+                        doc.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        dateSetListener2, year, month, day
+                );
+
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+
+
+            }
+        });
+
+        dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+
+                month = month + 1;
+
+                String thedate = year + "/" + month + "/" + day;
+
+                docdatepick.setText(thedate);
+            }
+        };
+
+        dateSetListener2 = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+
+                month = month + 1;
+
+                String thedate2 = year + "/" + month + "/" + day;
+
+                backdocday.setText(thedate2);
+            }
+        };
+
+
+                back.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        String dateTime = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(day);
-                        date.setText(dateTime);
-
+                    public void onClick(View view) {
+                        Intent intent = new Intent(doc.this, adddoc.class);
+                        intent.putExtra("doc", 2);
+                        startActivity(intent);
+                        finish();
                     }
-                },year,month,day).show();
+                });
 
             }
-        });
 
-
-        backdocbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Calendar d = Calendar.getInstance();
-                int year = d.get(Calendar.YEAR);
-                int month = d.get(Calendar.MONTH);
-                int day = d.get(Calendar.DAY_OF_MONTH);
-                new DatePickerDialog(doc.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        String dateTime = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(day);
-                        date.setText(dateTime);
-
-                    }
-                },year,month,day).show();
-
-            }
-        });
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(doc.this,adddoc.class);
-                intent.putExtra("doc",2);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-    }
-
-}
+        }
