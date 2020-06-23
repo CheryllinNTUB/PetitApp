@@ -28,18 +28,10 @@
             android:id="@+id/hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="420dp"
+            android:layout_marginTop="480dp"
             android:gravity="center"
             android:text="需要什麼幫助呢?"
             android:textSize="22dp" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="450dp"
-            app:srcCompat="@drawable/cat1" />
 
 
         <androidx.appcompat.widget.Toolbar
@@ -61,11 +53,6 @@
                 android:textSize="20sp" />
 
         </androidx.appcompat.widget.Toolbar>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fragmentContainer"/>
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

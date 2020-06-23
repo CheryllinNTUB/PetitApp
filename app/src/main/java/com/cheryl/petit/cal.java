@@ -29,17 +29,17 @@ public class cal extends AppCompatActivity {
        ImageButton back = findViewById(R.id.back);
 
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(),tab_layout.getTabCount());
-        pager.setAdapter(pagerAdapter);
+                pager.setAdapter(pagerAdapter);
 
-        tab_layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                pager.setCurrentItem(tab.getPosition());
-                if(tab.getPosition() == 0){
-                    pagerAdapter.notifyDataSetChanged();
-                }else if (tab.getPosition() == 1){
-                    pagerAdapter.notifyDataSetChanged();
-                }
+                tab_layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        pager.setCurrentItem(tab.getPosition());
+                        if(tab.getPosition() == 0){
+                            pagerAdapter.notifyDataSetChanged();
+                        }else if (tab.getPosition() == 1){
+                            pagerAdapter.notifyDataSetChanged();
+                        }
             }
 
             @Override

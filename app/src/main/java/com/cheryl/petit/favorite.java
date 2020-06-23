@@ -22,29 +22,9 @@ public class favorite extends AppCompatActivity {
 
         final ViewPager pager = findViewById(R.id.pager);
         TabLayout tab_layout = findViewById(R.id.tab_layout);
+        TabItem favorite_place = findViewById(R.id.tabplace);
+        TabItem favorite_album = findViewById(R.id.tabalbum);
         ImageButton back = findViewById(R.id.back);
-
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),tab_layout.getTabCount());
-        pager.setAdapter(pagerAdapter);
-
-        tab_layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab_layout));
 
 
         back.setOnClickListener(new View.OnClickListener() {
