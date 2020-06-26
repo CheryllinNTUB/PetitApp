@@ -8,24 +8,26 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class permeal extends Fragment {
 
-
-    public permeal() {
-        // Required empty public constructor
-    }
-
+    private Spinner foodtype;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_permeal, container, false);
+        View v = inflater.inflate(R.layout.fragment_permeal, container, false);
+
+       foodtype = v.findViewById(R.id.foodtype);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                v.getContext(), R.layout.custom_spinner,
+                getResources().getStringArray(R.array.list8)
+        );
+        return v;
     }
 
 }

@@ -6,13 +6,16 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.telephony.RadioAccessSpecifier;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.Calendar;
 
@@ -21,8 +24,8 @@ public class doc extends AppCompatActivity {
     private EditText docdatepick, backdocday;
     private DatePickerDialog.OnDateSetListener dateSetListener;
     private DatePickerDialog.OnDateSetListener dateSetListener2;
-    private RadioButton yes, no;
     private Spinner petname;
+    private RadioButton yes,no;
 
 
     @Override
@@ -31,16 +34,37 @@ public class doc extends AppCompatActivity {
         setContentView(R.layout.activity_doc);
         back = findViewById(R.id.back);
         docdatepick = findViewById(R.id.docdatepick);
-        backdocday = findViewById(R.id.backdocday);
-        yes = findViewById(R.id.yes);
-        no = findViewById(R.id.no);
         petname = findViewById(R.id.petname);
+        yes = (RadioButton)findViewById(R.id.yes);
+        no = (RadioButton)findViewById(R.id.no);
+        backdocday = (EditText) findViewById(R.id.backdocday);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 R.layout.custom_spinner,
                 getResources().getStringArray(R.array.list)
         );
+
+//是否需要回診按鈕顯示
+        yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    backdocday.setVisibility(View.VISIBLE);
+                    no.setChecked(false);
+                }
+            }
+        });
+        no.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    backdocday.setVisibility(View.INVISIBLE);
+                    yes.setChecked(false);
+                }
+            }
+        });
+
 
 
         docdatepick.setOnClickListener(new View.OnClickListener() {

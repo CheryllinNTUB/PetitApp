@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#E8FFF5"
+    android:focusableInTouchMode="true"
     tools:context=".daily">
 
 
@@ -38,10 +39,14 @@
 
             <Spinner
                 android:id="@+id/petname"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"/>
+                android:background="#ffffff"
+                android:entries="@array/list4"
+                android:spinnerMode="dialog"
+                tools:spinnerMode="dropdown"/>
 
             <TextView
                 android:id="@+id/calculate2"
@@ -61,7 +66,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/kg"
+                    android:id="@+id/itkg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -69,10 +74,11 @@
                     android:textSize="18dp" />
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/kg"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_marginLeft="20dp"
+                    android:enabled="true"/>
 
                 <TextView
                     android:id="@+id/kg2"
@@ -87,7 +93,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -101,16 +107,21 @@
 
             <Spinner
                 android:id="@+id/petbodytype"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp" />
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="#ffffff"
+                android:entries="@array/list7"
+                android:spinnerMode="dialog"
+                tools:spinnerMode="dropdown"
+                />
         </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="91dp"
-                android:layout_marginTop="40dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -128,8 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    android:inputType="textPersonName"
-                    android:text=" " />
+                    android:focusable="false" />
 
                 <TextView
                     android:id="@+id/cal2"
