@@ -22,10 +22,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 return new daily();
             case 1:
                 return new permeal();
-            case 2:
-                return new favorite_album();
-            case 3:
-                return new favorite_place();
             default:
                 return null;
         }

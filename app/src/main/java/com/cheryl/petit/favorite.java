@@ -22,8 +22,6 @@ public class favorite extends AppCompatActivity {
 
         final ViewPager pager = findViewById(R.id.pager);
         TabLayout tab_layout = findViewById(R.id.tab_layout);
-        TabItem favorite_place = findViewById(R.id.tabplace);
-        TabItem favorite_album = findViewById(R.id.tabalbum);
         ImageButton back = findViewById(R.id.back);
 
 

@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/head"
-        android:layout_width="128dp"
-        android:layout_height="119dp"
+        android:layout_width="154dp"
+        android:layout_height="145dp"
         android:src="@drawable/head" />
 
     <TextView

@@ -2,10 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <item
-        android:icon="@drawable/ic_person"
-        android:id="@+id/personal"
-        android:title="個人資料"/>
 
     <item
         android:icon="@drawable/ic_pets"
@@ -15,7 +11,7 @@
     <item
         android:icon="@drawable/ic_favorite"
         android:id="@+id/favorite"
-        android:title="我的最愛"/>
+        android:title="最愛場所"/>
 
     <item
         android:icon="@drawable/ic_settings"

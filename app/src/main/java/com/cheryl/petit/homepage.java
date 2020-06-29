@@ -163,24 +163,20 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.personal:
-                Intent intent = new Intent(homepage.this,personal.class);
-                startActivity(intent);
-                break;
 
             case R.id.pet:
-                Intent intent2 = new Intent(homepage.this,pet.class);
-                startActivity(intent2);
+                Intent intent1 = new Intent(homepage.this,pet.class);
+                startActivity(intent1);
                 break;
 
             case R.id.favorite:
-                Intent intent3 = new Intent(homepage.this,favorite.class);
-                startActivity(intent3);
+                Intent intent2 = new Intent(homepage.this,favorite.class);
+                startActivity(intent2);
                 break;
 
             case R.id.settings:
-                Intent intent4 = new Intent(homepage.this,settings.class);
-                startActivity(intent4);
+                Intent intent3 = new Intent(homepage.this,settings.class);
+                startActivity(intent3);
                 break;
         }
 

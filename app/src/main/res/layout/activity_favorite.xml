@@ -35,36 +35,19 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginRight="30dp"
-            android:text="我的最愛"
+            android:text="最愛場所"
             android:textColor="#4f4f4f"
             android:textSize="20sp" />
 
 
     </androidx.appcompat.widget.Toolbar>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+    <SearchView
+        android:id="@+id/search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        app:tabTextColor="#4f4f4f">
+        android:layout_height="wrap_content"/>
 
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tabplace"
-            android:text="場所"
-            />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tabalbum"
-            android:text="相簿"
-            />
-
-    </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
