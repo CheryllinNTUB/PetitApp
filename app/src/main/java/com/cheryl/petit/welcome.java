@@ -14,7 +14,8 @@ public class welcome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        //啟動執行序
+
+        //啟動執行序(開場動畫)
         new Thread(new Runnable() {
             @Override
             public void run() {

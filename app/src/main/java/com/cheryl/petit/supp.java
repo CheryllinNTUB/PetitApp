@@ -41,7 +41,8 @@ public class supp extends AppCompatActivity {
                 getResources().getStringArray(R.array.list)
         );
 
-            date.setOnClickListener(new View.OnClickListener() {
+        //日期
+        date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -76,6 +77,7 @@ public class supp extends AppCompatActivity {
             }
         };
 
+        //返回鍵
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

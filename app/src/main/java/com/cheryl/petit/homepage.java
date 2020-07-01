@@ -23,6 +23,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //從卡路里計算返回搜尋頁
         int cal = getIntent().getIntExtra("cal",0);
         if(cal == 1){
@@ -138,7 +139,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
         setContentView(R.layout.activity_homepage);
         setSupportActionBar(toolbar);
 
-
+        //監聽器
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView nvaigationView = findViewById(R.id.navigation_view);
         nvaigationView.setNavigationItemSelectedListener(this);
@@ -155,28 +156,31 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
         toggle.syncState();
     }
 
-    @Override
-    public void onBackPressed(){
 
-    }
-
+    //漢堡列
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
 
-            case R.id.pet:
-                Intent intent1 = new Intent(homepage.this,pet.class);
-                startActivity(intent1);
+            case R.id.personal:
+                Intent intent = new Intent(homepage.this,personal.class);
+                startActivity(intent);
                 break;
 
-            case R.id.favorite:
-                Intent intent2 = new Intent(homepage.this,favorite.class);
+
+            case R.id.pet:
+                Intent intent2 = new Intent(homepage.this,pet.class);
                 startActivity(intent2);
                 break;
 
-            case R.id.settings:
-                Intent intent3 = new Intent(homepage.this,settings.class);
+            case R.id.favorite:
+                Intent intent3 = new Intent(homepage.this,favorite.class);
                 startActivity(intent3);
+                break;
+
+            case R.id.settings:
+                Intent intent4 = new Intent(homepage.this,settings.class);
+                startActivity(intent4);
                 break;
         }
 
@@ -185,7 +189,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
     }
 
 
-
+    //下方導覽列
      private BottomNavigationView.OnNavigationItemSelectedListener bottomnaviMethod=new
             BottomNavigationView.OnNavigationItemSelectedListener() {
                  @Override

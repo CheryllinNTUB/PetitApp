@@ -38,6 +38,7 @@ public class search extends Fragment implements  View.OnClickListener{
         return v;
     }
 
+    //到搜尋頁面
     public void onClick(View view) {
         Intent i;
 

@@ -4,6 +4,11 @@
     tools:showIn="navigation_view">
 
     <item
+        android:icon="@drawable/ic_person"
+        android:id="@+id/personal"
+        android:title="個人資料"/>
+
+    <item
         android:icon="@drawable/ic_pets"
         android:id="@+id/pet"
         android:title="我的寵物"/>

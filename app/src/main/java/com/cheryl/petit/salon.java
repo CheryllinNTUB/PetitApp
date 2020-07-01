@@ -21,12 +21,14 @@ public class salon extends AppCompatActivity {
         city = findViewById(R.id.city);
         reigon = findViewById(R.id.region);
 
+        //spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 R.layout.custom_spinner,
                 getResources().getStringArray(R.array.list)
         );
 
+       //返回鍵
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

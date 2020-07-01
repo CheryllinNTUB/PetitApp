@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-//用在卡路里和我的最愛
+//用在卡路里
 public class PagerAdapter extends FragmentPagerAdapter {
     private  int numOfTabs;
 

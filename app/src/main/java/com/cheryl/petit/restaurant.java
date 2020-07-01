@@ -24,6 +24,7 @@ public class restaurant extends AppCompatActivity {
         reigon = findViewById(R.id.region);
         style = findViewById(R.id.style);
 
+        //spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 R.layout.custom_spinner,
@@ -31,6 +32,7 @@ public class restaurant extends AppCompatActivity {
         );
 
 
+        //返回鍵
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

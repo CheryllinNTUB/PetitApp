@@ -1,31 +1,16 @@
 package com.cheryl.petit;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-
-import android.animation.ArgbEvaluator;
 import android.os.Bundle;
-import android.view.MenuItem;
-import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.ViewPager;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class settings extends AppCompatActivity {
-    private DrawerLayout drawer;
-    private Toolbar toolbar;
     private ImageButton back;
+    private Button opinion;
 
 
     @Override
@@ -33,11 +18,11 @@ public class settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-
-        drawer = findViewById(R.id.drawer_layout);
-        toolbar = findViewById(R.id.toolbar);
+        //監聽器
         back = findViewById(R.id.back);
+        opinion = findViewById(R.id.opinion);
 
+        //返回鍵
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,15 +31,15 @@ public class settings extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        //意見回饋
+        opinion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(settings.this, opinion.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    @Override
-    public void onBackPressed(){
-        if (drawer.isDrawerOpen(GravityCompat.START)){
-            drawer.closeDrawer(GravityCompat.START);
-        }else {
-            super.onBackPressed();
-        }
-    }
 }
