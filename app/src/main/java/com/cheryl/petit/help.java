@@ -1,98 +1,53 @@
 package com.cheryl.petit;
 
 
-import android.animation.ArgbEvaluator;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.GridLayout;
 
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class  help extends Fragment {
-    ViewPager viewPager;
-    Adapter adapter;
-    List<Model> models;
-    Integer[] colors = null;
-    ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
-
+    RecyclerView recyclerView;
+    ArrayList<HelptipData> helptipDataList;
+    HelptipData helptipData;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_help, container, false);
 
+       recyclerView =(RecyclerView) v.findViewById(R.id.recyleview);
 
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(help.this.getContext(),1);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        helptipDataList = new ArrayList<>();
+        helptipData = new HelptipData("關於寵物的餵食小知識...","餵對好食物，讓牠吃的快樂又安心",R.drawable.helpfood);
+            helptipDataList.add(helptipData);
 
+        helptipData = new HelptipData("關於寵物的保健小知識...","毛孩也要養生!來看牠們的保健小秘密",R.drawable.helphealth);
+            helptipDataList.add(helptipData);
 
-        models = new ArrayList<>();
-        models.add(new Model(R.drawable.eatfood,"關於寵物的餵食...","餵對好食物，讓牠吃的開心又健康"));
-        models.add(new Model(R.drawable.health,"關於寵物的保健...","寵物也要養生!寵物的保健小秘密"));
-        models.add(new Model(R.drawable.exhibition,"關於最新活動...","最新的寵物展覽及活動資訊都在這!"));
-        models.add(new Model(R.drawable.petsupplies,"關於購買寵物用品...","為毛孩血拚同時，記得別當冤大頭!"));
+        helptipData = new HelptipData("關於寵物的最新活動...","最新的寵物展覽及活動資訊都在這!",R.drawable.helpnews);
+            helptipDataList.add(helptipData);
 
-        adapter = new Adapter(models,getActivity());
+        helptipData = new HelptipData("關於寵物的用品小知識...","挑對用品，主人毛孩都開心",R.drawable.helpsupplies);
+            helptipDataList.add(helptipData);
 
-        viewPager = v.findViewById(R.id.viewPager);
-        viewPager.setAdapter(adapter);
-        viewPager.setPadding(130,0,130,0);
-
-
-        Integer[] colors_temp ={
-                getResources().getColor(R.color.color1),
-                getResources().getColor(R.color.color2),
-                getResources().getColor(R.color.color3),
-                getResources().getColor(R.color.color4)
-        };
-
-        colors =colors_temp;
-
-
-
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if (position<(adapter.getCount() -1)&& position<(colors.length -1)){
-                    viewPager.setBackgroundColor((Integer)argbEvaluator.evaluate(positionOffset, colors[position],colors[position +1])) ;
-
-                }else {
-                    viewPager.setBackgroundColor(colors[colors.length -1]);
-                }
-
-            }
-
-
-
-            @Override
-            public void onPageSelected(int position) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+        RecyleViewAdapter recyleViewAdapter = new RecyleViewAdapter(help.this.getContext(),helptipDataList);
+        recyclerView.setAdapter(recyleViewAdapter);
 
         return v;
-
     }
-
-
-
-    @Override
-    public  void onViewCreated(View view, @Nullable Bundle savedInstanceState){
-        super.onViewCreated(view,savedInstanceState);
-    }
-
-
 }

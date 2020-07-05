@@ -1,68 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:orientation="vertical"
+    android:background="#E8FFF5"
+    tools:context=".help">
 
-    <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".help"
-        android:background="#E8FFF5">
+        android:layout_height="?attr/actionBarSize"
+        android:background="#77FFCC"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/AppTheme">
 
-        <androidx.viewpager.widget.ViewPager
-            android:foregroundGravity="center"
-            android:id="@+id/viewPager"
-            android:layout_centerInParent="true"
-            android:overScrollMode="never"
-            android:clipToPadding="false"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </androidx.viewpager.widget.ViewPager>
 
         <TextView
-            android:id="@+id/hint"
+            android:id="@+id/toolbar_help"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="480dp"
             android:gravity="center"
-            android:text="需要什麼幫助呢?"
-            android:textSize="22dp" />
+            android:text="小幫手"
+            android:textColor="#4f4f4f"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.Toolbar>
 
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#77FFCC"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark"
-            app:popupTheme="@style/AppTheme">
-
-
-            <TextView
-                android:id="@+id/toolbar_help"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="小幫手"
-                android:textColor="#4f4f4f"
-                android:textSize="20sp" />
-
-        </androidx.appcompat.widget.Toolbar>
-
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
             android:layout_height="wrap_content"
-            android:background="#77FFCC"
-            app:menu="@menu/menu"
-            android:id="@+id/bottomnavi"/>
+            android:id="@+id/recyleview"
+            android:scrollbars="vertical">
 
-    </RelativeLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

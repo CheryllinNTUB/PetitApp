@@ -5,6 +5,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="helptipname">helptipname</string>
+    <string name="content">content</string>
 
     <string-array name="list">
         <item>請選擇城市</item>
