@@ -154,12 +154,6 @@
                 android:text="我要登入"
                 android:textColor="#4F4F4F" />
 
-            <ImageView
-                android:id="@+id/dog"
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                app:srcCompat="@drawable/dog2" />
-
         </LinearLayout>
 
 

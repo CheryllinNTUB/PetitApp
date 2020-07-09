@@ -74,11 +74,11 @@
 
             <EditText
                 android:id="@+id/docdatepick"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="20dp"
-                android:hint="請選擇日期"
+                android:focusable="false"
                 android:enabled="true"
                 />
 
@@ -203,11 +203,11 @@
 
             <EditText
                 android:id="@+id/backdocday"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:visibility="invisible"
-                android:hint="請選擇日期" />
+                android:focusable="false" />
 
         </LinearLayout>
 
