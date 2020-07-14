@@ -2,6 +2,7 @@ package com.cheryl.petit;
 //使用於小幫手
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,11 +37,18 @@ public class RecyleViewAdapter extends  RecyclerView.Adapter<HelpViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HelpViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final HelpViewHolder holder, int position) {
 
         holder.imageView.setImageResource(HelptipList.get(position).getHelpimg());
         holder.Help_name.setText(HelptipList.get(position).getHelpname());
         holder.Help_description.setText(HelptipList.get(position).getHelpdescription());
+        holder.cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, help_details.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
