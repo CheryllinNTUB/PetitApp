@@ -75,11 +75,11 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/login"
+            android:id="@+id/register"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:background="#77FFCC"
-            android:text="登入"
+            android:text="註冊"
             android:textColor="#4f4f4f"/>
 
         <TextView
@@ -88,11 +88,11 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/gotoregister"
+            android:id="@+id/google"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:background="#77FFCC"
-            android:text="我要註冊"
+            android:text="使用google登入"
             android:textColor="#4f4f4f"/>
 
         <TextView

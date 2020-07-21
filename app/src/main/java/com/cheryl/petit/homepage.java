@@ -163,7 +163,7 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
         switch (item.getItemId()){
 
             case R.id.personal:
-                Intent intent = new Intent(homepage.this,personal.class);
+                Intent intent = new Intent(homepage.this,login.class);
                 startActivity(intent);
                 break;
 
@@ -178,8 +178,8 @@ public class homepage extends AppCompatActivity implements NavigationView.OnNavi
                 startActivity(intent3);
                 break;
 
-            case R.id.settings:
-                Intent intent4 = new Intent(homepage.this,settings.class);
+            case R.id.opinion:
+                Intent intent4 = new Intent(homepage.this,opinion.class);
                 startActivity(intent4);
                 break;
         }

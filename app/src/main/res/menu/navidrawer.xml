@@ -18,8 +18,9 @@
         android:id="@+id/favorite"
         android:title="最愛場所"/>
 
+
     <item
-        android:icon="@drawable/ic_settings"
-        android:id="@+id/settings"
-        android:title="設定"/>
+        android:icon="@drawable/ic_opinion"
+        android:id="@+id/opinion"
+        android:title="應用程式意見回饋"/>
 </menu>

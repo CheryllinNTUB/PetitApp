@@ -8,16 +8,16 @@ import android.view.View;
 import android.widget.Button;
 
 public class login extends AppCompatActivity {
-    private Button login,gotoregister;
+    private Button google,register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        login = (Button) findViewById(R.id.login);
-        gotoregister = (Button) findViewById(R.id.gotoregister);
+        register = (Button) findViewById(R.id.register);
+        google = (Button) findViewById(R.id.google);
 
-        gotoregister.setOnClickListener(new View.OnClickListener() {
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();

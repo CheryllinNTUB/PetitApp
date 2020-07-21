@@ -45,7 +45,7 @@ public class  help extends Fragment {
         helptipData = new HelptipData("關於寵物的用品小知識...","挑對用品，主人毛孩都開心",R.drawable.helpsupplies);
             helptipDataList.add(helptipData);
 
-        RecyleViewAdapter recyleViewAdapter = new RecyleViewAdapter(help.this.getContext(),helptipDataList);
+        RecyleViewAdapter_help recyleViewAdapter = new RecyleViewAdapter_help(help.this.getContext(),helptipDataList);
         recyclerView.setAdapter(recyleViewAdapter);
 
         return v;

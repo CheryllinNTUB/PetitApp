@@ -8,31 +8,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class RecyleViewAdapter extends  RecyclerView.Adapter<HelpViewHolder>{
+public class RecyleViewAdapter_help extends RecyclerView.Adapter<HelpViewHolder>{
 
     private Context context;
     private List<HelptipData> HelptipList;
 
-    public RecyleViewAdapter(Context context,List<HelptipData> HelptipList){
+    public RecyleViewAdapter_help(Context context,List<HelptipData> HelptipList){
         this.context = context;
         this.HelptipList = HelptipList;
     }
-
-
-
 
     @Override
     public HelpViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_row_item,parent,false);
-
         return new HelpViewHolder(view);
     }
 
