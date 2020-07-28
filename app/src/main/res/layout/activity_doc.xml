@@ -201,6 +201,16 @@
             android:orientation="horizontal"
             android:layout_marginTop="15dp">
 
+            <TextView
+                android:id="@+id/backdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="回診日期"
+                android:textSize="18dp"
+                android:visibility="invisible"
+                android:focusable="false"/>
+
             <EditText
                 android:id="@+id/backdocday"
                 android:layout_width="100dp"

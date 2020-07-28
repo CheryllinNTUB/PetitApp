@@ -13,7 +13,7 @@
         android:id="@+id/head"
         android:layout_width="154dp"
         android:layout_height="145dp"
-        android:src="@drawable/head" />
+        android:src="@drawable/personhead" />
 
     <TextView
         android:layout_width="wrap_content"

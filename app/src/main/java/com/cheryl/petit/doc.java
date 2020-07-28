@@ -21,6 +21,7 @@ import java.util.Calendar;
 
 public class doc extends AppCompatActivity {
     private ImageButton back;
+    private TextView backdate;
     private EditText docdatepick, backdocday;
     private DatePickerDialog.OnDateSetListener dateSetListener;
     private DatePickerDialog.OnDateSetListener dateSetListener2;
@@ -38,6 +39,7 @@ public class doc extends AppCompatActivity {
         yes = (RadioButton)findViewById(R.id.yes);
         no = (RadioButton)findViewById(R.id.no);
         backdocday = (EditText) findViewById(R.id.backdocday);
+        backdate = (TextView)findViewById(R.id.backdate);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
@@ -51,6 +53,7 @@ public class doc extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     backdocday.setVisibility(View.VISIBLE);
+                    backdate.setVisibility(View.VISIBLE);
                     no.setChecked(false);
                 }
             }
@@ -60,6 +63,7 @@ public class doc extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     backdocday.setVisibility(View.INVISIBLE);
+                    backdate.setVisibility(View.INVISIBLE);
                     yes.setChecked(false);
                 }
             }

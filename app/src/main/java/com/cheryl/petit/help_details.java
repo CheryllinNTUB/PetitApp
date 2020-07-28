@@ -9,7 +9,7 @@ public class help_details extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help_eat);
+        setContentView(R.layout.activity_help_details);
 
         Bundle bundle = getIntent().getExtras();
 

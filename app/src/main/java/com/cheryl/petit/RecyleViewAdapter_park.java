@@ -30,13 +30,13 @@ public class RecyleViewAdapter_park extends RecyclerView.Adapter<ParkViewHolder>
 
         holder.Park_name.setText(ParkList.get(position).getParkname());
         holder.Park_address.setText(ParkList.get(position).getParkDescription());
-       /* holder.cardview.setOnClickListener(new View.OnClickListener() {
+        holder.cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, park_details.class);
                 context.startActivity(intent);
             }
-        });*/
+        });
     }
 
     @Override
