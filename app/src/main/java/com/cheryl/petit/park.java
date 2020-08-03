@@ -112,8 +112,7 @@ public class park extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(park.this,homepage.class);
-                intent.putExtra("park",9);
+                Intent intent = new Intent(park.this,search.class);
                 startActivity(intent);
                 finish();
             }

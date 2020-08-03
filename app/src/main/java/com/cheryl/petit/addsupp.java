@@ -20,8 +20,7 @@ public class addsupp extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(addsupp.this,homepage.class);
-                intent.putExtra("addsupp",12);
+                Intent intent = new Intent(addsupp.this,record.class);
                 startActivity(intent);
                 finish();
             }

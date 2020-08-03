@@ -30,8 +30,7 @@ public class hospital extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(hospital.this,homepage.class);
-                intent.putExtra("hospital",7);
+                Intent intent = new Intent(hospital.this,search.class);
                 startActivity(intent);
                 finish();
             }

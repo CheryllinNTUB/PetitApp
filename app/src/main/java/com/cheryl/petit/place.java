@@ -30,8 +30,7 @@ public class place extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(place.this,homepage.class);
-                intent.putExtra("place",6);
+                Intent intent = new Intent(place.this,search.class);
                 startActivity(intent);
                 finish();
             }

@@ -1,56 +1,89 @@
 package com.cheryl.petit;
 
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class album extends Fragment implements View.OnClickListener {
+public class album extends AppCompatActivity {
+
+
     private ImageButton add_photo;
-    private CardView add_photocard;
+        private CardView add_photocard;
 
 
-
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_album, container, false);
-        //監聽器
-        add_photo = (ImageButton) v.findViewById(R.id.add_photo);
-        add_photocard = (CardView) v.findViewById(R.id.add_photocard);
-        add_photocard.setOnClickListener(this);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_album);
 
+            add_photo = findViewById(R.id.add_photo);
+            add_photocard = findViewById(R.id.add_photocard);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnavi);
+        bottomNavigationView.setSelectedItemId(R.id.album);
 
-        //加入相簿日記鍵
-        add_photo.setOnClickListener(new View.OnClickListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(album.this.getContext(),addalbum.class);
-                startActivity(intent);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext()
+                                ,homepage.class ));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.search:
+                        startActivity(new Intent(getApplicationContext()
+                                ,search.class ));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.record:
+                        startActivity(new Intent(getApplicationContext()
+                                ,record.class ));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.album:
+                        return true;
+
+                    case R.id.user:
+                        startActivity(new Intent(getApplicationContext()
+                                ,user.class ));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
             }
         });
 
-        return v;
-    }
 
-
-
-    //加入相簿日記鍵(cardview部分)
-    @Override
-    public void onClick(View view) {
-        Intent i;
-
-        switch (view.getId()) {
-            case R.id.add_photocard: i = new Intent(view.getContext(), addalbum.class);startActivity(i);break;
-
+            //加入相簿日記鍵
+            add_photo.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(album.this,addalbum.class);
+            startActivity(intent);
         }
+    });
+
+
+        //加入相簿日記鍵
+        add_photocard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(album.this,addalbum.class);
+                startActivity(intent);
+            }
+        });
+        }
+
+
+
     }
-}

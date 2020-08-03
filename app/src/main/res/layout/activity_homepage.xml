@@ -28,50 +28,38 @@
             android:id="@+id/toolbar_homepage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_menu"
             android:gravity="center"
-            android:layout_marginRight="55dp"
             android:text="首頁"
             android:textColor="#4f4f4f"
             android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
+
    <FrameLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:id="@+id/fragmentContainer">
+       android:id="@+id/fragmentContainer"/>
 
-       <TextView
-       android:id="@+id/textView"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="330dp"
-       android:gravity="center"
-       android:text="尚無使用紀錄"
-       android:textSize="20dp"/>
 
-   </FrameLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyleview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar"
+                android:scrollbars="vertical" />
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"
-        android:background="#77FFCC"
-        app:menu="@menu/menu"
-        android:id="@+id/bottomnavi">
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content"
+            android:background="#77FFCC"
+            app:menu="@menu/menu"
+            android:id="@+id/bottomnavi"/>
 
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     </RelativeLayout>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/navidrawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -58,7 +58,6 @@ public class cal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(cal.this, addcal.class);
-                intent.putExtra("cal", 1);
                 startActivity(intent);
                 finish();
             }

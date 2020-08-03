@@ -20,8 +20,7 @@ public class adddoc extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(adddoc.this,homepage.class);
-                intent.putExtra("adddoc",11);
+                Intent intent = new Intent(adddoc.this,record.class);
                 startActivity(intent);
                 finish();
             }

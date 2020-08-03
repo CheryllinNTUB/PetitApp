@@ -36,8 +36,7 @@ public class restaurant extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(restaurant.this,homepage.class);
-                intent.putExtra("restaurant",5);
+                Intent intent = new Intent(restaurant.this,search.class);
                 startActivity(intent);
                 finish();
             }

@@ -32,8 +32,7 @@ public class salon extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(salon.this,homepage.class);
-                intent.putExtra("salon",8);
+                Intent intent = new Intent(salon.this,search.class);
                 startActivity(intent);
                 finish();
             }

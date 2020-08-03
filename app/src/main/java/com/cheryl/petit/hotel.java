@@ -32,8 +32,7 @@ public class hotel extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(hotel.this,homepage.class);
-                intent.putExtra("hotel",4);
+                Intent intent = new Intent(hotel.this,search.class);
                 startActivity(intent);
                 finish();
             }

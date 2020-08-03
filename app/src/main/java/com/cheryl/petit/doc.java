@@ -141,7 +141,6 @@ public class doc extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(doc.this, adddoc.class);
-                        intent.putExtra("doc", 2);
                         startActivity(intent);
                         finish();
                     }

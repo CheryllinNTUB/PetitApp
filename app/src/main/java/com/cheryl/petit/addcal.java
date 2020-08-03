@@ -20,8 +20,7 @@ public class addcal extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(addcal.this,homepage.class);
-                intent.putExtra("addcal",10);
+                Intent intent = new Intent(addcal.this,record.class);
                 startActivity(intent);
                 finish();
             }

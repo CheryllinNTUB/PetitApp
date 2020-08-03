@@ -2,30 +2,24 @@ package com.cheryl.petit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-
-public class record extends AppCompatActivity {
-
-    private CardView cal,doc,supp;
-
+public class user extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_record);
+        setContentView(R.layout.activity_user);
 
-        //裝監聽器
-        cal =findViewById(R.id.cal);
-        doc =findViewById(R.id.doc);
-        supp =findViewById(R.id.supp);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnavi);
-        bottomNavigationView.setSelectedItemId(R.id.record);
+        bottomNavigationView.setSelectedItemId(R.id.user);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -44,6 +38,9 @@ public class record extends AppCompatActivity {
                         return true;
 
                     case R.id.record:
+                        startActivity(new Intent(getApplicationContext()
+                                ,record.class ));
+                        overridePendingTransition(0,0);
                         return true;
 
                     case R.id.album:
@@ -53,43 +50,12 @@ public class record extends AppCompatActivity {
                         return true;
 
                     case R.id.user:
-                        startActivity(new Intent(getApplicationContext()
-                                ,user.class ));
-                        overridePendingTransition(0,0);
                         return true;
                 }
                 return false;
             }
         });
-
-        cal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass( record.this,addcal.class);
-                startActivity(intent);
-            }
-        });
-
-       doc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass( record.this,adddoc.class);
-                startActivity(intent);
-            }
-        });
-
-
-        supp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass( record.this,addsupp.class);
-                startActivity(intent);
-            }
-        });
-
     }
-}
 
+
+}

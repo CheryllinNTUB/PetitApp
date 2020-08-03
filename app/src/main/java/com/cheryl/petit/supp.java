@@ -82,7 +82,6 @@ public class supp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(supp.this,addsupp.class);
-                intent.putExtra("supp",3);
                 startActivity(intent);
                 finish();
             }
