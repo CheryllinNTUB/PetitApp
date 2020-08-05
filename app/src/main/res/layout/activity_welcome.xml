@@ -13,23 +13,13 @@
         android:orientation="vertical">
 
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="@null"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark"
-            app:popupTheme="@style/AppTheme">
 
-        </androidx.appcompat.widget.Toolbar>
-
-
-        <ImageButton
+        <ImageView
             android:id="@+id/logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundbutton"
-            android:layout_gravity="center"
+            android:layout_marginTop="150dp"
             app:srcCompat="@drawable/logo" />
 
 

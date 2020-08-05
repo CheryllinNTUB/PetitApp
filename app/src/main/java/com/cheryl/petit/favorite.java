@@ -29,7 +29,7 @@ public class favorite extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(favorite.this, homepage.class);
+                intent.setClass(favorite.this, user.class);
                 startActivity(intent);
             }
         });

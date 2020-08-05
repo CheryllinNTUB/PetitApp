@@ -31,7 +31,7 @@ public class opinion extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(opinion.this, homepage.class);
+                intent.setClass(opinion.this, user.class);
                 startActivity(intent);
             }
         });

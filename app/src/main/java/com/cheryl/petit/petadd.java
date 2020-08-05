@@ -51,7 +51,7 @@ public class petadd extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(petadd.this, homepage.class);
+                intent.setClass(petadd.this, pet.class);
                 startActivity(intent);
             }
         });

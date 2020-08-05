@@ -21,7 +21,7 @@ public class pet extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(pet.this, homepage.class);
+                intent.setClass(pet.this, user.class);
                 startActivity(intent);
             }
         });

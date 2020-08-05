@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "19137710476",
+    "firebase_url": "https://petit109509.firebaseio.com",
+    "project_id": "petit109509",
+    "storage_bucket": "petit109509.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19137710476:android:8ee68fd586b81c373b6ea9",
+        "android_client_info": {
+          "package_name": "com.cheryl.petit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19137710476-do3teeohs61ojic1vmpj858mq1ulio54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0ul1BU26Xvn_aEJytA8SsOzrNDsaeARc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "19137710476-do3teeohs61ojic1vmpj858mq1ulio54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
