@@ -1,121 +1,144 @@
 package com.cheryl.petit;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.paging.PagedList;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.firebase.ui.firestore.SnapshotParser;
+import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
+import com.firebase.ui.firestore.paging.FirestorePagingOptions;
+import com.firebase.ui.firestore.paging.LoadingState;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class park extends AppCompatActivity {
     private ImageButton back;
-    private Spinner city,reigon;
-    private RecyclerView recyclerview;
-    List<ParkData> ParkList;
-    ParkData parklist;
-
+    private FirebaseFirestore firebaseFirestore;
+    FirestorePagingAdapter firestoreRecyclerAdapter;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_park);
         back = findViewById(R.id.back);
-        city = findViewById(R.id.city);
-        reigon = findViewById(R.id.region);
-        recyclerview = findViewById(R.id.recyleview);
+        recyclerView = findViewById(R.id.parklist);
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        Query query = firebaseFirestore.collection("Park");
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(park.this,1);
-        recyclerview.setLayoutManager(gridLayoutManager);
+        PagedList.Config config = new PagedList.Config.Builder()
+                .setInitialLoadSizeHint(10)
+                .setPageSize(3)
+                .build();
 
-        ParkList = new ArrayList<>();
+        FirestorePagingOptions<ParkData> opinions = new FirestorePagingOptions
+                .Builder<ParkData>()
+                .setLifecycleOwner(this)
+                .setQuery(query, config, new SnapshotParser<ParkData>() {
+                    @NonNull
+                    @Override
+                    public ParkData parseSnapshot(@NonNull DocumentSnapshot snapshot) {
+                        ParkData parkData = snapshot.toObject(ParkData.class);
+                        String itemId = snapshot.getId();
+                        parkData.setItem_id(itemId);
+                        return parkData;
+                    }
+                })
+                .build();
 
-        parklist = new ParkData("至善公園狗狗活動區","台北市士林區111台灣台北市士林區福林路至善路一段");
-        ParkList.add(parklist);
-        parklist = new ParkData("萬興狗活動區(道南左岸河濱公園)","台北市文山區新光路二段30號 ");
-        ParkList.add(parklist);
-        parklist = new ParkData("北勢湖公園狗活動區","台北市內湖區西康里堤頂大道2段");
-        ParkList.add(parklist);
-        parklist = new ParkData("迎風狗運動公園","台北市松山區莊敬里迎風河濱公園金泰段");
-        ParkList.add(parklist);
-        parklist = new ParkData("潭美毛寶貝快樂公園","台北市內湖區蘆洲里潭美街852號");
-        ParkList.add(parklist);
-        parklist = new ParkData("華山公園狗活動區","台北市中正區市民大道2段與林森北路交叉口");
-        ParkList.add(parklist);
-        parklist = new ParkData("玉成公園狗活動區","台北市南港區中坡南路55號");
-        ParkList.add(parklist);
-        parklist = new ParkData("板橋寵物運動公園","新北市板橋區板城路28-1號");
-        ParkList.add(parklist);
-        parklist = new ParkData("蘆洲蘆堤寵物公園","新北市蘆洲區環堤大道與永樂街交岔口");
-        ParkList.add(parklist);
-        parklist = new ParkData("永和綠寶石寵物公園","新北市永和區環河西路一段8號");
-        ParkList.add(parklist);
-        parklist = new ParkData("板橋華江寵物公園","新北市板橋區華江橋下");
-        ParkList.add(parklist);
-        parklist = new ParkData("中和四號寵物公園","新北市中和區中安街6號");
-        ParkList.add(parklist);
-        parklist = new ParkData("新店陽光公園","新北市新店區安業路47巷");
-        ParkList.add(parklist);
-        parklist = new ParkData("林口力行寵物公園","新北市林口區文化北路段526巷");
-        ParkList.add(parklist);
-        parklist = new ParkData("新店寵物親情公園","新北市新店區環河路112-1號");
-        ParkList.add(parklist);
-        parklist = new ParkData("林口松柏滯洪池公園","新北市林口區松柏路18號");
-        ParkList.add(parklist);
-        parklist = new ParkData("浮洲橋寵物公園","新北市板橋區機車專用道23號");
-        ParkList.add(parklist);
-        parklist = new ParkData("三重寵物公園","新北市三重區環河北路一段龍門陸橋路口");
-        ParkList.add(parklist);
-        parklist = new ParkData("中成寵物公園","桃園市桃園區國際路二段475巷");
-        ParkList.add(parklist);
-        parklist = new ParkData("寵物示範公園","桃園市桃園區民光東路旁");
-        ParkList.add(parklist);
-        parklist = new ParkData("平鎮雙連公園","桃園市平鎮區路光路14巷96弄10-38號");
-        ParkList.add(parklist);
-        parklist = new ParkData("龜山大湖公園","桃園市龜山區忠義路二段638巷");
-        ParkList.add(parklist);
-        parklist = new ParkData("福林公園","桃園市桃園區介壽路與介新街交叉口");
-        ParkList.add(parklist);
-        parklist = new ParkData("頭前溪寵物公園","新竹市東區中華路一段1巷");
-        ParkList.add(parklist);
-        parklist = new ParkData("竹東寵物公園","新竹縣竹東鎮沿河街上");
-        ParkList.add(parklist);
-        parklist = new ParkData("東興河濱公園","苗栗縣頭份市中港溪東興大橋下");
-        ParkList.add(parklist);
-        parklist = new ParkData("泉源寵物公園","台中市東區樂業一路79號");
-        ParkList.add(parklist);
-        parklist = new ParkData("安平寵物公園","台南市安平區州平二街底");
-        ParkList.add(parklist);
-        parklist = new ParkData("高雄狗狗運動公園","高雄市苓雅區中正一路中正公園西側");
-        ParkList.add(parklist);
-        parklist = new ParkData("高屏溪河濱寵物運動公園","屏東縣屏東市前進里高屏橋下");
-        ParkList.add(parklist);
-        parklist = new ParkData("觀音亭寵物公園","澎湖縣馬公市介壽路7號");
-        ParkList.add(parklist);
+        firestoreRecyclerAdapter = new FirestorePagingAdapter<ParkData, ParkViewHolder>(opinions) {
+            @NonNull
+            @Override
+            public ParkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_row_park, parent, false);
+                return new ParkViewHolder(view);
+            }
 
-        RecyleViewAdapter_park recyleViewAdapter_park = new RecyleViewAdapter_park(park.this,ParkList);
-        recyclerview.setAdapter(recyleViewAdapter_park);
+            @Override
+            protected void onBindViewHolder(@NonNull ParkViewHolder holder, int position, @NonNull ParkData model) {
 
+                holder.name.setText(model.getParkname());
+                holder.address.setText(model.getParkAddress());
+            }
+
+            @Override
+            protected void onLoadingStateChanged(@NonNull LoadingState state){
+                super.onLoadingStateChanged(state);
+
+                switch (state){
+
+                    case LOADING_INITIAL:
+                        Log.d("PAGING_LOG","loading data");
+                        break;
+                    case LOADING_MORE:
+                        Log.d("PAGING_LOG","loading next page");
+                        break;
+                    case FINISHED:
+                        Log.d("PAGING_LOG","all data loaded");
+                        break;
+                    case ERROR:
+                        Log.d("PAGING_LOG","loading error");
+                        break;
+                    case LOADED:
+                        Log.d("PAGING_LOG","total items loaded");
+                        break;
+
+                }
+            }
+        };
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(firestoreRecyclerAdapter);
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 R.layout.custom_spinner,
-                getResources().getStringArray(R.array.list)
-        );
+                getResources().getStringArray(R.array.list));
 
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(park.this,search.class);
+                Intent intent = new Intent(park.this, search.class);
                 startActivity(intent);
                 finish();
             }
         });
+    }
+
+    private class ParkViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView name;
+        private TextView address;
+
+        public ParkViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            name = itemView.findViewById(R.id.parkname);
+            address = itemView.findViewById(R.id.parkaddress);
+        }
     }
 }
