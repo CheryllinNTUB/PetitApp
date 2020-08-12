@@ -25,7 +25,6 @@ public class doc extends AppCompatActivity {
     private EditText docdatepick, backdocday;
     private DatePickerDialog.OnDateSetListener dateSetListener;
     private DatePickerDialog.OnDateSetListener dateSetListener2;
-    private Spinner petname;
     private RadioButton yes,no;
 
 
@@ -35,17 +34,11 @@ public class doc extends AppCompatActivity {
         setContentView(R.layout.activity_doc);
         back = findViewById(R.id.back);
         docdatepick = findViewById(R.id.docdatepick);
-        petname = findViewById(R.id.petname);
         yes = (RadioButton)findViewById(R.id.yes);
         no = (RadioButton)findViewById(R.id.no);
         backdocday = (EditText) findViewById(R.id.backdocday);
         backdate = (TextView)findViewById(R.id.backdate);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                R.layout.custom_spinner,
-                getResources().getStringArray(R.array.list)
-        );
 
 //是否需要回診按鈕顯示
         yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

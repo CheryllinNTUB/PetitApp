@@ -13,12 +13,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+
 
 public class daily extends Fragment {
     private Spinner petname,petbodytype;
-
-
-
+    ArrayList<String> bodytypeList;
+    ArrayAdapter<String>bodytypeAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,10 +29,9 @@ public class daily extends Fragment {
         petname = v.findViewById(R.id.petname);
         petbodytype = v.findViewById(R.id.petbodytype);
 
-         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                v.getContext(), R.layout.custom_spinner,
-                getResources().getStringArray(R.array.list4)
-        );
+        bodytypeList = new ArrayList<>();
+        bodytypeList .add("");
+
         return v;
 
 

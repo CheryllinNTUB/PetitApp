@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class supp extends AppCompatActivity {
@@ -25,6 +26,12 @@ public class supp extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener dateSetListener;
     private EditText date;
     private Spinner supptype,supptime;
+
+    ArrayList<String> typeList;
+    ArrayAdapter<String>typeAdapter;
+
+    ArrayList<String> timeList;
+    ArrayAdapter<String>timeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +42,33 @@ public class supp extends AppCompatActivity {
         supptime = findViewById(R.id.supptime);
         supptype = findViewById(R.id.supptype);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                R.layout.custom_spinner,
-                getResources().getStringArray(R.array.list)
-        );
+        typeList = new ArrayList<>();
+        typeList .add("請選擇種類");
+        typeList .add("保健食品/用品");
+        typeList .add("飼料/罐頭");
+        typeList .add("籠具/圍欄");
+        typeList .add("清潔用品");
+        typeList .add("服裝");
+        typeList .add("外出用品");
+        typeList .add("玩具");
+
+        typeAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1,typeList);
+        supptype.setAdapter(typeAdapter);
+
+        timeList = new ArrayList<>();
+        timeList .add("到期日前");
+        timeList .add("一個月前");
+        timeList .add("三個禮拜前");
+        timeList .add("二個禮拜前");
+        timeList .add("一個禮拜前");
+        timeList .add("一天前");
+        timeList .add("當天");
+
+        timeAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1,timeList);
+        supptime.setAdapter(timeAdapter);
+
+
+
 
         //日期
         date.setOnClickListener(new View.OnClickListener() {
