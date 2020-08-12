@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#E8FFF5"
-    tools:context=".favorite">
-
+    tools:context=".park"
+    android:background="#E8FFF5">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:background="#77FFCC"
-        android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        android:elevation="4dp">
 
         <ImageButton
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            app:srcCompat="@drawable/ic_close"
+            app:srcCompat="@drawable/ic_arrow"
             tools:ignore="VectorDrawableCompat" />
 
 
@@ -34,11 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginRight="30dp"
-            android:text="最愛場所"
+            android:layout_marginRight="40dp"
+            android:text="鮮食食材熱量參考表"
             android:textColor="#4f4f4f"
             android:textSize="20sp" />
-
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -48,13 +44,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:background="#ffffff" />
+        android:layout_marginLeft="10dp"
+        android:background="#ffffff"
+        android:layout_below="@+id/toolbar" />
 
 
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search"
+        android:layout_marginTop="10dp"
+        android:id="@+id/parklist"
+        android:scrollbars="vertical">
+    </androidx.recyclerview.widget.RecyclerView>
 
-</LinearLayout>
+
+</RelativeLayout>

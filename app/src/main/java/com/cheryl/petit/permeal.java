@@ -1,6 +1,7 @@
 package com.cheryl.petit;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,9 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-
-import java.math.BigDecimal;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 
 
@@ -85,6 +83,14 @@ public class permeal extends Fragment {
                 eat_totalcal.setText(total);
 
                 }
+        });
+
+        look.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),food_cal.class);
+                startActivity(intent);
+            }
         });
         return v;
     }
