@@ -1,41 +1,67 @@
 package com.cheryl.petit;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
 import android.app.DatePickerDialog;
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-
+import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
-
 import java.util.Calendar;
-import java.util.IllegalFormatCodePointException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class petadd extends AppCompatActivity {
     private ImageButton back;
     private CircleImageView head;
+    private RadioButton dog,cat,male,female;
+    private Button finish;
     private static final int GALLER_ACTION_PICK_CODE = 100;
-    Uri imageuri;
-    private EditText birthday;
+    private final int IMG_REQUEST_ID = 80;
+    private Uri imageuri;
+    private EditText name,variety,birthday;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String uid = user.getUid();
     private DatePickerDialog.OnDateSetListener dateSetListener;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+
+
+
+
 
 
     @Override
@@ -44,8 +70,57 @@ public class petadd extends AppCompatActivity {
         setContentView(R.layout.activity_petadd);
 
         back =findViewById(R.id.back);
+        name = findViewById(R.id.pet_name);
+        variety = findViewById(R.id.petvariety);
         birthday = findViewById(R.id.birthday);
+        dog = findViewById(R.id.dog);
+        cat = findViewById(R.id.cat);
+        male = findViewById(R.id.male);
+        female = findViewById(R.id.female);
         head = findViewById(R.id.head);
+        finish = findViewById(R.id.addfinish);
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
+
+        //寫入資料到資料庫
+        finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<String,String> map = new HashMap<>();
+                uploadImage();
+                map.put("userID",uid);
+                map.put("petname",name.getText().toString());
+                String r1 = dog.getText().toString();
+                String r2 = cat.getText().toString();
+                if (dog.isChecked()){
+                    map.put("petkind",dog.getText().toString());
+                }
+                else{
+                    map.put("petkind",cat.getText().toString());
+                }
+                map.put("petvariety",variety.getText().toString());
+                String s1 = male.getText().toString();
+                String s2 = female.getText().toString();
+                if (male.isChecked()){
+                    map.put("petsex",male.getText().toString());
+                }
+                else{
+                    map.put("petsex",female.getText().toString());
+                }
+                map.put("petbirthday",birthday.getText().toString());
+                db.collection("PetData").document().set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"已更新寵物資料",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +171,40 @@ public class petadd extends AppCompatActivity {
             }
         });
     }
+
+    private void uploadImage() {
+
+        if (imageuri != null)
+        {
+            ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("上傳中...");
+            progressDialog.show();
+
+            StorageReference ref = storageReference.child("image/"+ UUID.randomUUID().toString());
+            ref.putFile(imageuri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Toast.makeText(petadd.this,"上傳成功",Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(petadd.this,"Failed"+e.getMessage() ,Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                        }
+                    });
+        }
+    }
+
 
     private void runTimePermisson(){
 

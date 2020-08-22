@@ -23,5 +23,17 @@
             app:srcCompat="@drawable/logo" />
 
 
+        <Button
+            android:id="@+id/gologin"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="#ffffff"
+            android:text="登入"
+            android:textColor="#000000"/>
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

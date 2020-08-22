@@ -1,7 +1,6 @@
 package com.cheryl.petit;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class food_cal extends AppCompatActivity {
@@ -11,4 +10,5 @@ public class food_cal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_cal);
     }
+
 }

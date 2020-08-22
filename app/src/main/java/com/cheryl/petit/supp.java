@@ -1,5 +1,6 @@
 package com.cheryl.petit;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -16,17 +17,30 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class supp extends AppCompatActivity {
     private ImageButton back;
+    private Button finish;
     private DatePickerDialog.OnDateSetListener dateSetListener;
-    private EditText date;
+    private EditText brand,name,date;
     private Spinner supptype,supptime;
-
+    private Calendar calendar ;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String uid = user.getUid();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<String> typeList;
     ArrayAdapter<String>typeAdapter;
 
@@ -37,10 +51,14 @@ public class supp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supp);
+        finish =findViewById(R.id.finish);
         back = findViewById(R.id.back);
+        brand = findViewById(R.id.suppbrand);
+        name = findViewById(R.id.suppname);
         date = findViewById(R.id.date);
         supptime = findViewById(R.id.supptime);
         supptype = findViewById(R.id.supptype);
+
 
         typeList = new ArrayList<>();
         typeList .add("請選擇種類");
@@ -66,8 +84,6 @@ public class supp extends AppCompatActivity {
 
         timeAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1,timeList);
         supptime.setAdapter(timeAdapter);
-
-
 
 
         //日期
@@ -106,6 +122,27 @@ public class supp extends AppCompatActivity {
             }
         };
 
+        finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<String,String> map = new HashMap<>();
+                map.put("userID",uid);
+                map.put("suppbrand",brand.getText().toString());
+                map.put("suppname",name.getText().toString());
+                map.put("supptype",supptype.getSelectedItem().toString());
+                map.put("suppexpirydate",date.getText().toString());
+                map.put("suppremindtime",supptime.getSelectedItem().toString());
+                db.collection("PetSupp").document().set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"已更新用品資料",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
         //返回鍵
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,11 +154,8 @@ public class supp extends AppCompatActivity {
         });
     }
 
-
     public void datePicker(View v){
-        Calendar calendar = Calendar.getInstance();
-
-
+         calendar = Calendar.getInstance();
     }
 
 }

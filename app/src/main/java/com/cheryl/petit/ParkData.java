@@ -3,7 +3,6 @@ package com.cheryl.petit;
 public class ParkData {
 
     private String item_id;
-
     private String ParkAddress;
     private String Parkname;
 

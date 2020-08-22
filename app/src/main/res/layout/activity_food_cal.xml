@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".park"
-    android:background="#E8FFF5">
+    tools:context=".food_cal"
+    android:background="#E8FFF5"
+    tools:ignore="MissingDefaultResource">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -55,9 +56,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/search"
         android:layout_marginTop="10dp"
-        android:id="@+id/parklist"
-        android:scrollbars="vertical">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:id="@+id/foodlist"
+        android:scrollbars="vertical"/>
 
 
 </RelativeLayout>

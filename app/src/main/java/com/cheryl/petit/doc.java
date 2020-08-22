@@ -1,5 +1,6 @@
 package com.cheryl.petit;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.telephony.RadioAccessSpecifier;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -16,16 +18,31 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class doc extends AppCompatActivity {
     private ImageButton back;
     private TextView backdate;
-    private EditText docdatepick, backdocday;
+    private EditText datepick,whysick,hospital,note,backdocday;
     private DatePickerDialog.OnDateSetListener dateSetListener;
     private DatePickerDialog.OnDateSetListener dateSetListener2;
     private RadioButton yes,no;
+    private Spinner petname;
+    private Button finish;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String uid = user.getUid();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     @Override
@@ -33,12 +50,23 @@ public class doc extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doc);
         back = findViewById(R.id.back);
-        docdatepick = findViewById(R.id.docdatepick);
-        yes = (RadioButton)findViewById(R.id.yes);
-        no = (RadioButton)findViewById(R.id.no);
-        backdocday = (EditText) findViewById(R.id.backdocday);
-        backdate = (TextView)findViewById(R.id.backdate);
+        datepick = findViewById(R.id.datepick);
+        whysick = findViewById(R.id.whysick);
+        hospital = findViewById(R.id.hospital);
+        note = findViewById(R.id.note);
+        yes = findViewById(R.id.yes);
+        no = findViewById(R.id.no);
+        backdocday = findViewById(R.id.backdocday);
+        backdate = findViewById(R.id.backdate);
+        petname = findViewById(R.id.petname);
+        finish = findViewById(R.id.finish);
 
+
+
+        if (user == null) {
+            // No session user
+            return;
+        }
 
 //是否需要回診按鈕顯示
         yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -64,7 +92,7 @@ public class doc extends AppCompatActivity {
 
 
 
-        docdatepick.setOnClickListener(new View.OnClickListener() {
+        datepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -113,7 +141,7 @@ public class doc extends AppCompatActivity {
 
                 String thedate = year + "/" + month + "/" + day;
 
-                docdatepick.setText(thedate);
+                datepick.setText(thedate);
             }
         };
 
@@ -128,6 +156,38 @@ public class doc extends AppCompatActivity {
                 backdocday.setText(thedate2);
             }
         };
+
+
+        finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<String,String> map = new HashMap<>();
+                map.put("userID",uid);
+                map.put("docday",datepick.getText().toString());
+                map.put("whysick",whysick.getText().toString());
+                map.put("hospital",hospital.getText().toString());
+                map.put("sicknote",note.getText().toString());
+                String n1 = yes.getText().toString();
+                String n2 = no.getText().toString();
+                if (yes.isChecked()){
+                    map.put("backtodoc",yes.getText().toString());
+                    map.put("backtodacday",backdocday.getText().toString());
+                }
+                else{
+                    map.put("backtodoc",no.getText().toString());
+                }
+                map.put("petname",petname.getSelectedItem().toString());
+                db.collection("PetDoc").document().set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"已更新看診資料",Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+            }
+        });
 
 
                 back.setOnClickListener(new View.OnClickListener() {

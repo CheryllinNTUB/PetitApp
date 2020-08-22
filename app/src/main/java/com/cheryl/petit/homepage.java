@@ -49,7 +49,7 @@ public class homepage extends AppCompatActivity {
 
                     case R.id.album:
                         startActivity(new Intent(getApplicationContext()
-                                ,album.class ));
+                                , gallery.class ));
                         overridePendingTransition(0,0);
                         return true;
 

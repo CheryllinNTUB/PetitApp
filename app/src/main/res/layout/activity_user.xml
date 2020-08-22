@@ -44,19 +44,30 @@
             android:src="@drawable/personhead"/>
 
         <TextView
-            android:id="@+id/text"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#7B7B7B"
             android:layout_gravity="center"
-            android:text="登入"
+
+            android:text="name"
             android:textSize="16dp"
             android:layout_below="@id/image"
             android:gravity="center"/>
 
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#7B7B7B"
+            android:layout_gravity="center"
+            android:text="email"
+            android:textSize="16dp"
+            android:gravity="center"/>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="500dp"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="3dp">
@@ -66,8 +77,8 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="140dp"
                 android:layout_gravity="center"
+                android:layout_marginBottom="200dp"
                 android:background="#E8FFF5"
                 android:text="寵物資料"
                 android:textColor="#000000" />
@@ -78,8 +89,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="center"
+                android:layout_marginTop="40dp"
                 android:layout_marginBottom="160dp"
-                android:layout_marginTop="100dp"
                 android:background="#E8FFF5"
                 android:text="最愛場所"
                 android:textColor="#000000" />
@@ -90,33 +101,21 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="center"
-                android:layout_marginTop="100dp"
-                android:layout_marginBottom="80dp"
+                android:layout_marginBottom="40dp"
                 android:background="#E8FFF5"
                 android:text="應用程式意見回饋"
                 android:textColor="#000000" />
 
-            <Button
-                android:id="@+id/googlelogin"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="100dp"
-                android:background="#E8FFF5"
-                android:text="登入"
-                android:textColor="#000000"/>
 
             <Button
                 android:id="@+id/googlelogout"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="40dp"
                 android:background="#E8FFF5"
-                android:layout_marginTop="100dp"
                 android:text="登出"
-                android:textColor="#000000"
-                android:visibility="invisible" />
+                android:textColor="#000000" />
 
         </androidx.cardview.widget.CardView>
 

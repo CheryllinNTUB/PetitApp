@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -24,31 +23,45 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.squareup.picasso.Picasso;
 
 public class user extends AppCompatActivity {
 
-    static final int GOOGLE_SIGN = 123;
-    FirebaseAuth mAuth;
-    Button login, logout,petdata,opinion,favoriteplace;
-    TextView text;
+    Button logout,petdata,opinion,favoriteplace;
     ImageView image;
-    GoogleSignInClient googleSignInClient;
+    TextView name,email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        login = findViewById(R.id.googlelogin);
         logout = findViewById(R.id.googlelogout);
+        name = findViewById(R.id.name);
+        email = findViewById(R.id.email);
         favoriteplace = findViewById(R.id.favoriteplace);
         opinion = findViewById(R.id.opinion);
         petdata = findViewById(R.id.petdata);
-        text = findViewById(R.id.text);
         image = findViewById(R.id.image);
+
+        GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
+        if (signInAccount != null){
+            name.setText(signInAccount.getDisplayName());
+            email.setText(signInAccount.getEmail());
+            Picasso.get().load(signInAccount.getPhotoUrl()).placeholder(R.mipmap.ic_launcher).into(image);
+
+        }
+
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(),welcome.class);
+                startActivity(intent);
+            }
+        });
 
         petdata.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,23 +90,6 @@ public class user extends AppCompatActivity {
             }
         });
 
-
-        mAuth = FirebaseAuth.getInstance();
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
-                .Builder()
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
-        login.setOnClickListener(view -> SignInGoogle());
-        logout.setOnClickListener(view -> Logout());
-
-        if (mAuth.getCurrentUser() != null){
-            FirebaseUser user = mAuth.getCurrentUser();
-            updateUI(user);
-        }
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnavi);
         bottomNavigationView.setSelectedItemId(R.id.user);
 
@@ -121,7 +117,7 @@ public class user extends AppCompatActivity {
 
                     case R.id.album:
                         startActivity(new Intent(getApplicationContext()
-                                , album.class));
+                                , gallery.class));
                         overridePendingTransition(0, 0);
                         return true;
 
@@ -132,80 +128,6 @@ public class user extends AppCompatActivity {
             }
         });
     }
-
-    void SignInGoogle() {
-        Intent signIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signIntent, GOOGLE_SIGN);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GOOGLE_SIGN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn
-                    .getSignedInAccountFromIntent(data);
-            try {
-
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                if (account != null) firebaseAuthWithGoogle(account);
-            } catch (ApiException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-
-    }
-
-    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
-        Log.d("TAG","firebaseAuthWithGoogle:" + account.getId());
-        AuthCredential credential = GoogleAuthProvider
-                .getCredential(account.getIdToken(),null);
-        Task<AuthResult> authResultTask = mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()){
-                        Log.d("TAG","signin success");
-
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        updateUI(user);
-                    }else{
-                        Log.d("TAG","signin failure",task.getException());
-                        Toast.makeText(this,"SignIn Failed",Toast.LENGTH_SHORT).show();
-                        updateUI(null);
-                    }
-                });
-    }
-
-    private void updateUI(FirebaseUser user) {
-    if (user != null){
-        
-        String email = user.getEmail();
-        String photo = String.valueOf(user.getPhotoUrl());
-
-        text.append("成功: \n");
-        text.append(email);
-        Picasso.get().load(photo).into(image);
-        login.setVisibility(View.INVISIBLE);
-        logout.setVisibility(View.VISIBLE);
-
-    }else{
-        text.setText("請按下方按鈕登入");
-        Picasso.get().load(R.drawable.personhead).into(image);
-        login.setVisibility(View.VISIBLE);
-        logout.setVisibility(View.INVISIBLE);
-         }
-    }
-
-    void Logout(){
-        FirebaseAuth.getInstance().signOut();
-        googleSignInClient.signOut()
-                .addOnCompleteListener(this,task ->{
-                    updateUI(null);
-                });
-    }
-
-
-
 
 }
 

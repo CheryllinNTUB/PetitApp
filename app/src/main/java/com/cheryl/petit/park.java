@@ -79,7 +79,7 @@ public class park extends AppCompatActivity {
                 })
                 .build();
 
-        firestoreRecyclerAdapter = new FirestorePagingAdapter<ParkData, ParkViewHolder>(opinions) {
+            firestoreRecyclerAdapter = new FirestorePagingAdapter<ParkData, ParkViewHolder>(opinions) {
             @NonNull
             @Override
             public ParkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

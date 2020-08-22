@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class album extends AppCompatActivity {
+public class gallery extends AppCompatActivity {
 
 
     private ImageButton add_photo;
@@ -21,7 +21,7 @@ public class album extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_album);
+        setContentView(R.layout.activity_gallery);
 
             add_photo = findViewById(R.id.add_photo);
             add_photocard = findViewById(R.id.add_photocard);
@@ -68,7 +68,7 @@ public class album extends AppCompatActivity {
             add_photo.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(album.this,addalbum.class);
+            Intent intent = new Intent(gallery.this,addalbum.class);
             startActivity(intent);
         }
     });
@@ -78,7 +78,7 @@ public class album extends AppCompatActivity {
         add_photocard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(album.this,addalbum.class);
+                Intent intent = new Intent(gallery.this,addalbum.class);
                 startActivity(intent);
             }
         });
