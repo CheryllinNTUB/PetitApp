@@ -4,8 +4,10 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <application
+    <application android:hardwareAccelerated="true"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -17,7 +19,7 @@
         <activity android:name=".search" />
         <activity android:name=".park_details" />
         <activity android:name=".help_details" />
-        <activity android:name=".HelptipData" />
+        <activity android:name=".Helpmodel" />
         <activity android:name=".opinion">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -51,6 +53,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".Receiver"/>
     </application>
 
 </manifest>

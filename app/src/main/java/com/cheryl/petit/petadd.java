@@ -7,10 +7,12 @@ import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -25,7 +27,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -36,6 +42,8 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,19 +56,14 @@ public class petadd extends AppCompatActivity {
     private CircleImageView head;
     private RadioButton dog,cat,male,female;
     private Button finish;
-    private static final int GALLER_ACTION_PICK_CODE = 100;
-    private final int IMG_REQUEST_ID = 80;
+    private static final int GALLER_ACTION_PICK_CODE = 10;
     private Uri imageuri;
     private EditText name,variety,birthday;
-    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private String uid = user.getUid();
-    private DatePickerDialog.OnDateSetListener dateSetListener;
+    private String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private DatePickerDialog.OnDateSetListener dateSetListener;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-
-
-
 
 
 
@@ -90,6 +93,7 @@ public class petadd extends AppCompatActivity {
                 Map<String,String> map = new HashMap<>();
                 uploadImage();
                 map.put("userID",uid);
+                map.put("pethead",imageuri.toString());
                 map.put("petname",name.getText().toString());
                 String r1 = dog.getText().toString();
                 String r2 = cat.getText().toString();
@@ -109,7 +113,8 @@ public class petadd extends AppCompatActivity {
                     map.put("petsex",female.getText().toString());
                 }
                 map.put("petbirthday",birthday.getText().toString());
-                db.collection("PetData").document().set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                db.collection("PetData").document(uid).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
@@ -240,15 +245,20 @@ public class petadd extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode,resultCode,data);
 
-        if (resultCode == RESULT_OK){
+        if (requestCode == GALLER_ACTION_PICK_CODE && resultCode == RESULT_OK && data != null){
 
-            if(requestCode == GALLER_ACTION_PICK_CODE){
 
                 imageuri = data.getData();
-                head.setImageURI(imageuri);
+
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),imageuri);
+                    head.setImageBitmap(bitmap);
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
 
             }
         }
     }
 
-}
+

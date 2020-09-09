@@ -1,6 +1,6 @@
 package com.cheryl.petit;
 
-public class ParkData {
+public class Parkmodel {
 
     private String item_id;
     private String ParkAddress;
@@ -14,10 +14,10 @@ public class ParkData {
         this.item_id = item_id;
     }
 
-    public ParkData() {
+    public Parkmodel() {
     }
 
-    public ParkData(String parkAddress, String parkname, String item_id) {
+    public Parkmodel(String parkAddress, String parkname, String item_id) {
         this.ParkAddress = parkAddress;
         this.Parkname = parkname;
     }

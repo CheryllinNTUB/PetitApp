@@ -152,7 +152,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:textSize="18dp"
             android:text="寵物性別:"
             android:textColor="#4f4f4f"/>
@@ -161,16 +160,16 @@
             android:id="@+id/male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="男" />
+            android:text="男生" />
 
         <RadioButton
             android:id="@+id/female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="女" />
+            android:text="女生" />
 
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content" />
 
 

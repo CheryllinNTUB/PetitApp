@@ -1,20 +1,41 @@
 package com.cheryl.petit;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.paging.PagedList;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.firebase.ui.firestore.SnapshotParser;
+import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
+import com.firebase.ui.firestore.paging.FirestorePagingOptions;
+import com.firebase.ui.firestore.paging.LoadingState;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 
 public class hotel extends AppCompatActivity {
     private ImageButton back;
     private Spinner city,reigon;
+    private RecyclerView hotellist;
+    private FirebaseFirestore firebaseFirestore;
+    private FirestorePagingAdapter adapter;
     ArrayList<String> cityList;
     ArrayAdapter<String>cityAdapter;
 
@@ -31,6 +52,80 @@ public class hotel extends AppCompatActivity {
         back = findViewById(R.id.back);
         city = findViewById(R.id.city);
         reigon = findViewById(R.id.region);
+        hotellist = findViewById(R.id.hotellist);
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        Query query = firebaseFirestore.collection("b&b");
+
+        PagedList.Config config = new PagedList.Config.Builder()
+                .setInitialLoadSizeHint(10)
+                .setPageSize(4)
+                .build();
+
+        FirestorePagingOptions<Hotelmodel> options = new FirestorePagingOptions
+                .Builder<Hotelmodel>()
+                .setLifecycleOwner(this)
+                .setQuery(query, config, new SnapshotParser<Hotelmodel>() {
+                    @NonNull
+                    @Override
+                    public Hotelmodel parseSnapshot(@NonNull DocumentSnapshot snapshot) {
+                        Hotelmodel hotelData = snapshot.toObject(Hotelmodel.class);
+                        String itemId = snapshot.getId();
+                        hotelData.setItem_id(itemId);
+                        return hotelData;
+                    }
+                })
+                .build();
+
+
+        adapter = new FirestorePagingAdapter<Hotelmodel, HotelViewHolder>(options) {
+            @NonNull
+            @Override
+            public HotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_row_hotel,parent,false);
+                return new HotelViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull HotelViewHolder holder, int position, @NonNull Hotelmodel model) {
+
+                holder.name.setText(model.getHotelname());
+                holder.address.setText(model.getHotelAddress());
+            }
+
+            @Override
+            protected void onLoadingStateChanged(@NonNull LoadingState state){
+                super.onLoadingStateChanged(state);
+
+                switch (state){
+
+                    case LOADING_INITIAL:
+                        Log.d("PAGING_LOG","loading data");
+                        break;
+                    case LOADING_MORE:
+                        Log.d("PAGING_LOG","loading next page");
+                        break;
+                    case FINISHED:
+                        Log.d("PAGING_LOG","all data loaded");
+                        break;
+                    case ERROR:
+                        Log.d("PAGING_LOG","loading error");
+                        break;
+                    case LOADED:
+                        Log.d("PAGING_LOG","total items loaded");
+                        break;
+
+                }
+            }
+        };
+
+        hotellist.setHasFixedSize(true);
+        hotellist.setLayoutManager(new LinearLayoutManager(this));
+        hotellist.setAdapter(adapter);
+
+
+
+
 
         cityList = new ArrayList<>();
         cityList .add("請選擇縣市");
@@ -595,5 +690,19 @@ public class hotel extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private class HotelViewHolder extends RecyclerView.ViewHolder{
+
+        private TextView name;
+        private TextView address;
+
+
+        public HotelViewHolder(@NonNull View itemview){
+            super(itemview);
+
+            name = itemview.findViewById(R.id.hotelname);
+            address = itemview.findViewById(R.id.hoteladdress);
+        }
     }
 }

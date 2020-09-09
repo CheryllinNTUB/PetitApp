@@ -1,15 +1,23 @@
 package com.cheryl.petit;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -31,6 +39,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 public class supp extends AppCompatActivity {
     private ImageButton back;
     private Button finish;
@@ -43,7 +53,6 @@ public class supp extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<String> typeList;
     ArrayAdapter<String>typeAdapter;
-
     ArrayList<String> timeList;
     ArrayAdapter<String>timeAdapter;
 
@@ -58,6 +67,7 @@ public class supp extends AppCompatActivity {
         date = findViewById(R.id.date);
         supptime = findViewById(R.id.supptime);
         supptype = findViewById(R.id.supptype);
+        createNotificationChannel();
 
 
         typeList = new ArrayList<>();
@@ -84,7 +94,6 @@ public class supp extends AppCompatActivity {
 
         timeAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1,timeList);
         supptime.setAdapter(timeAdapter);
-
 
         //日期
         date.setOnClickListener(new View.OnClickListener() {
@@ -130,16 +139,19 @@ public class supp extends AppCompatActivity {
                 map.put("suppbrand",brand.getText().toString());
                 map.put("suppname",name.getText().toString());
                 map.put("supptype",supptype.getSelectedItem().toString());
-                map.put("suppexpirydate",date.getText().toString());
-                map.put("suppremindtime",supptime.getSelectedItem().toString());
+                map.put("date",date.getText().toString());
+                map.put("supptime",supptime.getSelectedItem().toString());
                 db.collection("PetSupp").document().set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),"已更新用品資料",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"已更新用品資料", LENGTH_SHORT).show();
                         }
                     }
                 });
+
+
+
             }
         });
 
@@ -156,6 +168,21 @@ public class supp extends AppCompatActivity {
 
     public void datePicker(View v){
          calendar = Calendar.getInstance();
+    }
+
+
+    private void createNotificationChannel(){
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "LembitReminderChannel";
+            String description = "Channel for Lembit Reminder";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("noitfyLembit",name,importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 }

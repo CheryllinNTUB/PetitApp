@@ -21,10 +21,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -40,6 +44,8 @@ public class permeal extends Fragment {
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String uid = user.getUid();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference petnameref = db.collection("PetData");
+    private List<String> nameList = new ArrayList<>();
 
 
     @Override
@@ -57,6 +63,24 @@ public class permeal extends Fragment {
        calculate = v.findViewById(R.id.calculate);
        look = v.findViewById(R.id.look);
        finish = v.findViewById(R.id.finish);
+
+
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, nameList);
+        petname.setAdapter(adapter);
+        petnameref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                        String mpetname = documentSnapshot.getString("petname");
+                        nameList.add(mpetname);
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
 
 
 

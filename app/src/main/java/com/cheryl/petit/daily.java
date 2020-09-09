@@ -3,6 +3,7 @@ package com.cheryl.petit;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,7 +16,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class daily extends Fragment {
@@ -25,6 +34,9 @@ public class daily extends Fragment {
     ArrayList<String> bodytypeList;
     ArrayAdapter<String>bodytypeAdapter;
     static double bodytype,kg;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference petnameref = db.collection("PetData");
+    private List<String> nameList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +48,30 @@ public class daily extends Fragment {
         calculate = v.findViewById(R.id.calculate);
         day_cal = v.findViewById(R.id.day_cal);
         pet_kg = v.findViewById(R.id.pet_kg);
+
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, nameList);
+        petname.setAdapter(adapter);
+        petnameref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                        String mpetname = documentSnapshot.getString("petname");
+                        nameList.add(mpetname);
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+
+
+
+
+
+
 
         bodytypeList = new ArrayList<>();
         bodytypeList.add("請選擇寵物類型");

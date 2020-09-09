@@ -46,23 +46,14 @@
             app:srcCompat="@drawable/ic_add"
             tools:ignore="VectorDrawableCompat" />
 
-
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyleview_petdata"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
-            android:gravity="center"
-            android:text="請按右上角以新增第一筆寵物資料"
-            android:textSize="20dp"/>
-    </LinearLayout>
+
 
 
 </LinearLayout>

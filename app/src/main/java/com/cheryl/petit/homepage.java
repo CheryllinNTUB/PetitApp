@@ -14,8 +14,8 @@ public class homepage extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
-    ArrayList<HelptipData> helptipDataList;
-    HelptipData helptipData;
+    ArrayList<Helpmodel> helptipDataList;
+    Helpmodel helptipData;
 
 
 
@@ -68,19 +68,19 @@ public class homepage extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
         helptipDataList = new ArrayList<>();
 
-        helptipData = new HelptipData("關於寵物的餵食小知識...","餵對好食物，讓牠吃的快樂又安心",R.drawable.helpfood);
+        helptipData = new Helpmodel("關於寵物的餵食小知識...","餵對好食物，讓牠吃的快樂又安心",R.drawable.helpfood);
         helptipDataList.add(helptipData);
 
-        helptipData = new HelptipData("關於寵物的保健小知識...","毛孩也要養生!來看牠們的保健小秘密",R.drawable.helphealth);
+        helptipData = new Helpmodel("關於寵物的保健小知識...","毛孩也要養生!來看牠們的保健小秘密",R.drawable.helphealth);
         helptipDataList.add(helptipData);
 
-        helptipData = new HelptipData("關於寵物的最新活動...","最新的寵物展覽及活動資訊都在這!",R.drawable.helpnews);
+        helptipData = new Helpmodel("關於寵物的最新活動...","最新的寵物展覽及活動資訊都在這!",R.drawable.helpnews);
         helptipDataList.add(helptipData);
 
-        helptipData = new HelptipData("關於寵物的用品小知識...","挑對用品，主人毛孩都開心",R.drawable.helpsupplies);
+        helptipData = new Helpmodel("關於寵物的用品小知識...","挑對用品，主人毛孩都開心",R.drawable.helpsupplies);
         helptipDataList.add(helptipData);
 
-        RecyleViewAdapter_help recyleViewAdapter = new RecyleViewAdapter_help(homepage.this,helptipDataList);
+        HelpDataAdapter recyleViewAdapter = new HelpDataAdapter(homepage.this,helptipDataList);
         recyclerView.setAdapter(recyleViewAdapter);
 
         }

@@ -13,21 +13,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+
 import com.firebase.ui.firestore.SnapshotParser;
 import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
 import com.firebase.ui.firestore.paging.FirestorePagingOptions;
 import com.firebase.ui.firestore.paging.LoadingState;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -64,14 +56,14 @@ public class park extends AppCompatActivity {
                 .setPageSize(3)
                 .build();
 
-        FirestorePagingOptions<ParkData> opinions = new FirestorePagingOptions
-                .Builder<ParkData>()
+        FirestorePagingOptions<Parkmodel> opinions = new FirestorePagingOptions
+                .Builder<Parkmodel>()
                 .setLifecycleOwner(this)
-                .setQuery(query, config, new SnapshotParser<ParkData>() {
+                .setQuery(query, config, new SnapshotParser<Parkmodel>() {
                     @NonNull
                     @Override
-                    public ParkData parseSnapshot(@NonNull DocumentSnapshot snapshot) {
-                        ParkData parkData = snapshot.toObject(ParkData.class);
+                    public Parkmodel parseSnapshot(@NonNull DocumentSnapshot snapshot) {
+                        Parkmodel parkData = snapshot.toObject(Parkmodel.class);
                         String itemId = snapshot.getId();
                         parkData.setItem_id(itemId);
                         return parkData;
@@ -79,7 +71,7 @@ public class park extends AppCompatActivity {
                 })
                 .build();
 
-            firestoreRecyclerAdapter = new FirestorePagingAdapter<ParkData, ParkViewHolder>(opinions) {
+            firestoreRecyclerAdapter = new FirestorePagingAdapter<Parkmodel, ParkViewHolder>(opinions) {
             @NonNull
             @Override
             public ParkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -88,7 +80,7 @@ public class park extends AppCompatActivity {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull ParkViewHolder holder, int position, @NonNull ParkData model) {
+            protected void onBindViewHolder(@NonNull ParkViewHolder holder, int position, @NonNull Parkmodel model) {
 
                 holder.name.setText(model.getParkname());
                 holder.address.setText(model.getParkAddress());
