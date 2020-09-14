@@ -7,11 +7,13 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <application android:hardwareAccelerated="true"
+    <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity_details"></activity>
         <activity android:name=".food_cal" />
         <activity android:name=".user" />
         <activity android:name=".gallery" />
@@ -39,7 +41,7 @@
         <activity android:name=".hospital" />
         <activity android:name=".hotel" />
         <activity android:name=".place" />
-        <activity android:name=".park"/>
+        <activity android:name=".park" />
         <activity android:name=".supp" />
         <activity android:name=".doc" />
         <activity android:name=".cal" />
@@ -53,7 +55,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".Receiver"/>
+
+        <receiver android:name=".Receiver" />
     </application>
 
 </manifest>

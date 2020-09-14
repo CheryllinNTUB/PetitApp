@@ -59,9 +59,10 @@ public class petadd extends AppCompatActivity {
     private static final int GALLER_ACTION_PICK_CODE = 10;
     private Uri imageuri;
     private EditText name,variety,birthday;
-    private String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DatePickerDialog.OnDateSetListener dateSetListener;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String uid = user.getUid();
     private FirebaseStorage storage;
     private StorageReference storageReference;
 
@@ -84,6 +85,14 @@ public class petadd extends AppCompatActivity {
         finish = findViewById(R.id.addfinish);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+
+
+        if (user == null) {
+            // No session user
+            return;
+        }
+
+
 
 
         //寫入資料到資料庫
@@ -114,7 +123,7 @@ public class petadd extends AppCompatActivity {
                 }
                 map.put("petbirthday",birthday.getText().toString());
 
-                db.collection("PetData").document(uid).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                db.collection("PetData").document().set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){

@@ -75,7 +75,8 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:enabled="true"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:hint="請輸入寵物名字"/>
     </LinearLayout>
 
 
@@ -135,7 +136,8 @@
             android:id="@+id/petvariety"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:maxLines="1"/>
+            android:maxLines="1"
+            android:hint="ex:柴犬"/>
     </LinearLayout>
 
     <LinearLayout
@@ -198,7 +200,8 @@
             android:id="@+id/birthday"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:focusable="false" />
+            android:focusable="false"
+            android:hint="請選擇日期"/>
 
     </LinearLayout>
 
