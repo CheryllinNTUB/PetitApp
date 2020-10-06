@@ -17,11 +17,6 @@
         android:icon="@drawable/ic_record"/>
 
     <item
-        android:id="@+id/album"
-        android:title="相簿"
-        android:icon="@drawable/ic_photo"/>
-
-    <item
         android:id="@+id/user"
         android:title="用戶"
         android:icon="@drawable/ic_person"/>

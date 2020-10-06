@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.SearchView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -25,6 +26,7 @@ import java.util.regex.Pattern;
 public class adddoc extends AppCompatActivity {
     private RecyclerView recyclerView_docdata;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private CollectionReference docref = db.collection("DocData");
     private DocDataAdapter adapter;
     private ImageButton back,add;

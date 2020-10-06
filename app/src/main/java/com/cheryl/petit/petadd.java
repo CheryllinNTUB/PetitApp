@@ -101,7 +101,7 @@ public class petadd extends AppCompatActivity {
             public void onClick(View view) {
                 Map<String,String> map = new HashMap<>();
                 uploadImage();
-                map.put("userID",uid);
+                map.put("uid",uid);
                 map.put("pethead",imageuri.toString());
                 map.put("petname",name.getText().toString());
                 String r1 = dog.getText().toString();

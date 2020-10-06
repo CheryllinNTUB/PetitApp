@@ -22,6 +22,8 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class welcome extends AppCompatActivity {
@@ -30,6 +32,7 @@ public class welcome extends AppCompatActivity {
     private Button gologin;
     private static final int GOOGLE_SIGN = 123;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onStart() {
@@ -46,6 +49,7 @@ public class welcome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
 
         mAuth = FirebaseAuth.getInstance();
 

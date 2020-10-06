@@ -81,7 +81,7 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="寵物公園"
+                        android:text="寵物活動區"
                         android:textAlignment="center"
                         android:textColor="#4f4f4f"
                         android:textSize="18sp"

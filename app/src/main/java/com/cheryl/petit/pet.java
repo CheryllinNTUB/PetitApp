@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -19,6 +20,8 @@ import com.google.firebase.firestore.Query;
 public class pet extends AppCompatActivity {
     private ImageButton back,add;
     private RecyclerView recyclerView_petdata;
+    private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    private String uid = firebaseUser.getUid();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference petref = db.collection("PetData");
     private PetDataAdapter adapter;
@@ -35,6 +38,7 @@ public class pet extends AppCompatActivity {
         back =  findViewById(R.id.back);
         add =findViewById(R.id.add);
         setUpRecyclerView();
+
 
 
         back.setOnClickListener(new View.OnClickListener() {

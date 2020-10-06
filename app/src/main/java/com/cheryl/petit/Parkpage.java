@@ -1,15 +1,14 @@
 package com.cheryl.petit;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
-
-public class park_details extends AppCompatActivity {
-
+public class Parkpage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_park_details);
+        setContentView(R.layout.activity_parkpage);
     }
 }

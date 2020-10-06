@@ -56,7 +56,7 @@ public class park extends AppCompatActivity {
                 .setPageSize(3)
                 .build();
 
-        FirestorePagingOptions<Parkmodel> opinions = new FirestorePagingOptions
+        FirestorePagingOptions<Parkmodel> options = new FirestorePagingOptions
                 .Builder<Parkmodel>()
                 .setLifecycleOwner(this)
                 .setQuery(query, config, new SnapshotParser<Parkmodel>() {
@@ -71,7 +71,7 @@ public class park extends AppCompatActivity {
                 })
                 .build();
 
-            firestoreRecyclerAdapter = new FirestorePagingAdapter<Parkmodel, ParkViewHolder>(opinions) {
+            firestoreRecyclerAdapter = new FirestorePagingAdapter<Parkmodel, ParkViewHolder>(options) {
             @NonNull
             @Override
             public ParkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -80,10 +80,20 @@ public class park extends AppCompatActivity {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull ParkViewHolder holder, int position, @NonNull Parkmodel model) {
+            protected void onBindViewHolder(@NonNull ParkViewHolder holder, final int position, @NonNull Parkmodel model) {
 
                 holder.name.setText(model.getParkname());
                 holder.address.setText(model.getParkAddress());
+               /* holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(view.getContext(),Parkpage.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("key",model);
+                        intent.putExtras(bundle);
+                        view.getContext().startActivity(intent);
+                    }
+                });*/
             }
 
             @Override

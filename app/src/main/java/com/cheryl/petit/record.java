@@ -46,12 +46,6 @@ public class record extends AppCompatActivity {
                     case R.id.record:
                         return true;
 
-                    case R.id.album:
-                        startActivity(new Intent(getApplicationContext()
-                                , gallery.class ));
-                        overridePendingTransition(0,0);
-                        return true;
-
                     case R.id.user:
                         startActivity(new Intent(getApplicationContext()
                                 ,user.class ));

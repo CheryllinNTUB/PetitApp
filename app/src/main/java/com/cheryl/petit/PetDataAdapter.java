@@ -1,6 +1,4 @@
 package com.cheryl.petit;
-
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +29,7 @@ public class PetDataAdapter extends FirestoreRecyclerAdapter<Petmodel,PetDataAda
         holder.variety.setText(model.getPetvariety());
         holder.sex.setText(model.getPetsex());
         holder.birthday.setText(model.getPetbirthday());
+
 
     }
 
