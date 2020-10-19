@@ -40,15 +40,30 @@
                     android:id="@+id/hotelname"
                     android:textStyle="bold"/>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="住宿地址"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:textSize="15dp"
-                    android:maxLines="1"
-                    android:id="@+id/hoteladdress"/>
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="住宿地址"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="15dp"
+                        android:maxLines="1"
+                        android:id="@+id/hotelcity"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="住宿地址"
+                        android:layout_marginTop="5dp"
+                        android:textSize="15dp"
+                        android:maxLines="1"
+                        android:id="@+id/hotelreigon"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 

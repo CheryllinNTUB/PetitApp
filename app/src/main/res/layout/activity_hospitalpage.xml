@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Parkpage">
+    tools:context=".Hospitalpage">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -24,7 +24,7 @@
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
-            android:id="@+id/park_name"
+            android:id="@+id/hospital_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -36,7 +36,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
-        android:id="@+id/park_img"
+        android:id="@+id/hospital_img"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:scaleType="center"
@@ -47,13 +47,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="場所簡介"
+        android:text="醫院簡介"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:layout_below="@+id/park_img" />
+        android:layout_below="@+id/hospital_img" />
 
     <TextView
-        android:id="@+id/park_details"
+        android:id="@+id/hospital_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -61,7 +61,51 @@
         android:text="簡介簡介"
         android:textColor="#6C6C6C"
         android:textSize="16sp"
-        android:layout_below="@+id/park_img"/>
+        android:layout_below="@+id/hospital_img"/>
+
+    <TextView
+        android:id="@+id/about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="關於醫院"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:layout_below="@+id/hospital_details" />
+
+    <ImageButton
+        android:id="@+id/line"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/about"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="13dp"
+        android:scaleType="centerInside"
+        android:background="#ffffff"
+        android:src="@drawable/line" />
+
+    <ImageButton
+        android:id="@+id/fb"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:layout_below="@+id/about"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="5dp"
+        android:scaleType="centerInside"
+        android:background="#ffffff"
+        android:src="@drawable/fb" />
+
+    <ImageButton
+        android:id="@+id/email"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/about"
+        android:layout_marginLeft="145dp"
+        android:layout_marginTop="7dp"
+        android:background="#ffffff"
+        android:scaleType="centerInside"
+        android:src="@drawable/email" />
 
     <Button
         android:id="@+id/findon_net"
@@ -69,19 +113,29 @@
         android:layout_height="wrap_content"
         android:background="@drawable/roundbutton"
         android:text="相關搜尋"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/park_details"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="120dp"
+        android:layout_below="@+id/hospital_details"/>
 
     <Button
-        android:id="@+id/park_map"
+        android:id="@+id/phonecall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundbutton"
+        android:text="聯絡電話"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="120dp"
+        android:layout_below="@+id/hospital_details"/>
+
+    <Button
+        android:id="@+id/hospital_map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundbutton"
         android:text="地圖導航"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/park_details"/>
+        android:layout_marginLeft="210dp"
+        android:layout_marginTop="120dp"
+        android:layout_below="@+id/hospital_details"/>
 
     <Button
         android:id="@+id/add_love"
@@ -89,11 +143,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/roundbutton"
         android:text="加入收藏"
-        android:layout_marginLeft="240dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/park_details"/>
-
-
-
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="120dp"
+        android:layout_below="@+id/hospital_details"/>
 
 </RelativeLayout>

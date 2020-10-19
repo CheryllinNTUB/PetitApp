@@ -1,11 +1,9 @@
 package com.cheryl.petit;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,9 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.firebase.ui.firestore.SnapshotParser;
 import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
 import com.firebase.ui.firestore.paging.FirestorePagingOptions;
@@ -27,15 +22,15 @@ import com.firebase.ui.firestore.paging.LoadingState;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-
 import java.util.ArrayList;
+
 
 public class hotel extends AppCompatActivity {
     private ImageButton back;
-    private Spinner city,reigon;
-    private RecyclerView hotellist;
     private FirebaseFirestore firebaseFirestore;
-    private FirestorePagingAdapter adapter;
+    FirestorePagingAdapter firestoreRecyclerAdapter;
+    RecyclerView hotellist;
+    private Spinner city,reigon;
     ArrayList<String> cityList;
     ArrayAdapter<String>cityAdapter;
 
@@ -44,21 +39,20 @@ public class hotel extends AppCompatActivity {
             array19,array20,array21,array22;
     ArrayAdapter<String>reigonAdapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotel);
         back = findViewById(R.id.back);
+        hotellist = findViewById(R.id.hotellist);
         city = findViewById(R.id.city);
         reigon = findViewById(R.id.region);
-        hotellist = findViewById(R.id.hotellist);
         firebaseFirestore = FirebaseFirestore.getInstance();
-        Query query = firebaseFirestore.collection("b&b");
+        Query query = firebaseFirestore.collection("Hotel");
 
         PagedList.Config config = new PagedList.Config.Builder()
                 .setInitialLoadSizeHint(10)
-                .setPageSize(4)
+                .setPageSize(3)
                 .build();
 
         FirestorePagingOptions<Hotelmodel> options = new FirestorePagingOptions
@@ -76,21 +70,30 @@ public class hotel extends AppCompatActivity {
                 })
                 .build();
 
-
-        adapter = new FirestorePagingAdapter<Hotelmodel, HotelViewHolder>(options) {
+        firestoreRecyclerAdapter = new FirestorePagingAdapter<Hotelmodel, HotelViewHolder>(options) {
             @NonNull
             @Override
             public HotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_row_hotel,parent,false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_row_hotel, parent, false);
                 return new HotelViewHolder(view);
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull HotelViewHolder holder, int position, @NonNull Hotelmodel model) {
+            protected void onBindViewHolder(@NonNull HotelViewHolder holder, final int position, @NonNull Hotelmodel hotelmodel) {
 
-                holder.name.setText(model.getHotelname());
-                holder.address.setText(model.getHotelAddress());
+                holder.name.setText( hotelmodel.getHotelname());
+                holder.city.setText( hotelmodel.getHotelcity());
+                holder.reigon.setText( hotelmodel.getHotelreigon());
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(view.getContext(),Hotelpage.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("key",hotelmodel);
+                        intent.putExtras(bundle);
+                        view.getContext().startActivity(intent);
+                    }
+                });
             }
 
             @Override
@@ -121,10 +124,7 @@ public class hotel extends AppCompatActivity {
 
         hotellist.setHasFixedSize(true);
         hotellist.setLayoutManager(new LinearLayoutManager(this));
-        hotellist.setAdapter(adapter);
-
-
-
+        hotellist.setAdapter(firestoreRecyclerAdapter);
 
 
         cityList = new ArrayList<>();
@@ -681,28 +681,29 @@ public class hotel extends AppCompatActivity {
             }
         });
 
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(hotel.this,search.class);
+                Intent intent = new Intent(hotel.this, search.class);
                 startActivity(intent);
                 finish();
             }
         });
     }
 
-    private class HotelViewHolder extends RecyclerView.ViewHolder{
+    private class HotelViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;
-        private TextView address;
+        private TextView city;
+        private TextView reigon;
 
+        public HotelViewHolder(@NonNull View itemView) {
+            super(itemView);
+            //parkname:使用於列表,park_name:使用於景點介紹
+            name = itemView.findViewById(R.id.hotelname);
+            city = itemView.findViewById(R.id.hotelcity);
+            reigon = itemView.findViewById(R.id.hotelreigon);
 
-        public HotelViewHolder(@NonNull View itemview){
-            super(itemview);
-
-            name = itemview.findViewById(R.id.hotelname);
-            address = itemview.findViewById(R.id.hoteladdress);
         }
     }
 }

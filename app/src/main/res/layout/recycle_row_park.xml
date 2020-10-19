@@ -40,15 +40,31 @@
                     android:id="@+id/parkname"
                     android:textStyle="bold"/>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="公園地址"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="15dp"
                     android:textSize="15dp"
                     android:maxLines="1"
-                    android:id="@+id/parkaddress"/>
+                    android:id="@+id/parkcity"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="公園地址"
+                    android:layout_marginTop="5dp"
+                    android:textSize="15dp"
+                    android:maxLines="1"
+                    android:id="@+id/parkreigon"/>
+
+                </LinearLayout>
+
 
             </LinearLayout>
 

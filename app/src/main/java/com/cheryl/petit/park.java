@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.firebase.ui.firestore.SnapshotParser;
 import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
 import com.firebase.ui.firestore.paging.FirestorePagingOptions;
@@ -30,7 +29,7 @@ public class park extends AppCompatActivity {
     private ImageButton back;
     private FirebaseFirestore firebaseFirestore;
     FirestorePagingAdapter firestoreRecyclerAdapter;
-    RecyclerView recyclerView;
+    RecyclerView parklist;
     private Spinner city,reigon;
     ArrayList<String> cityList;
     ArrayAdapter<String>cityAdapter;
@@ -45,7 +44,7 @@ public class park extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_park);
         back = findViewById(R.id.back);
-        recyclerView = findViewById(R.id.parklist);
+        parklist = findViewById(R.id.parklist);
         city = findViewById(R.id.city);
         reigon = findViewById(R.id.region);
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -80,20 +79,21 @@ public class park extends AppCompatActivity {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull ParkViewHolder holder, final int position, @NonNull Parkmodel model) {
+            protected void onBindViewHolder(@NonNull ParkViewHolder holder, final int position, @NonNull Parkmodel parkmodel) {
 
-                holder.name.setText(model.getParkname());
-                holder.address.setText(model.getParkAddress());
-               /* holder.itemView.setOnClickListener(new View.OnClickListener() {
+                holder.name.setText(parkmodel.getParkname());
+                holder.city.setText(parkmodel.getParkcity());
+                holder.reigon.setText(parkmodel.getParkreigon());
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(view.getContext(),Parkpage.class);
                         Bundle bundle = new Bundle();
-                        bundle.putSerializable("key",model);
+                        bundle.putSerializable("key",parkmodel);
                         intent.putExtras(bundle);
                         view.getContext().startActivity(intent);
                     }
-                });*/
+                });
             }
 
             @Override
@@ -122,10 +122,11 @@ public class park extends AppCompatActivity {
             }
         };
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(firestoreRecyclerAdapter);
 
+
+        parklist.setHasFixedSize(true);
+        parklist.setLayoutManager(new LinearLayoutManager(this));
+        parklist.setAdapter(firestoreRecyclerAdapter);
 
         cityList = new ArrayList<>();
         cityList .add("請選擇縣市");
@@ -691,16 +692,31 @@ public class park extends AppCompatActivity {
         });
     }
 
+
+    public void setParklist(){
+
+        String mcity = city.getSelectedItem().toString();
+        String mreigon = reigon.getSelectedItem().toString();
+        Query query = firebaseFirestore.collection("Park");
+    }
+
+
+
+
+
     private class ParkViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;
-        private TextView address;
+        private TextView city;
+        private TextView reigon;
 
         public ParkViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            //parkname:使用於列表,park_name:使用於景點介紹
             name = itemView.findViewById(R.id.parkname);
-            address = itemView.findViewById(R.id.parkaddress);
+            city = itemView.findViewById(R.id.parkcity);
+            reigon = itemView.findViewById(R.id.parkreigon);
+
         }
     }
 }

@@ -5,10 +5,12 @@ import java.io.Serializable;
 public class Parkmodel implements Serializable {
 
     private String item_id;
-    private String ParkAddress;
+    private String Parkcity;
+    private String Parkreigon;
     private String Parkname;
-    private String Parkdetails;
-    //private String Parkimg;
+    private String Park_details;
+    private String Parkimg;
+    private String Park_search;
 
     public String getItem_id() {
         return item_id;
@@ -21,19 +23,31 @@ public class Parkmodel implements Serializable {
     public Parkmodel() {
     }
 
-    public Parkmodel(String parkAddress, String parkname, String parkdetails,String parkimg, String item_id) {
-        this.ParkAddress = parkAddress;
+
+    public Parkmodel(String parkcity, String parkreigon,String parkname, String parkdetails, String parkimg, String park_search, String item_id) {
+
         this.Parkname = parkname;
-        this.Parkdetails = parkdetails;
-        //this.Parkimg = parkimg;
+        this.Parkcity = parkcity;
+        this.Parkreigon = parkreigon;
+        this.Park_details = parkdetails;
+        this.Parkimg = parkimg;
+        this.Park_search = park_search;
     }
 
-    public String getParkAddress() {
-        return ParkAddress;
+    public String getParkcity() {
+        return Parkcity;
     }
 
-    public void setParkAddress(String parkAddress) {
-        this.ParkAddress = parkAddress;
+    public void setParkcity(String parkcity) {
+        Parkcity = parkcity;
+    }
+
+    public String getParkreigon() {
+        return Parkreigon;
+    }
+
+    public void setParkreigon(String parkreigon) {
+        Parkreigon = parkreigon;
     }
 
     public String getParkname() {
@@ -45,18 +59,26 @@ public class Parkmodel implements Serializable {
     }
 
     public String getParkdetails() {
-        return Parkdetails;
+        return Park_details;
     }
 
     public void setParkdetails(String parkdetails) {
-        this.Parkdetails = parkdetails;
+        this.Park_details = parkdetails;
     }
 
-    /*public String getParkimg() {
+    public String getParkimg() {
         return Parkimg;
     }
 
     public void setParkimg(String parkimg) {
         this.Parkimg= parkimg;
-    }*/
+    }
+
+    public String getPark_search() {
+        return Park_search;
+    }
+
+    public void setPark_search(String park_search) {
+        Park_search = park_search;
+    }
 }

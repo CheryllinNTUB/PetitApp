@@ -12,7 +12,7 @@ public class Activitymodel extends AppCompatActivity {
     private String ActivityContent;
     private int Activityimage;
 
-    public Activitymodel(String ActivityName, String ActivityContent,int Activityimage){
+    public Activitymodel(String ActivityName,String ActivityContent,int Activityimage){
         this.ActivityName = ActivityName;
         this.ActivityContent = ActivityContent;
         this.Activityimage = Activityimage;
