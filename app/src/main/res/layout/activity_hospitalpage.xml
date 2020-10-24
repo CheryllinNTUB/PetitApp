@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Hospitalpage">
 
     <androidx.appcompat.widget.Toolbar
@@ -24,16 +25,17 @@
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
-            android:id="@+id/hospital_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginRight="40dp"
-            android:text="場所名稱"
+            android:text="寵物醫院"
             android:textColor="#4f4f4f"
             android:textSize="24sp" />
 
     </androidx.appcompat.widget.Toolbar>
+
+
 
     <ImageView
         android:id="@+id/hospital_img"
@@ -42,109 +44,133 @@
         android:scaleType="center"
         android:layout_below="@+id/toolbar"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="醫院簡介"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:layout_below="@+id/hospital_img" />
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="fill_parent">
 
-    <TextView
-        android:id="@+id/hospital_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="55dp"
-        android:text="簡介簡介"
-        android:textColor="#6C6C6C"
-        android:textSize="16sp"
-        android:layout_below="@+id/hospital_img"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-    <TextView
-        android:id="@+id/about"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="關於醫院"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:layout_below="@+id/hospital_details" />
 
-    <ImageButton
-        android:id="@+id/line"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_below="@+id/about"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="13dp"
-        android:scaleType="centerInside"
-        android:background="#ffffff"
-        android:src="@drawable/line" />
+            <TextView
+                android:id="@+id/hospital_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="店家名稱"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:layout_below="@+id/hospital_img" />
 
-    <ImageButton
-        android:id="@+id/fb"
-        android:layout_width="63dp"
-        android:layout_height="63dp"
-        android:layout_below="@+id/about"
-        android:layout_marginLeft="75dp"
-        android:layout_marginTop="5dp"
-        android:scaleType="centerInside"
-        android:background="#ffffff"
-        android:src="@drawable/fb" />
 
-    <ImageButton
-        android:id="@+id/email"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/about"
-        android:layout_marginLeft="145dp"
-        android:layout_marginTop="7dp"
-        android:background="#ffffff"
-        android:scaleType="centerInside"
-        android:src="@drawable/email" />
+            <TextView
+                android:id="@+id/hospital_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:text="店家地址"
+                android:textColor="#6C6C6C"
+                android:textSize="16sp"
+                android:layout_below="@+id/hospital_img"/>
 
-    <Button
-        android:id="@+id/findon_net"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/roundbutton"
-        android:text="相關搜尋"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="120dp"
-        android:layout_below="@+id/hospital_details"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="14dp"
+                android:text="聯絡資訊"
+                android:textColor="#000000"
+                android:textSize="24sp"/>
 
-    <Button
-        android:id="@+id/phonecall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/roundbutton"
-        android:text="聯絡電話"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="120dp"
-        android:layout_below="@+id/hospital_details"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/hospital_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/roundbutton"
-        android:text="地圖導航"
-        android:layout_marginLeft="210dp"
-        android:layout_marginTop="120dp"
-        android:layout_below="@+id/hospital_details"/>
+                <ImageButton
+                    android:id="@+id/line"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_below="@+id/about"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="12dp"
+                    android:scaleType="centerInside"
+                    android:background="#ffffff"
+                    android:src="@drawable/line" />
 
-    <Button
-        android:id="@+id/add_love"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/roundbutton"
-        android:text="加入收藏"
-        android:layout_marginLeft="310dp"
-        android:layout_marginTop="120dp"
-        android:layout_below="@+id/hospital_details"/>
 
-</RelativeLayout>
+                <ImageButton
+                    android:id="@+id/fb"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/about"
+                    android:layout_marginTop="5dp"
+                    android:background="#ffffff"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/fb" />
+
+                <ImageButton
+                    android:id="@+id/email"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#ffffff"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/email" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="86dp">
+
+                <Button
+                    android:id="@+id/findon_net"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hotel_details"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/roundbutton"
+                    android:text="網頁搜尋" />
+
+                <Button
+                    android:id="@+id/phonecall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hotel_details"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/roundbutton"
+                    android:text="聯絡電話" />
+
+                <Button
+                    android:id="@+id/hospital_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hotel_details"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/roundbutton"
+                    android:text="地圖導航" />
+
+                <Button
+                    android:id="@+id/add_love"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hotel_details"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/roundbutton"
+                    android:text="加入收藏" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

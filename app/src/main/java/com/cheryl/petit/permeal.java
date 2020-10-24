@@ -120,10 +120,10 @@ public class permeal extends Fragment {
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                foodweight = Double.parseDouble(food_weight.getText().toString());
-                foodtotalcal = Double.parseDouble(food_totalcal.getText().toString());
-                eatweight = Double.parseDouble(eat_weight.getText().toString());
-                Double eattotal = (foodtotalcal / foodweight) * eatweight;
+                foodweight = Integer.getInteger(food_weight.getText().toString());
+                foodtotalcal = Integer.getInteger(food_totalcal.getText().toString());
+                eatweight = Integer.getInteger(eat_weight.getText().toString());
+                double eattotal = (foodtotalcal / foodweight) * eatweight;
                 String total = Double.toString(eattotal);
                 eat_totalcal.setText(total);
 

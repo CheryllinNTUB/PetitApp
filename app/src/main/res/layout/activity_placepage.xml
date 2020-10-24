@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Placepage">
 
     <androidx.appcompat.widget.Toolbar
@@ -24,16 +25,17 @@
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
-            android:id="@+id/park_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginRight="40dp"
-            android:text="場所名稱"
+            android:text="寵物友善景點"
             android:textColor="#4f4f4f"
             android:textSize="24sp" />
 
     </androidx.appcompat.widget.Toolbar>
+
+
 
     <ImageView
         android:id="@+id/place_img"
@@ -42,58 +44,110 @@
         android:scaleType="center"
         android:layout_below="@+id/toolbar"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="場所簡介"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:layout_below="@+id/place_img" />
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="fill_parent">
 
-    <TextView
-        android:id="@+id/place_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="55dp"
-        android:text="簡介簡介"
-        android:textColor="#6C6C6C"
-        android:textSize="16sp"
-        android:layout_below="@+id/place_img"/>
-
-    <Button
-        android:id="@+id/findon_net"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/roundbutton"
-        android:text="相關搜尋"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/place_details"/>
-
-    <Button
-        android:id="@+id/park_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/roundbutton"
-        android:text="地圖導航"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/place_details"/>
-
-    <Button
-        android:id="@+id/add_love"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/roundbutton"
-        android:text="加入收藏"
-        android:layout_marginLeft="240dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/place_details"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
 
+            <TextView
+                android:id="@+id/place_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="景點名稱"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:layout_below="@+id/place_img" />
 
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/place_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:text="景點地址"
+                android:textColor="#6C6C6C"
+                android:textSize="16sp"
+                android:layout_below="@+id/place_img"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="14dp"
+                android:text="關於景點"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:layout_below="@+id/place_address" />
+
+            <TextView
+                android:id="@+id/place_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:text="簡介簡介"
+                android:textColor="#6C6C6C"
+                android:textSize="16sp"
+                android:layout_below="@+id/place_img"/>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="86dp">
+
+                <Button
+                    android:id="@+id/findon_net"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hotel_details"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/roundbutton"
+                    android:text="網頁搜尋" />
+
+                <Button
+                    android:id="@+id/phonecall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hotel_details"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/roundbutton"
+                    android:text="聯絡電話" />
+
+                <Button
+                    android:id="@+id/salon_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hotel_details"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/roundbutton"
+                    android:text="地圖導航" />
+
+                <Button
+                    android:id="@+id/add_love"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hotel_details"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/roundbutton"
+                    android:text="加入收藏" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
