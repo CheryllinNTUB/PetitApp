@@ -693,13 +693,6 @@ public class park extends AppCompatActivity {
     }
 
 
-    public void setParklist(){
-
-        String mcity = city.getSelectedItem().toString();
-        String mreigon = reigon.getSelectedItem().toString();
-        Query query = firebaseFirestore.collection("Park");
-    }
-
 
 
 

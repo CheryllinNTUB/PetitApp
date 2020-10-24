@@ -1,19 +1,35 @@
 package com.cheryl.petit;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.paging.PagedList;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-
+import android.widget.TextView;
+import com.firebase.ui.firestore.SnapshotParser;
+import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
+import com.firebase.ui.firestore.paging.FirestorePagingOptions;
+import com.firebase.ui.firestore.paging.LoadingState;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
+
 
 public class place extends AppCompatActivity {
     private ImageButton back;
+    private FirebaseFirestore firebaseFirestore;
+    FirestorePagingAdapter firestoreRecyclerAdapter;
+    RecyclerView placelist;
     private Spinner city,reigon;
     ArrayList<String> cityList;
     ArrayAdapter<String>cityAdapter;
@@ -28,8 +44,89 @@ public class place extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place);
         back = findViewById(R.id.back);
+        placelist = findViewById(R.id.placelist);
         city = findViewById(R.id.city);
         reigon = findViewById(R.id.region);
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        Query query = firebaseFirestore.collection("Place");
+
+        PagedList.Config config = new PagedList.Config.Builder()
+                .setInitialLoadSizeHint(10)
+                .setPageSize(3)
+                .build();
+
+        FirestorePagingOptions<Placemodel> options = new FirestorePagingOptions
+                .Builder<Placemodel>()
+                .setLifecycleOwner(this)
+                .setQuery(query, config, new SnapshotParser<Placemodel>() {
+                    @NonNull
+                    @Override
+                    public Placemodel parseSnapshot(@NonNull DocumentSnapshot snapshot) {
+                        Placemodel placeData = snapshot.toObject(Placemodel.class);
+                        String itemId = snapshot.getId();
+                        placeData.setItem_id(itemId);
+                        return placeData;
+                    }
+                })
+                .build();
+
+        firestoreRecyclerAdapter = new FirestorePagingAdapter<Placemodel, PlaceViewHolder>(options) {
+            @NonNull
+            @Override
+            public PlaceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_row_place, parent, false);
+                return new PlaceViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull PlaceViewHolder holder, final int position, @NonNull Placemodel placemodel) {
+
+                holder.name.setText(placemodel.getPlacename());
+                holder.city.setText(placemodel.getPlacecity());
+                holder.reigon.setText(placemodel.getPlacereigon());
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(view.getContext(),Placepage.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("key",placemodel);
+                        intent.putExtras(bundle);
+                        view.getContext().startActivity(intent);
+                    }
+                });
+            }
+
+            @Override
+            protected void onLoadingStateChanged(@NonNull LoadingState state){
+                super.onLoadingStateChanged(state);
+
+                switch (state){
+
+                    case LOADING_INITIAL:
+                        Log.d("PAGING_LOG","loading data");
+                        break;
+                    case LOADING_MORE:
+                        Log.d("PAGING_LOG","loading next page");
+                        break;
+                    case FINISHED:
+                        Log.d("PAGING_LOG","all data loaded");
+                        break;
+                    case ERROR:
+                        Log.d("PAGING_LOG","loading error");
+                        break;
+                    case LOADED:
+                        Log.d("PAGING_LOG","total items loaded");
+                        break;
+
+                }
+            }
+        };
+
+
+
+        placelist.setHasFixedSize(true);
+        placelist.setLayoutManager(new LinearLayoutManager(this));
+        placelist.setAdapter(firestoreRecyclerAdapter);
 
         cityList = new ArrayList<>();
         cityList .add("請選擇縣市");
@@ -585,14 +682,33 @@ public class place extends AppCompatActivity {
             }
         });
 
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(place.this,search.class);
+                Intent intent = new Intent(place.this, search.class);
                 startActivity(intent);
                 finish();
             }
         });
+    }
+
+
+
+
+
+    private class PlaceViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView name;
+        private TextView city;
+        private TextView reigon;
+
+        public PlaceViewHolder(@NonNull View itemView) {
+            super(itemView);
+            //parkname:使用於列表,park_name:使用於景點介紹
+            name = itemView.findViewById(R.id.placename);
+            city = itemView.findViewById(R.id.placecity);
+            reigon = itemView.findViewById(R.id.placereigon);
+
+        }
     }
 }

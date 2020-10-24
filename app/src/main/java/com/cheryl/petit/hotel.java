@@ -15,12 +15,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.firebase.ui.firestore.SnapshotParser;
 import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
 import com.firebase.ui.firestore.paging.FirestorePagingOptions;
 import com.firebase.ui.firestore.paging.LoadingState;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
 
@@ -125,6 +128,7 @@ public class hotel extends AppCompatActivity {
         hotellist.setHasFixedSize(true);
         hotellist.setLayoutManager(new LinearLayoutManager(this));
         hotellist.setAdapter(firestoreRecyclerAdapter);
+        setUpRecyclerViewSpinner();
 
 
         cityList = new ArrayList<>();
@@ -689,6 +693,21 @@ public class hotel extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void setUpRecyclerViewSpinner() {
+        String sp_city = city.getSelectedItem().toString();
+        String sp_reigon = reigon.getSelectedItem().toString();
+        Query query = firebaseFirestore.collection("Hotel")
+                .whereEqualTo("Hotelcity",city.getSelectedItem().toString())
+                .whereEqualTo("Hotelreigon",reigon.getSelectedItem().toString())
+                .orderBy("Hotelname",Query.Direction.ASCENDING);
+        FirestoreRecyclerOptions<Hotelmodel>options = new FirestoreRecyclerOptions.Builder<Hotelmodel>()
+                .setQuery(query,Hotelmodel.class).build();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(false).build();
+
+
     }
 
     private class HotelViewHolder extends RecyclerView.ViewHolder {

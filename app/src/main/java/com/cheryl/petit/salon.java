@@ -1,19 +1,35 @@
 package com.cheryl.petit;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.paging.PagedList;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-
+import android.widget.TextView;
+import com.firebase.ui.firestore.SnapshotParser;
+import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
+import com.firebase.ui.firestore.paging.FirestorePagingOptions;
+import com.firebase.ui.firestore.paging.LoadingState;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
+
 
 public class salon extends AppCompatActivity {
     private ImageButton back;
+    private FirebaseFirestore firebaseFirestore;
+    FirestorePagingAdapter firestoreRecyclerAdapter;
+    RecyclerView salonlist;
     private Spinner city,reigon;
     ArrayList<String> cityList;
     ArrayAdapter<String>cityAdapter;
@@ -28,8 +44,89 @@ public class salon extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salon);
         back = findViewById(R.id.back);
+        salonlist = findViewById(R.id.salonlist);
         city = findViewById(R.id.city);
         reigon = findViewById(R.id.region);
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        Query query = firebaseFirestore.collection("Salon");
+
+        PagedList.Config config = new PagedList.Config.Builder()
+                .setInitialLoadSizeHint(10)
+                .setPageSize(3)
+                .build();
+
+        FirestorePagingOptions<Salonmodel> options = new FirestorePagingOptions
+                .Builder<Salonmodel>()
+                .setLifecycleOwner(this)
+                .setQuery(query, config, new SnapshotParser<Salonmodel>() {
+                    @NonNull
+                    @Override
+                    public Salonmodel parseSnapshot(@NonNull DocumentSnapshot snapshot) {
+                        Salonmodel salonData = snapshot.toObject(Salonmodel.class);
+                        String itemId = snapshot.getId();
+                        salonData.setItem_id(itemId);
+                        return salonData;
+                    }
+                })
+                .build();
+
+        firestoreRecyclerAdapter = new FirestorePagingAdapter<Salonmodel, SalonViewHolder>(options) {
+            @NonNull
+            @Override
+            public SalonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_row_salon, parent, false);
+                return new SalonViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull SalonViewHolder holder, final int position, @NonNull Salonmodel salonmodel) {
+
+                holder.name.setText(salonmodel.getSalonname());
+                holder.city.setText(salonmodel.getSaloncity());
+                holder.reigon.setText(salonmodel.getSalonreigon());
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(view.getContext(),Salonpage.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("key",salonmodel);
+                        intent.putExtras(bundle);
+                        view.getContext().startActivity(intent);
+                    }
+                });
+            }
+
+            @Override
+            protected void onLoadingStateChanged(@NonNull LoadingState state){
+                super.onLoadingStateChanged(state);
+
+                switch (state){
+
+                    case LOADING_INITIAL:
+                        Log.d("PAGING_LOG","loading data");
+                        break;
+                    case LOADING_MORE:
+                        Log.d("PAGING_LOG","loading next page");
+                        break;
+                    case FINISHED:
+                        Log.d("PAGING_LOG","all data loaded");
+                        break;
+                    case ERROR:
+                        Log.d("PAGING_LOG","loading error");
+                        break;
+                    case LOADED:
+                        Log.d("PAGING_LOG","total items loaded");
+                        break;
+
+                }
+            }
+        };
+
+
+
+        salonlist.setHasFixedSize(true);
+        salonlist.setLayoutManager(new LinearLayoutManager(this));
+        salonlist.setAdapter(firestoreRecyclerAdapter);
 
         cityList = new ArrayList<>();
         cityList .add("請選擇縣市");
@@ -585,15 +682,33 @@ public class salon extends AppCompatActivity {
             }
         });
 
-
-        //返回鍵
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(salon.this,search.class);
+                Intent intent = new Intent(salon.this, search.class);
                 startActivity(intent);
                 finish();
             }
         });
+    }
+
+
+
+
+
+    private class SalonViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView name;
+        private TextView city;
+        private TextView reigon;
+
+        public SalonViewHolder(@NonNull View itemView) {
+            super(itemView);
+            //parkname:使用於列表,park_name:使用於景點介紹
+            name = itemView.findViewById(R.id.salonname);
+            city = itemView.findViewById(R.id.saloncity);
+            reigon = itemView.findViewById(R.id.salonreigon);
+
+        }
     }
 }

@@ -65,7 +65,7 @@
 
             <EditText
                 android:id="@+id/datepick"
-                android:layout_width="100dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="20dp"
@@ -203,7 +203,7 @@
 
             <EditText
                 android:id="@+id/backdocday"
-                android:layout_width="100dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:visibility="invisible"

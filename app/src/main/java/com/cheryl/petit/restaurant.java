@@ -1,20 +1,35 @@
 package com.cheryl.petit;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.paging.PagedList;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-
-import java.lang.reflect.Array;
+import android.widget.TextView;
+import com.firebase.ui.firestore.SnapshotParser;
+import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
+import com.firebase.ui.firestore.paging.FirestorePagingOptions;
+import com.firebase.ui.firestore.paging.LoadingState;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
+
 
 public class restaurant extends AppCompatActivity {
     private ImageButton back;
+    private FirebaseFirestore firebaseFirestore;
+    FirestorePagingAdapter firestoreRecyclerAdapter;
+    RecyclerView restaurantlist;
     private Spinner city,reigon;
     ArrayList<String> cityList;
     ArrayAdapter<String>cityAdapter;
@@ -23,13 +38,95 @@ public class restaurant extends AppCompatActivity {
             array09,array10,array11,array12,array13,array14,array15,array16,array17,array18,
             array19,array20,array21,array22;
     ArrayAdapter<String>reigonAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
         back = findViewById(R.id.back);
+        restaurantlist = findViewById(R.id.hospitallist);
         city = findViewById(R.id.city);
         reigon = findViewById(R.id.region);
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        Query query = firebaseFirestore.collection("Restaurants");
+
+        PagedList.Config config = new PagedList.Config.Builder()
+                .setInitialLoadSizeHint(10)
+                .setPageSize(3)
+                .build();
+
+        FirestorePagingOptions<Restaurantmodel> options = new FirestorePagingOptions
+                .Builder<Restaurantmodel>()
+                .setLifecycleOwner(this)
+                .setQuery(query, config, new SnapshotParser<Restaurantmodel>() {
+                    @NonNull
+                    @Override
+                    public Restaurantmodel parseSnapshot(@NonNull DocumentSnapshot snapshot) {
+                        Restaurantmodel restaurantData = snapshot.toObject(Restaurantmodel.class);
+                        String itemId = snapshot.getId();
+                        restaurantData.setItem_id(itemId);
+                        return restaurantData;
+                    }
+                })
+                .build();
+
+        firestoreRecyclerAdapter = new FirestorePagingAdapter<Restaurantmodel, RestaurantViewHolder>(options) {
+            @NonNull
+            @Override
+            public RestaurantViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_row_restaurant, parent, false);
+                return new RestaurantViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull RestaurantViewHolder holder, final int position, @NonNull Restaurantmodel restaurantmodel) {
+
+                holder.name.setText(restaurantmodel.getRestaurantname());
+                holder.city.setText(restaurantmodel.getRestaurantcity());
+                holder.reigon.setText(restaurantmodel.getRestaurantreigon());
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(view.getContext(),Restaurantpage.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("key",restaurantmodel);
+                        intent.putExtras(bundle);
+                        view.getContext().startActivity(intent);
+                    }
+                });
+            }
+
+            @Override
+            protected void onLoadingStateChanged(@NonNull LoadingState state){
+                super.onLoadingStateChanged(state);
+
+                switch (state){
+
+                    case LOADING_INITIAL:
+                        Log.d("PAGING_LOG","loading data");
+                        break;
+                    case LOADING_MORE:
+                        Log.d("PAGING_LOG","loading next page");
+                        break;
+                    case FINISHED:
+                        Log.d("PAGING_LOG","all data loaded");
+                        break;
+                    case ERROR:
+                        Log.d("PAGING_LOG","loading error");
+                        break;
+                    case LOADED:
+                        Log.d("PAGING_LOG","total items loaded");
+                        break;
+
+                }
+            }
+        };
+
+
+
+        restaurantlist.setHasFixedSize(true);
+        restaurantlist.setLayoutManager(new LinearLayoutManager(this));
+        restaurantlist.setAdapter(firestoreRecyclerAdapter);
 
         cityList = new ArrayList<>();
         cityList .add("請選擇縣市");
@@ -585,16 +682,33 @@ public class restaurant extends AppCompatActivity {
             }
         });
 
-
-
-        //返回鍵
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(restaurant.this,search.class);
+                Intent intent = new Intent(restaurant.this, search.class);
                 startActivity(intent);
                 finish();
             }
         });
+    }
+
+
+
+
+
+    private class RestaurantViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView name;
+        private TextView city;
+        private TextView reigon;
+
+        public RestaurantViewHolder(@NonNull View itemView) {
+            super(itemView);
+            //parkname:使用於列表,park_name:使用於景點介紹
+            name = itemView.findViewById(R.id.restaurantname);
+            city = itemView.findViewById(R.id.restaurantcity);
+            reigon = itemView.findViewById(R.id.restaurantreigon);
+
+        }
     }
 }
