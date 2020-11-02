@@ -2,7 +2,7 @@ package com.cheryl.petit;
 
 import java.io.Serializable;
 
-public class Hotelmodel implements Serializable {
+public class Hotelmodel implements Serializable{
 
     private String item_id;
     private String Hotelname;

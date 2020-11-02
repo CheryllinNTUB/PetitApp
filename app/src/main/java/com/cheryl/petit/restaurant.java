@@ -81,9 +81,9 @@ public class restaurant extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull RestaurantViewHolder holder, final int position, @NonNull Restaurantmodel restaurantmodel) {
 
-                holder.name.setText(restaurantmodel.getRestaurantname());
-                holder.city.setText(restaurantmodel.getRestaurantcity());
-                holder.reigon.setText(restaurantmodel.getRestaurantreigon());
+                holder.name.setText(restaurantmodel.getRestname());
+                holder.city.setText(restaurantmodel.getRestcity());
+                holder.reigon.setText(restaurantmodel.getRestreigon());
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

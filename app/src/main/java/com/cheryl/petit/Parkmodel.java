@@ -2,7 +2,7 @@ package com.cheryl.petit;
 
 import java.io.Serializable;
 
-public class Parkmodel implements Serializable {
+public class Parkmodel implements Serializable{
 
     private String item_id;
     private String Parkcity;

@@ -130,17 +130,17 @@
 
                 <Button
                     android:id="@+id/findon_net"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/hotel_details"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/roundbutton"
                     android:text="網頁搜尋" />
 
                 <Button
                     android:id="@+id/phonecall"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/hotel_details"
                     android:layout_marginLeft="10dp"
@@ -150,7 +150,7 @@
 
                 <Button
                     android:id="@+id/salon_map"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/hotel_details"
                     android:layout_marginLeft="10dp"
@@ -160,7 +160,7 @@
 
                 <Button
                     android:id="@+id/add_love"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/hotel_details"
                     android:layout_marginLeft="10dp"

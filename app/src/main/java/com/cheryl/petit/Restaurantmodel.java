@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class Restaurantmodel implements Serializable {
 
     private String item_id;
-    private String Restaurantname;
-    private String Restaurantcity;
-    private String Restaurantreigon;
+    private String Restname;
+    private String Restcity;
+    private String Restreigon;
 
     public String getItem_id() {
         return item_id;
@@ -22,32 +22,32 @@ public class Restaurantmodel implements Serializable {
 
     public Restaurantmodel(String restaurantcity, String restaurantreigon , String restaurantname, String item_id) {
 
-        this.Restaurantname = restaurantname;
-        this.Restaurantcity = restaurantcity;
-        this.Restaurantreigon = restaurantreigon;
+        this.Restname = restaurantname;
+        this.Restcity = restaurantcity;
+        this.Restreigon = restaurantreigon;
     }
 
-    public String getRestaurantname() {
-        return Restaurantname;
+    public String getRestname() {
+        return Restname;
     }
 
-    public void setRestaurantname(String restaurantname) {
-        Restaurantname = restaurantname;
+    public void setRestname(String restname) {
+        Restname = restname;
     }
 
-    public String getRestaurantcity() {
-        return Restaurantcity;
+    public String getRestcity() {
+        return Restcity;
     }
 
-    public void setRestaurantcity(String restaurantcity) {
-        Restaurantcity = restaurantcity;
+    public void setRestcity(String restcity) {
+        Restcity = restcity;
     }
 
-    public String getRestaurantreigon() {
-        return Restaurantreigon;
+    public String getRestreigon() {
+        return Restreigon;
     }
 
-    public void setRestaurantreigon(String restaurantreigon) {
-        Restaurantreigon = restaurantreigon;
+    public void setRestreigon(String restreigon) {
+        Restreigon = restreigon;
     }
 }

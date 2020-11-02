@@ -37,6 +37,7 @@ public class park extends AppCompatActivity {
     ArrayList<String> choosetext, array01,array02,array03,array04,array05, array06,array07,array08,
             array09,array10,array11,array12,array13,array14,array15,array16,array17,array18,
             array19,array20,array21,array22;
+
     ArrayAdapter<String>reigonAdapter;
 
     @Override
@@ -90,7 +91,7 @@ public class park extends AppCompatActivity {
                         Intent intent = new Intent(view.getContext(),Parkpage.class);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("key",parkmodel);
-                        intent.putExtras(bundle);
+                        intent.putExtra("bundle",bundle);
                         view.getContext().startActivity(intent);
                     }
                 });
@@ -691,10 +692,6 @@ public class park extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 
 
     private class ParkViewHolder extends RecyclerView.ViewHolder {
