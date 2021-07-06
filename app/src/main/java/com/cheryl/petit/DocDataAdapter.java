@@ -30,7 +30,7 @@ public class DocDataAdapter extends FirestoreRecyclerAdapter<Docmodel,DocDataAda
         holder.hospital.setText(model.getHospital());
         holder.note.setText(model.getSicknote());
         holder.backdoc.setText(model.getBacktodoc());
-        holder.backdocday.setText(model.getBacktodacday());
+        holder.backdocday.setText(model.getBacktodocday());
         holder.petname.setText(model.getPetname());
     }
 

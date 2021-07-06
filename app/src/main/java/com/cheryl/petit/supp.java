@@ -46,15 +46,12 @@ public class supp extends AppCompatActivity {
     private Button finish;
     private DatePickerDialog.OnDateSetListener dateSetListener;
     private EditText brand,name,date;
-    private Spinner supptype,supptime;
-    private Calendar calendar ;
+    private Spinner supptype;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String uid = user.getUid();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<String> typeList;
     ArrayAdapter<String>typeAdapter;
-    ArrayList<String> timeList;
-    ArrayAdapter<String>timeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +62,7 @@ public class supp extends AppCompatActivity {
         brand = findViewById(R.id.suppbrand);
         name = findViewById(R.id.suppname);
         date = findViewById(R.id.date);
-        supptime = findViewById(R.id.supptime);
         supptype = findViewById(R.id.supptype);
-        createNotificationChannel();
 
 
         typeList = new ArrayList<>();
@@ -83,17 +78,6 @@ public class supp extends AppCompatActivity {
         typeAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1,typeList);
         supptype.setAdapter(typeAdapter);
 
-        timeList = new ArrayList<>();
-        timeList .add("到期日前");
-        timeList .add("一個月前");
-        timeList .add("三個禮拜前");
-        timeList .add("二個禮拜前");
-        timeList .add("一個禮拜前");
-        timeList .add("一天前");
-        timeList .add("當天");
-
-        timeAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1,timeList);
-        supptime.setAdapter(timeAdapter);
 
         //日期
         date.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +124,6 @@ public class supp extends AppCompatActivity {
                 map.put("suppname",name.getText().toString());
                 map.put("supptype",supptype.getSelectedItem().toString());
                 map.put("date",date.getText().toString());
-                map.put("supptime",supptime.getSelectedItem().toString());
                 db.collection("PetSupp").document().set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -166,23 +149,5 @@ public class supp extends AppCompatActivity {
         });
     }
 
-    public void datePicker(View v){
-         calendar = Calendar.getInstance();
-    }
-
-
-    private void createNotificationChannel(){
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "LembitReminderChannel";
-            String description = "Channel for Lembit Reminder";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("noitfyLembit",name,importance);
-            channel.setDescription(description);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
 
 }

@@ -12,7 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class record extends AppCompatActivity {
 
-    private CardView cal,doc,supp;
+    private CardView cal,doc,supp,weight;
 
 
     @Override
@@ -24,6 +24,7 @@ public class record extends AppCompatActivity {
         cal =findViewById(R.id.cal);
         doc =findViewById(R.id.doc);
         supp =findViewById(R.id.supp);
+        weight = findViewById(R.id.weight);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnavi);
         bottomNavigationView.setSelectedItemId(R.id.record);
 
@@ -80,6 +81,15 @@ public class record extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass( record.this,addsupp.class);
+                startActivity(intent);
+            }
+        });
+
+       weight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass( record.this,addweight.class);
                 startActivity(intent);
             }
         });

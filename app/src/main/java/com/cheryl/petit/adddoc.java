@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -26,7 +27,8 @@ import java.util.regex.Pattern;
 public class adddoc extends AppCompatActivity {
     private RecyclerView recyclerView_docdata;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    private static final String TAG = "FirestoreSearchActivity";
+    private EditText search;
     private CollectionReference docref = db.collection("DocData");
     private DocDataAdapter adapter;
     private ImageButton back,add;
@@ -38,7 +40,42 @@ public class adddoc extends AppCompatActivity {
 
         back =  findViewById(R.id.back);
         add =findViewById(R.id.add);
+        search = findViewById(R.id.search);
         setUpRecyclerView();
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.d(TAG,"Searchbox has changed to:"+ editable.toString());
+                Query q;
+                if (editable.toString().isEmpty()){
+                    q = db.collection("DocData").orderBy("docday",Query.Direction.ASCENDING);
+
+                }
+                else {
+                    q = db.collection("DocData").whereEqualTo("petname",editable.toString())
+                            .orderBy("docday",Query.Direction.ASCENDING);
+                }
+
+                FirestoreRecyclerOptions<Docmodel> options = new FirestoreRecyclerOptions
+                        .Builder<Docmodel>()
+                        .setQuery(q,Docmodel.class)
+                        .build();
+                adapter.updateOptions(options);
+            }
+        });
+
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

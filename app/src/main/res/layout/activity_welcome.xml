@@ -13,25 +13,37 @@
         android:orientation="vertical">
 
 
-
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="80dp"
             app:srcCompat="@drawable/logo" />
-
 
         <Button
             android:id="@+id/gologin"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_width="175dp"
+            android:layout_height="30dp"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:background="#ffffff"
-            android:text="登入"
+            android:text="以google帳號繼續"
+            android:drawableStart="@drawable/google"
             android:textColor="#000000"/>
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/fblogin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="以Facebook帳號繼續"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/fb"
+            android:textColor="#000000" />
+
+
 
 
     </LinearLayout>

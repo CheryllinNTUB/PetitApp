@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,26 +7,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    tools:context=".homepage"
+    android:background="#E8FFF5"
     tools:openDrawer="start">
 
     <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".homepage"
-    android:background="#E8FFF5">
+    android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#77FFCC"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+            android:elevation="4dp">
 
 
-   <FrameLayout
+            <TextView
+                android:id="@+id/toolbar_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="寵物小知識"
+                android:textColor="#4f4f4f"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyleview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:scrollbars="horizontal" />
+
+
+
+        <FrameLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:id="@+id/fragmentContainer"/>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyleview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="vertical" />
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -38,7 +61,11 @@
             android:id="@+id/bottomnavi"/>
 
 
+
+
+
+
     </RelativeLayout>
 
 
-</androidx.drawerlayout.widget.DrawerLayout>
+</LinearLayout>

@@ -201,7 +201,7 @@ public class doc extends AppCompatActivity {
                 String n2 = no.getText().toString();
                 if (yes.isChecked()){
                     map.put("backtodoc",yes.getText().toString());
-                    map.put("backtodacday",backdocday.getText().toString());
+                    map.put("backtodocday",backdocday.getText().toString());
                 }
                 else{
                     map.put("backtodoc",no.getText().toString());
@@ -214,7 +214,6 @@ public class doc extends AppCompatActivity {
                         if (task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),"已更新看診資料",Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
             }

@@ -21,17 +21,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            app:srcCompat="@drawable/ic_arrow"
+            android:src="@drawable/ic_close"
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/park_name1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginRight="40dp"
+            android:layout_gravity="center"
             android:text="寵物活動區"
             android:textColor="#4f4f4f"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -41,7 +41,7 @@
         android:id="@+id/park_img"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:scaleType="center"
+        android:scaleType="centerCrop"
         android:layout_below="@+id/toolbar"/>
 
     <ScrollView
@@ -55,14 +55,14 @@
 
 
             <TextView
-                android:id="@+id/park_name"
+                android:id="@+id/park_name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:text="活動區名稱"
                 android:textColor="#000000"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:layout_below="@+id/park_img" />
 
             <LinearLayout
@@ -80,7 +80,7 @@
                 android:text="活動區縣市"
                 android:textColor="#6C6C6C"
                 android:textSize="16sp"
-                android:layout_below="@+id/park_img"/>
+                android:layout_below="@+id/park_img" />
 
             <TextView
                 android:id="@+id/park_reigon"
@@ -102,47 +102,19 @@
                 android:layout_marginTop="14dp"
                 android:text="關於活動區"
                 android:textColor="#000000"
-                android:textSize="24sp" />
+                android:textSize="22sp" />
 
             <TextView
-                android:id="@+id/park_details"
+                android:id="@+id/parkabout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/park_img"
                 android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
-                android:text="簡介"
+                android:text="簡介簡介"
                 android:textColor="#6C6C6C"
-                android:textSize="16sp"
-                android:layout_below="@+id/park_img"/>
-
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="86dp">
-
-                <Button
-                    android:id="@+id/park_map"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/park_details"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/roundbutton"
-                    android:text="地圖導航" />
-
-                <Button
-                    android:id="@+id/add_love"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/park_details"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/roundbutton"
-                    android:text="加入收藏" />
-
-            </LinearLayout>
+                android:textSize="16sp" />
 
         </LinearLayout>
     </ScrollView>

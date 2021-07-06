@@ -130,32 +130,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:text="提醒時間:"
-                android:textSize="18dp" />
-
-            <Spinner
-                android:id="@+id/supptime"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="15dp"
-                android:background="#ffffff"
-                android:entries="@array/list5"
-                android:spinnerMode="dialog"
-                tools:spinnerMode="dropdown"/>
-        </LinearLayout>
-
 
         <Button
             android:id="@+id/finish"

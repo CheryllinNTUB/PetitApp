@@ -4,6 +4,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="helptipname">helptipname</string>
     <string name="content">content</string>
+    <string name="facebook_app_id">211440960859603</string>
+    <string name="fb_login_protocol_scheme">fb211440960859603</string>
+
 
     <string-array name="list">
         <item>請選擇城市</item>
@@ -35,6 +38,10 @@
 
     <string-array name="list8">
         <item>請選擇食品類型</item>
+    </string-array>
+
+    <string-array name="list9">
+        <item>請選擇餐別</item>
     </string-array>
 
 </resources>

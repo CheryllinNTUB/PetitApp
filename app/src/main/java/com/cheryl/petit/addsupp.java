@@ -8,8 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -21,6 +25,8 @@ public class addsupp extends AppCompatActivity {
     private RecyclerView recyclerView_suppdata;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference suppref = db.collection("PetSupp");
+    private static final String TAG = "FirestoreSearchActivity";
+    private EditText search;
     private SuppDataAdapter adapter;
     private ImageButton back,add;
     @Override
@@ -30,7 +36,41 @@ public class addsupp extends AppCompatActivity {
 
         back =  findViewById(R.id.back);
         add =findViewById(R.id.add);
+        search = findViewById(R.id.search);
         setUpRecyclerView();
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.d(TAG,"Searchbox has changed to:"+ editable.toString());
+                Query q;
+                if (editable.toString().isEmpty()){
+                    q = db.collection("PetSupp").orderBy("supptime",Query.Direction.ASCENDING);
+
+                }
+                else {
+                    q = db.collection("PetSupp").whereEqualTo("supptype",editable.toString())
+                            .orderBy("supptime",Query.Direction.ASCENDING);
+                }
+
+                FirestoreRecyclerOptions<Suppmodel> options = new FirestoreRecyclerOptions
+                        .Builder<Suppmodel>()
+                        .setQuery(q,Suppmodel.class)
+                        .build();
+                adapter.updateOptions(options);
+            }
+        });
+
 
 
 

@@ -23,7 +23,6 @@ public class SuppDataAdapter extends FirestoreRecyclerAdapter<Suppmodel,SuppData
         holder.suppname.setText(model.getSuppname());
         holder.supptype.setText(model.getSupptype());
         holder.date.setText(model.getDate());
-        holder.supptime.setText(model.getSupptime());
     }
 
     @NonNull
@@ -48,7 +47,6 @@ public class SuppDataAdapter extends FirestoreRecyclerAdapter<Suppmodel,SuppData
             suppname = itemview.findViewById(R.id.suppname);
             supptype = itemview.findViewById(R.id.supptype);
             date = itemview.findViewById(R.id.date);
-            supptime = itemview.findViewById(R.id.supptime);
 
         }
     }

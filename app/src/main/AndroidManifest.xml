@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cheryl.petit">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -13,13 +14,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityDetails"/>
+        <activity android:name=".Quizscore"></activity>
+        <activity android:name=".Quizpage" />
+        <activity android:name=".ActivityDetails" />
         <activity android:name=".Parkpage" />
         <activity android:name=".Hotelpage" />
+        <activity android:name=".Hospitalpage" />
+        <activity android:name=".Restaurantpage" />
+        <activity android:name=".Salonpage" />
+        <activity android:name=".Placepage" />
         <activity android:name=".user" />
         <activity android:name=".record" />
         <activity android:name=".search" />
-        <activity android:name=".Helpmodel" />
         <activity android:name=".opinion">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -29,7 +35,22 @@
                 <data android:mimeType="message/rfc822" />
             </intent-filter>
         </activity>
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <activity android:name="com.facebook.FacebookActivity" android:configChanges= "keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" />
+        <activity android:name="com.facebook.CustomTabActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+
+
+
         <activity android:name=".addsupp" />
+        <activity android:name=".addweight" />
         <activity android:name=".adddoc" />
         <activity android:name=".addcal" />
         <activity android:name=".petadd" />
@@ -41,8 +62,9 @@
         <activity android:name=".park" />
         <activity android:name=".supp" />
         <activity android:name=".doc" />
-        <activity android:name=".cal" />
-        <activity android:name=".favorite" />
+        <activity android:name=".permeal" />
+        <activity android:name=".daily" />
+        <activity android:name=".Quiz" />
         <activity android:name=".pet" />
         <activity android:name=".homepage" />
         <activity android:name=".welcome">
@@ -53,7 +75,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".Receiver" />
+
     </application>
 
 </manifest>

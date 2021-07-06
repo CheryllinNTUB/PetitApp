@@ -3,6 +3,7 @@ package com.cheryl.petit;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,42 +14,51 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 public class user extends AppCompatActivity {
 
-    Button logout,petdata,opinion,favoriteplace;
+    Button logout,petdata,opinion,Quiz;
     ImageView image;
     TextView name,email;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
+        mAuth = FirebaseAuth.getInstance();
+         FirebaseUser mUser = mAuth.getCurrentUser();
+        GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
+
+
+
         logout = findViewById(R.id.googlelogout);
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
-        favoriteplace = findViewById(R.id.favoriteplace);
+        Quiz = findViewById(R.id.Quiz);
         opinion = findViewById(R.id.opinion);
         petdata = findViewById(R.id.petdata);
         image = findViewById(R.id.image);
 
-        GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
+
+
         if (signInAccount != null){
             name.setText(signInAccount.getDisplayName());
             email.setText(signInAccount.getEmail());
             Picasso.get().load(signInAccount.getPhotoUrl()).placeholder(R.mipmap.ic_launcher).into(image);
-
         }
+
 
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getApplicationContext(),welcome.class);
                 startActivity(intent);
+                FirebaseAuth.getInstance().signOut();
+                finish();
             }
         });
 
@@ -61,10 +71,10 @@ public class user extends AppCompatActivity {
             }
         });
 
-        favoriteplace.setOnClickListener(new View.OnClickListener() {
+        Quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(user.this,favorite.class);
+                Intent intent = new Intent(user.this, com.cheryl.petit.Quiz.class);
                 startActivity(intent);
                 finish();
             }

@@ -1,17 +1,17 @@
 package com.cheryl.petit;
 
 public class Docmodel {
-    String docday,whysick,hospital,sicknote,backtodoc,backtodacday,petname;
+    String docday,whysick,hospital,sicknote,backtodoc,backtodocday,petname;
 
     public Docmodel(){}
-    public Docmodel(String docday, String whysick, String hospital, String sicknote, String backtodoc, String backtodacday, String petname) {
+    public Docmodel(String docday, String whysick, String hospital, String sicknote, String backtodoc, String backtodocday, String petname) {
 
         this.docday = docday;
         this.whysick = whysick;
         this.hospital = hospital;
         this.sicknote = sicknote;
         this.backtodoc = backtodoc;
-        this.backtodacday = backtodacday;
+        this.backtodocday = backtodocday;
         this.petname = petname;
     }
 
@@ -56,12 +56,12 @@ public class Docmodel {
         this.backtodoc = backtodoc;
     }
 
-    public String getBacktodacday() {
-        return backtodacday;
+    public String getBacktodocday() {
+        return backtodocday;
     }
 
-    public void setBacktodacday(String backtodacday) {
-        this.backtodacday = backtodacday;
+    public void setBacktodacday(String backtodocday) {
+        this.backtodocday = backtodocday;
     }
 
     public String getPetname() {

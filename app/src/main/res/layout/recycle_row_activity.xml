@@ -10,23 +10,20 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="match_parent"
-        android:layout_height="295dp"
-        android:layout_margin="4dp"
-        app:cardElevation="3dp"
+        android:layout_height="260dp"
         app:cardUseCompatPadding="true">
 
 
         <ImageView
-            android:id="@+id/activityimage"
+            android:id="@+id/actimage"
             android:layout_width="match_parent"
-            android:layout_height="190dp"
-            android:layout_weight="3"
-            android:scaleType="centerCrop"
-            android:src="@drawable/act1" />
+            android:layout_height="188dp"
+            android:layout_weight="2"
+            android:scaleType="centerCrop" />
 
 
         <TextView
-            android:id="@+id/activitytitle"
+            android:id="@+id/acttitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -36,16 +33,7 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/activity_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="10dp"
-            android:maxLines="1"
-            android:text="文章內容"
-            android:layout_marginTop="120dp"
-            android:textSize="19sp" />
+
 
         <LinearLayout
             android:layout_width="match_parent"

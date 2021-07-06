@@ -100,9 +100,7 @@
         android:id="@+id/message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:lines="10"
-        android:gravity="start|top"
-        android:layout_marginLeft="10dp"
+        android:lines="5"
         android:enabled="true" />
 
     <Button
@@ -113,6 +111,21 @@
         android:layout_height="wrap_content"
         android:background="#77FFCC"
         android:text="發送"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text= "您的意見是我們努力的來源"
+        android:textSize="18dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="歡迎留下任何對應用程式有關的意見"
+        android:textSize="18dp"/>
 
 
 </LinearLayout>

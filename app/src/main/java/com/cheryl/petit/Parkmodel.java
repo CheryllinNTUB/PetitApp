@@ -1,5 +1,4 @@
 package com.cheryl.petit;
-
 import java.io.Serializable;
 
 public class Parkmodel implements Serializable{
@@ -8,9 +7,8 @@ public class Parkmodel implements Serializable{
     private String Parkcity;
     private String Parkreigon;
     private String Parkname;
-    private String Park_details;
+    private String Parkabout;
     private String Parkimg;
-    private String Park_search;
 
     public String getItem_id() {
         return item_id;
@@ -24,14 +22,13 @@ public class Parkmodel implements Serializable{
     }
 
 
-    public Parkmodel(String parkcity, String parkreigon,String parkname, String parkdetails, String parkimg, String park_search, String item_id) {
+    public Parkmodel(String parkcity, String parkreigon,String parkname, String parkabout, String parkimg, String item_id) {
 
         this.Parkname = parkname;
         this.Parkcity = parkcity;
         this.Parkreigon = parkreigon;
-        this.Park_details = parkdetails;
+        this.Parkabout = parkabout;
         this.Parkimg = parkimg;
-        this.Park_search = park_search;
     }
 
     public String getParkcity() {
@@ -58,12 +55,12 @@ public class Parkmodel implements Serializable{
         this.Parkname = parkname;
     }
 
-    public String getParkdetails() {
-        return Park_details;
+    public String getParkabout() {
+        return Parkabout;
     }
 
-    public void setParkdetails(String parkdetails) {
-        this.Park_details = parkdetails;
+    public void setParkabout(String parkabout) {
+        Parkabout = parkabout;
     }
 
     public String getParkimg() {
@@ -74,11 +71,4 @@ public class Parkmodel implements Serializable{
         this.Parkimg= parkimg;
     }
 
-    public String getPark_search() {
-        return Park_search;
-    }
-
-    public void setPark_search(String park_search) {
-        Park_search = park_search;
-    }
 }

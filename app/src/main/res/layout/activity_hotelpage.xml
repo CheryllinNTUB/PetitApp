@@ -21,17 +21,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            app:srcCompat="@drawable/ic_arrow"
+            android:src="@drawable/ic_close"
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/hotel_name1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginRight="40dp"
+            android:layout_gravity="center"
             android:text="友善旅宿"
             android:textColor="#4f4f4f"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -41,7 +41,7 @@
         android:id="@+id/hotel_img"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:scaleType="center"
+        android:scaleType="centerCrop"
         android:layout_below="@+id/toolbar"/>
 
     <ScrollView
@@ -55,14 +55,14 @@
 
 
     <TextView
-        android:id="@+id/hotel_name"
+        android:id="@+id/hotel_name2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="店家名稱"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:layout_below="@+id/hotel_img" />
 
 
@@ -101,14 +101,15 @@
         android:layout_marginTop="14dp"
         android:text="關於店家"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:layout_below="@+id/hotel_city" />
 
     <TextView
-        android:id="@+id/hotel_details"
+        android:id="@+id/hotelabout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="10dp"
         android:text="簡介簡介"
         android:textColor="#6C6C6C"
@@ -119,85 +120,125 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="14dp"
-                android:text="聯絡資訊"
+                android:layout_marginTop="16dp"
+                android:text="連絡電話"
                 android:textColor="#000000"
-                android:textSize="24sp"/>
+                android:textSize="22sp"
+                android:layout_below="@+id/hotel_img" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-    <ImageButton
-        android:id="@+id/line"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_below="@+id/about"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="12dp"
-        android:scaleType="centerInside"
-        android:background="#ffffff"
-        android:src="@drawable/line" />
-
-
-            <ImageButton
-                android:id="@+id/fb"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_below="@+id/about"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff"
-                android:scaleType="centerInside"
-                android:src="@drawable/fb" />
-
-            <ImageButton
-                android:id="@+id/email"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_below="@+id/about"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#ffffff"
-                android:scaleType="centerInside"
-                android:src="@drawable/email" />
-
-        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="86dp">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <Button
+                <TextView
                     android:id="@+id/phonecall"
-                    android:layout_width="80dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/hotel_details"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/roundbutton"
-                    android:text="聯絡電話" />
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:text="聯絡電話"
+                    android:textColor="#6C6C6C"
+                    android:textSize="16sp"
+                    android:autoLink="phone"
+                    android:layout_below="@+id/hotel_img"/>
 
-                <Button
-                    android:id="@+id/hotel_map"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/hotel_details"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/roundbutton"
-                    android:text="地圖導航" />
-
-                <Button
-                    android:id="@+id/add_love"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/hotel_details"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/roundbutton"
-                    android:text="加入收藏" />
 
             </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="14dp"
+                android:text="其他聯絡資訊"
+                android:textColor="#000000"
+                android:textSize="22sp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/about"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#ffffff"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/fb" />
+
+                <TextView
+                    android:id="@+id/fb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="16dp"
+                    android:autoLink="web"
+                    android:text="臉書粉專" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/website"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="18dp"/>
+
+                <TextView
+                    android:id="@+id/web"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:autoLink="web"
+                    android:textSize="16dp"
+                    android:text="官方網站" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_below="@+id/about"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#ffffff"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/email" />
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginLeft="13dp"
+                    android:autoLink="email"
+                    android:textSize="16dp"
+                    android:text="電子郵件" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>

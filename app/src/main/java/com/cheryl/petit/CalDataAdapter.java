@@ -22,6 +22,10 @@ public class CalDataAdapter extends FirestoreRecyclerAdapter<Calmodel,CalDataAda
         holder.foodtype.setText(model.getFoodtype());
         holder.foodname.setText(model.getFoodname());
         holder.eatcal.setText(model.getEattotalcal());
+        holder.meal.setText(model.getMealkind());
+        holder.dated.setText(model.getDated());
+        holder.recal.setText(model.getRecal());
+
     }
 
     @NonNull
@@ -38,7 +42,7 @@ public class CalDataAdapter extends FirestoreRecyclerAdapter<Calmodel,CalDataAda
     }
 
     class CalHolder extends  RecyclerView.ViewHolder{
-        private TextView petname,foodtype,foodname,eatcal;
+        private TextView petname,foodtype,foodname,eatcal,meal,dated,recal;
 
         public CalHolder(View itemview){
             super(itemview);
@@ -46,7 +50,9 @@ public class CalDataAdapter extends FirestoreRecyclerAdapter<Calmodel,CalDataAda
             foodtype = itemview.findViewById(R.id.foodtype);
             foodname = itemview.findViewById(R.id.foodname);
             eatcal = itemview.findViewById(R.id.eattotalcal);
-
+            meal = itemview.findViewById(R.id.meal);
+            dated = itemview.findViewById(R.id.dated);
+            recal = itemview.findViewById(R.id.recal);
 
         }
     }

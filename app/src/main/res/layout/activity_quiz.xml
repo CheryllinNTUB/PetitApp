@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,16 +7,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#E8FFF5"
-    tools:context=".cal">
+    tools:context=".Quiz">
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="#77FFCC"
+        android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        android:elevation="4dp">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
 
         <ImageButton
             android:id="@+id/back"
@@ -33,40 +33,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginRight="40dp"
-            android:text="卡路里計算"
+            android:layout_marginRight="30dp"
+            android:text="Petit Quiz"
             android:textColor="#4f4f4f"
             android:textSize="20sp" />
 
+
     </androidx.appcompat.widget.Toolbar>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        app:tabTextColor="#4f4f4f">
-
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/daily"
-            android:text="每日卡路里"
-            />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/per_meal"
-            android:text="每餐卡路里"
-            />
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager"
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="歡迎來到PetitQuiz!!"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:textSize="20dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="來看看你能答對多少寵物小知識吧"
+        android:layout_gravity="center"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="#77FFCC"
+        android:text="開始"
+        android:textSize="18dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:src="@drawable/pethouse"/>
+
 
 </LinearLayout>

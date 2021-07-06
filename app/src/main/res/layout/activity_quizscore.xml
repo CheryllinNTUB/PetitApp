@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E8FFF5"
+    android:orientation="vertical"
+    tools:context=".Quizscore">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#77FFCC"
+        tools:layout_editor_absoluteX="196dp"
+        tools:layout_editor_absoluteY="205dp">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="Petit Quiz" />
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"
+            android:textSize="38dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:text="得分數:5/6" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"
+            android:textSize="38dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:text="你的得分為:" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="38dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:text="5" />
+
+
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    <Button
+        android:id="@+id/finish"
+        android:layout_width="211dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#77FFCC"
+        android:text="結束"
+        android:textColor="@android:color/black"
+        android:textSize="14dp" />
+
+    </FrameLayout>
+
+
+</LinearLayout>

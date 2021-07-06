@@ -84,15 +84,15 @@
                 android:textColor="#000000" />
 
             <Button
-                android:id="@+id/favoriteplace"
+                android:id="@+id/Quiz"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="160dp"
                 android:background="#E8FFF5"
-                android:text="最愛場所"
+                android:textAllCaps="false"
+                android:text="Petit Quiz"
                 android:textColor="#000000" />
 
             <Button

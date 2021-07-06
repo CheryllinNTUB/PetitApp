@@ -39,7 +39,6 @@ public class ActivityDataAdapter extends RecyclerView.Adapter<ActivityViewHelper
 
         holder.image.setImageResource(activitymodel.get(position).getImage());
         holder.name.setText(activitymodel.get(position).getActivityName());
-        holder.content.setText(activitymodel.get(position).getActivityContent());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,9 +67,8 @@ class  ActivityViewHelper extends RecyclerView.ViewHolder{
     public  ActivityViewHelper(@NonNull View itemview){
         super(itemview);
 
-        image = itemview.findViewById(R.id.activityimage);
-        content = itemview.findViewById(R.id.activity_content);
-        name = itemview.findViewById(R.id.activitytitle);
+        image = itemview.findViewById(R.id.actimage);
+        name = itemview.findViewById(R.id.acttitle);
         cardView = itemview.findViewById(R.id.cardview);
     }
 

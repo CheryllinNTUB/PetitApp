@@ -8,10 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,6 +26,9 @@ public class addcal extends AppCompatActivity {
     private RecyclerView recyclerView_caldata;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference calref = db.collection("Petpermeal");
+    private static final String TAG = "FirestoreSearchActivity";
+    private EditText search;
+    Query query =db.collection("Petpermeal");
     private CalDataAdapter adapter;
     private ImageButton back,add;
     @Override
@@ -30,7 +38,40 @@ public class addcal extends AppCompatActivity {
 
         back =  findViewById(R.id.back);
         add =findViewById(R.id.add);
+        search = findViewById(R.id.search);
         setUpRecyclerView();
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.d(TAG,"Searchbox has changed to:"+ editable.toString());
+                Query q;
+                if (editable.toString().isEmpty()){
+                    q = db.collection("Petpermeal").orderBy("dated",Query.Direction.ASCENDING);
+
+                }
+                else {
+                    q = db.collection("Petpermeal").whereEqualTo("petname",editable.toString())
+                            .orderBy("dated",Query.Direction.ASCENDING);
+                }
+
+                FirestoreRecyclerOptions<Calmodel> options = new FirestoreRecyclerOptions
+                        .Builder<Calmodel>()
+                        .setQuery(q,Calmodel.class)
+                        .build();
+                adapter.updateOptions(options);
+            }
+        });
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -46,24 +87,26 @@ public class addcal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(addcal.this, cal.class);
+                intent.setClass(addcal.this, permeal.class);
                 startActivity(intent);
             }
         });
     }
 
 
+
+
     private void setUpRecyclerView(){
-        Query query = calref.orderBy("petname",Query.Direction.DESCENDING);
-        FirestoreRecyclerOptions<Calmodel> options = new FirestoreRecyclerOptions.Builder<Calmodel>()
-                .setQuery(query,Calmodel.class)
+        Query query1 = calref.orderBy("petname",Query.Direction.DESCENDING);
+        FirestoreRecyclerOptions<Calmodel> options1 = new FirestoreRecyclerOptions.Builder<Calmodel>()
+                .setQuery(query1,Calmodel.class)
                 .build();
 
-        adapter = new CalDataAdapter(options);
+
+        adapter = new CalDataAdapter(options1);
         recyclerView_caldata = findViewById(R.id.recyleview_caldata);
         recyclerView_caldata.setLayoutManager(new LinearLayoutManager(this));
         recyclerView_caldata.setAdapter(adapter);
-
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -78,10 +121,14 @@ public class addcal extends AppCompatActivity {
 
     }
 
+
+
+
     @Override
     protected void onStart(){
         super.onStart();
         adapter.startListening();
+
     }
 
     @Override
@@ -89,5 +136,7 @@ public class addcal extends AppCompatActivity {
         super.onStop();
         adapter.stopListening();
     }
+
+
 }
 

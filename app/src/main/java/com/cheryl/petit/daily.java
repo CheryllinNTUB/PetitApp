@@ -1,6 +1,8 @@
 package com.cheryl.petit;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,44 +17,67 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
-public class daily extends Fragment {
+public class daily extends Activity {
     private Spinner petname,petbodytype;
     private EditText day_cal,pet_kg;
-    private Button calculate;
+    private Button calculate,finish;
+    private ImageButton back;
     ArrayList<String> bodytypeList;
     ArrayAdapter<String>bodytypeAdapter;
     static double bodytype,kg;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String uid = user.getUid();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference petnameref = db.collection("PetData");
     private List<String> nameList = new ArrayList<>();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_daily, container, false);
-
-        petname = v.findViewById(R.id.petname);
-        petbodytype = v.findViewById(R.id.petbodytype);
-        calculate = v.findViewById(R.id.calculate);
-        day_cal = v.findViewById(R.id.day_cal);
-        pet_kg = v.findViewById(R.id.pet_kg);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_daily);
 
 
+        petname = findViewById(R.id.petname);
+        petbodytype = findViewById(R.id.petbodytype);
+        calculate = findViewById(R.id.calculate);
+        day_cal = findViewById(R.id.day_cal);
+        pet_kg = findViewById(R.id.pet_kg);
+        finish = findViewById(R.id.finish);
+        back = findViewById(R.id.back);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, nameList);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(daily.this, addweight.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, nameList);
         petname.setAdapter(adapter);
+
         petnameref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -65,12 +90,6 @@ public class daily extends Fragment {
                 }
             }
         });
-
-
-
-
-
-
 
 
         bodytypeList = new ArrayList<>();
@@ -95,7 +114,7 @@ public class daily extends Fragment {
         bodytypeList.add("懷孕中的母貓");
         bodytypeList.add("哺乳中的母貓");
 
-        bodytypeAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,bodytypeList);
+        bodytypeAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1,bodytypeList);
         petbodytype.setAdapter(bodytypeAdapter);
 
 
@@ -114,6 +133,7 @@ public class daily extends Fragment {
                             String total = Double.toString(caltotal);
                             day_cal.setText(total);
                         }
+
                     });
                 }
 
@@ -376,7 +396,33 @@ public class daily extends Fragment {
             }
         });
 
-        return v;
+        finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<String,String> map = new HashMap<>();
+                map.put("userID",uid);
+                map.put("petname",petname.getSelectedItem().toString());
+                map.put("petweight",pet_kg.getText().toString());
+                map.put("pettype",petbodytype.getSelectedItem().toString());
+                map.put("day_cal",day_cal.getText().toString());
+
+
+
+
+
+
+                db.collection("PetweightRecord").document().set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"已新增體重資料",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
+
     }
 
 }
