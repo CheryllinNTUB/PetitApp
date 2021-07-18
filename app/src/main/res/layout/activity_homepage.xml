@@ -51,13 +51,15 @@
        android:layout_height="match_parent"
        android:id="@+id/fragmentContainer"/>
 
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
             android:layout_height="wrap_content"
-            android:background="#77FFCC"
-            app:menu="@menu/menu"
+            android:background="@drawable/round_navi"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="30dp"
+            android:elevation="2dp"
+            app:menu="@menu/item_menu"
+            app:itemIconSize="25dp"
             android:id="@+id/bottomnavi"/>
 
 

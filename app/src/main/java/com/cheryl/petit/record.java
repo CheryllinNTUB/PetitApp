@@ -9,10 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.jetbrains.annotations.NotNull;
+
 
 public class record extends AppCompatActivity {
 
     private CardView cal,doc,supp,weight;
+    BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -25,37 +28,7 @@ public class record extends AppCompatActivity {
         doc =findViewById(R.id.doc);
         supp =findViewById(R.id.supp);
         weight = findViewById(R.id.weight);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnavi);
-        bottomNavigationView.setSelectedItemId(R.id.record);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext()
-                                ,homepage.class ));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.search:
-                        startActivity(new Intent(getApplicationContext()
-                                ,search.class ));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.record:
-                        return true;
-
-                    case R.id.user:
-                        startActivity(new Intent(getApplicationContext()
-                                ,user.class ));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
 
         cal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +66,41 @@ public class record extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        bottomNavigationView = findViewById(R.id.bottomnavi);
+        bottomNavigationView.setSelectedItemId(R.id.navi_record);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.navi_article:
+                        startActivity(new Intent(getApplicationContext()
+                                ,homepage.class ));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.navi_search:
+                        startActivity(new Intent(getApplicationContext()
+                                ,search.class ));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.navi_record:
+
+                        return true;
+
+
+                    case R.id.navi_user:
+                        startActivity(new Intent(getApplicationContext()
+                                ,user.class ));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
 
     }
 }

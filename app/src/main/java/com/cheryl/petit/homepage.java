@@ -32,6 +32,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class homepage extends AppCompatActivity {
@@ -41,6 +43,7 @@ public class homepage extends AppCompatActivity {
     private static final String TAG = "FirestoreSearchActivity";
     ArrayList<Activitymodel> activitylist;
     Activitymodel activitymodel;
+    BottomNavigationView bottomNavigationView;
 
 
 
@@ -51,39 +54,7 @@ public class homepage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
         recyclerView = findViewById(R.id.recyleview);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnavi);
-        bottomNavigationView.setSelectedItemId(R.id.home);
-
-
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        return true;
-
-                    case R.id.search:
-                        startActivity(new Intent(getApplicationContext()
-                                , search.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-
-                    case R.id.record:
-                        startActivity(new Intent(getApplicationContext()
-                                , record.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-
-                    case R.id.user:
-                        startActivity(new Intent(getApplicationContext()
-                                , user.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-                return false;
-            }
-        });
+        //BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnavi);
 
 
 
@@ -164,6 +135,41 @@ public class homepage extends AppCompatActivity {
 
         ActivityDataAdapter actrecyleViewAdapter = new ActivityDataAdapter(homepage.this,activitylist);
         recyclerView.setAdapter(actrecyleViewAdapter);
+
+
+        bottomNavigationView = findViewById(R.id.bottomnavi);
+        bottomNavigationView.setSelectedItemId(R.id.navi_article);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.navi_article:
+
+                        return true;
+
+                    case R.id.navi_search:
+                        startActivity(new Intent(getApplicationContext()
+                                ,search.class ));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.navi_record:
+                        startActivity(new Intent(getApplicationContext()
+                                ,record.class ));
+                        overridePendingTransition(0,0);
+                        return true;
+
+
+                    case R.id.navi_user:
+                        startActivity(new Intent(getApplicationContext()
+                                ,user.class ));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
     }
 

@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="想帶毛孩去的地方是..."
+                    android:text="場所搜尋"
                     android:textColor="#4f4f4f"
                     android:textSize="20sp" />
 
@@ -303,10 +303,13 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
         android:layout_height="wrap_content"
-        android:background="#77FFCC"
-        app:menu="@menu/menu"
+        android:background="@drawable/round_navi"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="30dp"
+        android:elevation="2dp"
+        app:menu="@menu/item_menu"
+        app:itemIconSize="25dp"
         android:id="@+id/bottomnavi"/>
 
 </RelativeLayout>

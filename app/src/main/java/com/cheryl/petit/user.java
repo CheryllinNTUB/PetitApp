@@ -33,15 +33,13 @@ public class user extends AppCompatActivity {
     TextView email,number;
     private FirebaseAuth mAuth;
     GoogleSignInClient googleSignInClient;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         mAuth = FirebaseAuth.getInstance();
-
-        
-
 
 
         logout = findViewById(R.id.googlelogout);
@@ -55,13 +53,13 @@ public class user extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         try {
             number.setText(user.getPhoneNumber());
-        }catch (Exception e){
-            Toast.makeText(this,"查無此電話號碼",Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "查無此電話號碼", Toast.LENGTH_SHORT).show();
         }
 
 
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        if (firebaseUser != null){
+        if (firebaseUser != null) {
             email.setText(firebaseUser.getEmail());
             Picasso.get().load(firebaseUser.getPhotoUrl())
                     .placeholder(R.mipmap.ic_launcher).into(image);
@@ -82,7 +80,7 @@ public class user extends AppCompatActivity {
         petdata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(user.this,pet.class);
+                Intent intent = new Intent(user.this, pet.class);
                 startActivity(intent);
                 finish();
             }
@@ -97,49 +95,51 @@ public class user extends AppCompatActivity {
             }
         });
 
-       opinion.setOnClickListener(new View.OnClickListener() {
+        opinion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(user.this,opinion.class);
+                Intent intent = new Intent(user.this, opinion.class);
                 startActivity(intent);
                 finish();
             }
         });
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnavi);
-        bottomNavigationView.setSelectedItemId(R.id.user);
+        bottomNavigationView = findViewById(R.id.bottomnavi);
+        bottomNavigationView.setSelectedItemId(R.id.navi_user);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.home:
+                switch (item.getItemId()){
+                    case R.id.navi_article:
                         startActivity(new Intent(getApplicationContext()
-                                , homepage.class));
-                        overridePendingTransition(0, 0);
+                                ,homepage.class ));
+                        overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.search:
+                    case R.id.navi_search:
                         startActivity(new Intent(getApplicationContext()
-                                , search.class));
-                        overridePendingTransition(0, 0);
+                                ,search.class ));
+                        overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.record:
+                    case R.id.navi_record:
                         startActivity(new Intent(getApplicationContext()
-                                , record.class));
-                        overridePendingTransition(0, 0);
+                                ,record.class ));
+                        overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.user:
+
+                    case R.id.navi_user:
+
                         return true;
                 }
                 return false;
             }
         });
+
+
     }
-
-
 }
 
 

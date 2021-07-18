@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:id="@+id/navi_article"
+        android:title="相關文章"
+        android:icon="@drawable/ic_article"/>
+
+    <item android:id="@+id/navi_search"
+        android:title="場所搜尋"
+        android:icon="@drawable/ic_search"/>
+
+    <item android:id="@+id/navi_record"
+        android:title="各項紀錄"
+        android:icon="@drawable/ic_record"/>
+
+    <item android:id="@+id/navi_user"
+        android:title="用戶"
+        android:icon="@drawable/ic_person"/>
+
+
+</menu>

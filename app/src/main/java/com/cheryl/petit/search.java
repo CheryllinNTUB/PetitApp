@@ -9,10 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.jetbrains.annotations.NotNull;
+
 
 public class search  extends AppCompatActivity {
 
     private CardView park,place,hospital,salon,hotel,restaurant;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,38 +28,7 @@ public class search  extends AppCompatActivity {
         salon = findViewById(R.id.salon);
         hotel =findViewById(R.id.hotel);
         restaurant = findViewById(R.id.restaurant);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnavi);
-        bottomNavigationView.setSelectedItemId(R.id.search);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext()
-                                ,homepage.class ));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.search:
-                        return true;
-
-                    case R.id.record:
-                        startActivity(new Intent(getApplicationContext()
-                                ,record.class ));
-                        overridePendingTransition(0,0);
-                        return true;
-
-
-                    case R.id.user:
-                        startActivity(new Intent(getApplicationContext()
-                                ,user.class ));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
 
         park.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +81,41 @@ public class search  extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass( search.this,restaurant.class);
                 startActivity(intent);
+            }
+        });
+
+
+        bottomNavigationView = findViewById(R.id.bottomnavi);
+        bottomNavigationView.setSelectedItemId(R.id.navi_search);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.navi_article:
+                        startActivity(new Intent(getApplicationContext()
+                                ,homepage.class ));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.navi_search:
+
+                        return true;
+
+                    case R.id.navi_record:
+                        startActivity(new Intent(getApplicationContext()
+                                ,record.class ));
+                        overridePendingTransition(0,0);
+                        return true;
+
+
+                    case R.id.navi_user:
+                        startActivity(new Intent(getApplicationContext()
+                                ,user.class ));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
             }
         });
 
