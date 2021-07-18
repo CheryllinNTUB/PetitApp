@@ -6,6 +6,8 @@
     <string name="content">content</string>
     <string name="facebook_app_id">211440960859603</string>
     <string name="fb_login_protocol_scheme">fb211440960859603</string>
+    <string name="didn_t_get_otp_resend">沒收到驗證碼?</string>
+    <string name="_886"><b>+886-</b></string>
 
 
     <string-array name="list">

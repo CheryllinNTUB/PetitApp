@@ -10,14 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -32,8 +24,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,12 +34,7 @@ import java.util.Arrays;
 public class welcome extends AppCompatActivity {
 
     private GoogleSignInClient mGoogleSignInClient;
-    private Button gologin;
-    public LoginButton fblogin;
-    private static final int GOOGLE_SIGN = 123;
-    private static final String TAG = "MainActivity";
-    private String mCustomToken;
-    private CallbackManager mCallbackManager;
+    private Button gologin,phonelogin;
     private FirebaseAuth mAuth;
 
     @Override
@@ -55,128 +42,95 @@ public class welcome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         gologin = findViewById(R.id.gologin);
-        fblogin = findViewById(R.id.fblogin);
-        FacebookSdk.sdkInitialize(welcome.this);
-        createRequest();
-        mAuth = FirebaseAuth.getInstance();
-
-        //按鈕動畫
-        gologin.setAlpha(0f);
-        gologin.setTranslationY(30);
-        gologin.animate().alpha(1f).translationYBy(-50).setStartDelay(1000).setDuration(1500);
-
-        fblogin.setAlpha(0f);
-        fblogin.setTranslationY(30);
-        fblogin.animate().alpha(1f).translationYBy(-50).setStartDelay(1000).setDuration(1500);
+        phonelogin = findViewById(R.id.phonelogin);
 
 
 
-
-        mCallbackManager = CallbackManager.Factory.create();
-        fblogin.setReadPermissions("email", "public_profile");
-
-
-
-        findViewById(R.id.gologin).setOnClickListener(new View.OnClickListener() {
+        phonelogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signIn();
+                Intent intent = new Intent(welcome.this, com.cheryl.petit.phone_login.class);
+                startActivity(intent);
+                finish();
             }
         });
 
 
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
-
-
-
-    private void startSignIn() {
-        mAuth.signInWithCustomToken(mCustomToken)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(welcome.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-                    }
-                });
-    }
-
-
-   private void updateUI(FirebaseUser currentUser) {
-        if (currentUser != null){
-            Intent intent = new Intent(welcome.this,user.class);
-            startActivity(intent);
-        }else{
-            //Toast.makeText(this,"Please sign in to continue.",Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode,Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == GOOGLE_SIGN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account);
-            }catch (ApiException e) {
-
-                Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
-
-            }
-        }
-    }
-
-
-
-    private void createRequest(){
+        //按鈕動畫
+        gologin.setAlpha(0f);
+        gologin.setTranslationY(30);
+        gologin.animate().alpha(1f).translationYBy(-50).setStartDelay(1200).setDuration(1500);
+        phonelogin.setAlpha(0f);
+        phonelogin.setTranslationY(30);
+        phonelogin.animate().alpha(1f).translationYBy(-50).setStartDelay(1200).setDuration(1500);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(welcome.this
+        ,gso);
+
+        gologin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(intent,100);
+            }
+        });
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        if (firebaseUser != null){
+            startActivity(new Intent(welcome.this,user.class)
+            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
     }
 
-    private void signIn(){
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent,GOOGLE_SIGN);
-    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        if (requestCode == 100) {
+            Task<GoogleSignInAccount> task = GoogleSignIn
+                    .getSignedInAccountFromIntent(data);
+            if (task.isSuccessful()){
+                String s = "登入成功";
+                displayToast(s);
+                try {
+                    GoogleSignInAccount googleSignInAccount = task
+                            .getResult(ApiException.class);
+                    if (googleSignInAccount != null){
+                        AuthCredential authCredential = GoogleAuthProvider
+                                .getCredential(googleSignInAccount.getIdToken()
+                                        ,null);
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Intent intent = new Intent(getApplicationContext(), user.class);
-                            startActivity(intent);
-
-                        } else {
-                            Toast.makeText(welcome.this, "認證失敗!", Toast.LENGTH_SHORT).show();
-
-                        }
+                        mAuth.signInWithCredential(authCredential)
+                                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()){
+                                            startActivity(new Intent(welcome.this
+                                                    ,user.class)
+                                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                            displayToast("登入成功");
+                                        }else{
+                                            displayToast("登入失敗" + task.getException().getMessage());
+                                        }
+                                    }
+                                });
                     }
-                });
+                } catch (ApiException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
+
+    private void displayToast(String s) {
+        Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+
+    }
+
 }

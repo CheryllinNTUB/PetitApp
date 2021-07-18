@@ -22,28 +22,24 @@
 
         <Button
             android:id="@+id/gologin"
-            android:layout_width="175dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="#ffffff"
-            android:text="以google帳號繼續"
-            android:drawableStart="@drawable/google"
+            android:background="@drawable/roundbutton"
+            android:text="使用google帳號登入"
+
             android:textColor="#000000"/>
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/fblogin"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="以Facebook帳號繼續"
-            android:layout_alignParentBottom="true"
+        <Button
+            android:id="@+id/phonelogin"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:drawableLeft="@drawable/fb"
-            android:textColor="#000000" />
-
-
+            android:background="@drawable/roundbutton"
+            android:text="使用電話號碼登入"
+            android:textColor="#000000"/>
 
 
     </LinearLayout>

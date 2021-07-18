@@ -10,55 +10,72 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.squareup.picasso.Picasso;
+
+import org.jetbrains.annotations.NotNull;
 
 public class user extends AppCompatActivity {
 
     Button logout,petdata,opinion,Quiz;
     ImageView image;
-    TextView name,email;
+    TextView email,number;
     private FirebaseAuth mAuth;
+    GoogleSignInClient googleSignInClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-
         mAuth = FirebaseAuth.getInstance();
-         FirebaseUser mUser = mAuth.getCurrentUser();
-        GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
+
+        
 
 
 
         logout = findViewById(R.id.googlelogout);
-        name = findViewById(R.id.name);
         email = findViewById(R.id.email);
+        number = findViewById(R.id.number);
         Quiz = findViewById(R.id.Quiz);
         opinion = findViewById(R.id.opinion);
         petdata = findViewById(R.id.petdata);
         image = findViewById(R.id.image);
 
-
-
-        if (signInAccount != null){
-            name.setText(signInAccount.getDisplayName());
-            email.setText(signInAccount.getEmail());
-            Picasso.get().load(signInAccount.getPhotoUrl()).placeholder(R.mipmap.ic_launcher).into(image);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        try {
+            number.setText(user.getPhoneNumber());
+        }catch (Exception e){
+            Toast.makeText(this,"查無此電話號碼",Toast.LENGTH_SHORT).show();
         }
 
 
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        if (firebaseUser != null){
+            email.setText(firebaseUser.getEmail());
+            Picasso.get().load(firebaseUser.getPhotoUrl())
+                    .placeholder(R.mipmap.ic_launcher).into(image);
+        }
+
+        googleSignInClient = GoogleSignIn.getClient(user.this
+                , GoogleSignInOptions.DEFAULT_SIGN_IN);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),welcome.class);
-                startActivity(intent);
                 FirebaseAuth.getInstance().signOut();
-                finish();
+                Intent intent = new Intent(getApplicationContext(), welcome.class);
+                startActivity(intent);
             }
         });
 
@@ -121,6 +138,7 @@ public class user extends AppCompatActivity {
             }
         });
     }
+
 
 }
 
