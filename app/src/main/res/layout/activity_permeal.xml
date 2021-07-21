@@ -14,10 +14,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#77FFCC"
+        android:background="#E8FFF5"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        android:elevation="4dp">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
 
         <ImageButton
             android:id="@+id/back"
@@ -68,12 +67,12 @@
                     android:id="@+id/petname"
                     android:layout_width="110dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
                     android:background="#ffffff"
                     android:entries="@array/list4"
                     android:spinnerMode="dialog"
-                    tools:spinnerMode="dropdown"/>
+                    tools:spinnerMode="dropdown" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -85,7 +84,7 @@
 
             </LinearLayout>
 
-                <TextView
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -355,8 +354,8 @@
                 android:id="@+id/calculate"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="#77FFCC"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/white_bg"
                 android:layout_gravity="center"
                 android:text="計算!"
                 android:textSize="14dp" />
@@ -367,7 +366,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:background="#77FFCC"
+                android:background="@drawable/white_bg"
                 android:text="加入今日記錄"
                 android:textSize="14dp" />
 

@@ -70,8 +70,7 @@
             android:id="@+id/b1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/quizbutton"
-            android:backgroundTint="#989898"
+            android:background="@drawable/white_bg"
             android:layout_margin="8dp"
             android:text="Button"
             android:textColor="@android:color/black"/>
@@ -80,9 +79,8 @@
             android:id="@+id/b2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/quizbutton"
+            android:background="@drawable/white_bg"
             android:layout_margin="8dp"
-            android:backgroundTint="#989898"
             android:text="Button"
             android:textColor="@android:color/black"/>
 
@@ -90,8 +88,7 @@
             android:id="@+id/b3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/quizbutton"
-            android:backgroundTint="#989898"
+            android:background="@drawable/white_bg"
             android:layout_margin="8dp"
             android:text="Button"
             android:textColor="@android:color/black"/>
@@ -100,8 +97,7 @@
             android:id="@+id/b4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/quizbutton"
-            android:backgroundTint="#989898"
+            android:background="@drawable/white_bg"
             android:layout_margin="8dp"
             android:text="Button"
             android:textColor="@android:color/black"/>
@@ -116,10 +112,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:background="#77FFCC"
+        android:background="@drawable/white_bg"
         android:textColor="@android:color/black"
-        android:enabled="false"
-        android:alpha="0.7"
         android:text="Next"
         android:textSize="14dp" />
 

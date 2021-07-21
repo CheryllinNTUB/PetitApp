@@ -14,10 +14,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#77FFCC"
+        android:background="#E8FFF5"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        android:elevation="4dp">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
 
 
         <ImageButton
@@ -39,11 +38,6 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -182,8 +176,8 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="#77FFCC"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/white_bg"
                 android:text="計算!"
                 android:textSize="14dp"/>
 
@@ -194,14 +188,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:background="#77FFCC"
+                android:background="@drawable/white_bg"
                 android:text="加入記錄"
                 android:textSize="14dp" />
 
 
         </LinearLayout>
 
-    </ScrollView>
+
 
 </LinearLayout>
 

@@ -21,14 +21,15 @@
             android:layout_weight="1">
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#77FFCC"
+                android:background="#E8FFF5"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark"
                 app:popupTheme="@style/AppTheme">
 
-
                 <TextView
+                    android:id="@+id/toolbar_record"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -38,8 +39,15 @@
 
             </androidx.appcompat.widget.Toolbar>
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/fragmentContainer"/>
+
 
         </RelativeLayout>
+
+
 
         <GridLayout
             android:layout_width="match_parent"
@@ -62,8 +70,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -102,8 +109,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -144,8 +150,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -184,8 +189,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -226,8 +230,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -240,7 +243,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="95dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/doc" />
+                        android:src="@drawable/doc2"/>
 
                     <TextView
                         android:layout_width="100dp"
@@ -266,8 +269,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"

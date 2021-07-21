@@ -14,10 +14,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#77FFCC"
+        android:background="#E8FFF5"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        android:elevation="4dp">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
 
         <ImageButton
             android:id="@+id/back"
@@ -32,7 +31,7 @@
             android:id="@+id/toolbar_help"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
+            android:layout_marginLeft="120dp"
             android:gravity="center"
             android:text="看診紀錄"
             android:textColor="#4f4f4f"
@@ -255,7 +254,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:background="#77FFCC"
+        android:background="@drawable/white_bg"
         android:text="完成"
         android:textSize="14dp" />
 

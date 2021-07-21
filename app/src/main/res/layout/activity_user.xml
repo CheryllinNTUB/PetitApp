@@ -14,26 +14,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="10"
         android:background="#E8FFF5">
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#77FFCC"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:popupTheme="@style/AppTheme">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#E8FFF5"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:popupTheme="@style/AppTheme">
 
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="用戶"
-                    android:textColor="#4f4f4f"
-                    android:textSize="20sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginRight="5dp"
+                android:text="用戶"
+                android:textColor="#4f4f4f"
+                android:textSize="20sp" />
 
-            </androidx.appcompat.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image"
@@ -64,60 +64,73 @@
             android:text="number"
             android:textSize="16dp" />
 
-
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="490dp"
+            android:layout_height="150dp">
+
+
+        <Button
+            android:id="@+id/petdata"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:drawableTop="@drawable/data"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="3dp">
+            android:background="@drawable/white_bg2"
+            android:text="寵物資料"
+            android:textColor="#000000"/>
 
-            <Button
-                android:id="@+id/petdata"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="center"
-                android:layout_marginBottom="200dp"
-                android:background="#E8FFF5"
-                android:text="寵物資料"
-                android:textColor="#000000" />
-
-            <Button
-                android:id="@+id/Quiz"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="160dp"
-                android:background="#E8FFF5"
-                android:textAllCaps="false"
-                android:text="Petit Quiz"
-                android:textColor="#000000" />
-
-            <Button
-                android:id="@+id/opinion"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="center"
-                android:layout_marginBottom="40dp"
-                android:background="#E8FFF5"
-                android:text="應用程式意見回饋"
-                android:textColor="#000000" />
+        <Button
+            android:id="@+id/Quiz"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:drawableTop="@drawable/quiz"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/white_bg2"
+            android:text="Petit Quiz"
+            android:textColor="#000000" />
 
 
-            <Button
-                android:id="@+id/googlelogout"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="40dp"
-                android:background="#E8FFF5"
-                android:text="登出"
-                android:textColor="#000000" />
+        </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/opinion"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:drawableTop="@drawable/request"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/white_bg2"
+            android:text="意見回饋"
+            android:textColor="#000000" />
+
+
+        <Button
+            android:id="@+id/googlelogout"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:drawableTop="@drawable/logout"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/white_bg2"
+            android:text="登出"
+            android:textColor="#000000" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -17,22 +17,18 @@ import com.squareup.picasso.Picasso;
 public class Placepage extends AppCompatActivity {
 
     private ImageView place_img;
-    private TextView place_name1,place_name2,place_city,place_reigon,phonecall,fb,web,email,placeabout;
-    private ImageButton back;
-    private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    private TextView place_name,place_city,place_reigon,phonecall,fb,web,email,placeabout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_placepage);
         place_img = findViewById(R.id.place_img);
-        place_name1 = findViewById(R.id.place_name1);
-        place_name2 = findViewById(R.id.place_name2);
+        place_name = findViewById(R.id.place_name);
         place_city = findViewById(R.id.placecity);
         place_reigon = findViewById(R.id.placereigon);
         phonecall = findViewById(R.id.phonecall);
         fb = findViewById(R.id.fb);
-        back = findViewById(R.id.back);
         web = findViewById(R.id.web);
         email = findViewById(R.id.email);
         placeabout = findViewById(R.id.placeabout);
@@ -40,8 +36,7 @@ public class Placepage extends AppCompatActivity {
 
         Intent intent = getIntent();
         Placemodel placemodel = (Placemodel)intent.getBundleExtra("bundle").getSerializable("key");
-        place_name1.setText(placemodel.getPlacename());
-        place_name2.setText(placemodel.getPlacename());
+        place_name.setText(placemodel.getPlacename());
         place_city.setText(placemodel.getPlacecity());
         place_reigon.setText(placemodel.getPlacereigon());
         placeabout.setText(placemodel.getPlaceabout());
@@ -51,14 +46,6 @@ public class Placepage extends AppCompatActivity {
         email.setText(placemodel.getPlaceemail());
         Picasso.get().load(placemodel.getPlaceimg()).into(place_img);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Placepage.this, place.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
     }
 }

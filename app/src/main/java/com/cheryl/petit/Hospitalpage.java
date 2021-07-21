@@ -30,10 +30,8 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 
 public class Hospitalpage extends Activity {
-    private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private ImageView hospital_img;
-    private TextView hospital_name1,hospital_name2,hospital_city,hospital_reigon,phonecall,fb,email,web;
-    private ImageButton back;
+    private TextView hospital_name,hospital_city,hospital_reigon,phonecall,fb,email,web;
 
 
     @Override
@@ -41,20 +39,17 @@ public class Hospitalpage extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospitalpage);
         hospital_img = findViewById(R.id.hospital_img);
-        hospital_name1 = findViewById(R.id.hospital_name1);
-        hospital_name2 = findViewById(R.id.hospital_name2);
+        hospital_name = findViewById(R.id.hospital_name);
         hospital_city = findViewById(R.id.hospital_city);
         hospital_reigon = findViewById(R.id.hospital_reigon);
         phonecall = findViewById(R.id.phonecall);
         fb = findViewById(R.id.fb);
         email = findViewById(R.id.email);
         web = findViewById(R.id.web);
-        back = findViewById(R.id.back);
 
         Intent intent = getIntent();
         Hospitalmodel hospitalmodel = (Hospitalmodel) intent.getBundleExtra("bundle").getSerializable("key");
-        hospital_name1.setText(hospitalmodel.getHospitalname());
-        hospital_name2.setText(hospitalmodel.getHospitalname());
+        hospital_name.setText(hospitalmodel.getHospitalname());
         hospital_city.setText(hospitalmodel.getHospitalcity());
         hospital_reigon.setText(hospitalmodel.getHospitalreigon());
         phonecall.setText(hospitalmodel.getHospitalphone());
@@ -63,14 +58,6 @@ public class Hospitalpage extends Activity {
         web.setText(hospitalmodel.getHospitalwebsite());
         Picasso.get().load(hospitalmodel.getHospitalimg()).into(hospital_img);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Hospitalpage.this, hospital.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
 
 

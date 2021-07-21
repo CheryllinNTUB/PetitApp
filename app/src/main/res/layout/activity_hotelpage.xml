@@ -7,34 +7,6 @@
     android:orientation="vertical"
     tools:context=".Hotelpage">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#77FFCC"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        android:elevation="4dp">
-
-        <ImageButton
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/ic_close"
-            tools:ignore="VectorDrawableCompat" />
-
-        <TextView
-            android:id="@+id/hotel_name1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="友善旅宿"
-            android:textColor="#4f4f4f"
-            android:textSize="20sp" />
-
-    </androidx.appcompat.widget.Toolbar>
-
 
 
     <ImageView
@@ -55,7 +27,7 @@
 
 
     <TextView
-        android:id="@+id/hotel_name2"
+        android:id="@+id/hotel_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"

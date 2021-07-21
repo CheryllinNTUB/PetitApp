@@ -37,9 +37,8 @@ import java.util.List;
 
 public class Parkpage extends AppCompatActivity {
     private ImageView park_img;
-    private TextView park_name1,park_name2,parkabout,park_city,park_reigon;
-    private ImageButton back;
-    private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    private TextView park_name,parkabout,park_city,park_reigon;
+
 
 
 
@@ -50,30 +49,20 @@ public class Parkpage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parkpage);
         park_img = findViewById(R.id.park_img);
-        park_name1 = findViewById(R.id.park_name1);
-        park_name2 = findViewById(R.id.park_name2);
+        park_name = findViewById(R.id.park_name);
         park_city = findViewById(R.id.park_city);
         park_reigon = findViewById(R.id.park_reigon);
         parkabout = findViewById(R.id.parkabout);
-        back = findViewById(R.id.back);
+
 
         Intent intent = getIntent();
         Parkmodel parkmodel = (Parkmodel) intent.getBundleExtra("bundle").getSerializable("key");
-        park_name1.setText(parkmodel.getParkname());
-        park_name2.setText(parkmodel.getParkname());
+        park_name.setText(parkmodel.getParkname());
         park_city.setText(parkmodel.getParkcity());
         park_reigon.setText(parkmodel.getParkreigon());
         parkabout.setText(parkmodel.getParkabout());
         Picasso.get().load(parkmodel.getParkimg()).into(park_img);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Parkpage.this, park.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
     }
 

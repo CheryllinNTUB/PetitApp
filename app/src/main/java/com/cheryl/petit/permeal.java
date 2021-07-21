@@ -219,16 +219,34 @@ public class permeal extends AppCompatActivity {
                 map.put("recal",re.getText().toString());
 
 
+
+
                 db.collection("Petpermeal").document().set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),"已新增卡路里資料",Toast.LENGTH_SHORT).show();
+                        if (foodname.getText().toString().trim().isEmpty()){
+                                Toast.makeText(permeal.this,"尚未輸入資料!!",Toast.LENGTH_SHORT).show();
+                        }else if (food_weight.getText().toString().trim().isEmpty()){
+                                Toast.makeText(permeal.this,"尚未輸入資料!!",Toast.LENGTH_SHORT).show();
+                        }else if (food_totalcal.getText().toString().trim().isEmpty()){
+                                Toast.makeText(permeal.this,"尚未輸入資料!!",Toast.LENGTH_SHORT).show();
+                        }else if (eat_weight.getText().toString().trim().isEmpty()){
+                                Toast.makeText(permeal.this,"尚未輸入資料!!",Toast.LENGTH_SHORT).show();
+                        }else if (datepick.getText().toString().trim().isEmpty()){
+                                Toast.makeText(permeal.this,"尚未輸入資料!!",Toast.LENGTH_SHORT).show();
                         }
+                            return;
+                        }
+
                     }
+
                 });
             }
         });
+
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

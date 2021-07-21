@@ -17,30 +17,25 @@ import com.squareup.picasso.Picasso;
 
 public class Restaurantpage extends AppCompatActivity {
     private ImageView rest_img;
-    private TextView rest_name1,rest_name2,restabout,rest_city,rest_reigon,phonecall,fb;
-    private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    private ImageButton back;
-    private CollectionReference locals = firebaseFirestore.collection("Restaurants");
+    private TextView rest_name,restabout,rest_city,rest_reigon,phonecall,fb;
+   //private CollectionReference locals = firebaseFirestore.collection("Restaurants");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurantpage);
         rest_img = findViewById(R.id.restaurant_img);
-        rest_name1 = findViewById(R.id.restaurant_name1);
-        rest_name2 = findViewById(R.id.restaurant_name2);
+        rest_name = findViewById(R.id.restaurant_name);
         rest_city = findViewById(R.id.restaurant_city);
         rest_reigon = findViewById(R.id.restaurant_reigon);
         restabout = findViewById(R.id.restaurantabout);
         phonecall = findViewById(R.id.phonecall);
         fb = findViewById(R.id.fb);
-        back = findViewById(R.id.back);
 
 
         Intent intent = getIntent();
         Restaurantmodel restaurantmodel = (Restaurantmodel)intent.getBundleExtra("bundle").getSerializable("key");
-        rest_name1.setText(restaurantmodel.getRestname());
-        rest_name2.setText(restaurantmodel.getRestname());
+        rest_name.setText(restaurantmodel.getRestname());
         rest_city.setText(restaurantmodel.getRestcity());
         rest_reigon.setText(restaurantmodel.getRestreigon());
         restabout.setText(restaurantmodel.getRestabout());
@@ -48,15 +43,6 @@ public class Restaurantpage extends AppCompatActivity {
         fb.setText(restaurantmodel.getRestfacebook());
         Picasso.get().load(restaurantmodel.getRestimg()).into(rest_img);
 
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Restaurantpage.this, restaurant.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 
     }
